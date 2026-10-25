@@ -88,6 +88,7 @@ B1. …
 | … | | | |
 Sets: <plural noun> = <members in fixed order>; selection universe and criterion
 where the set is a subset.
+Notation: IBCS (default when scenario data is present) | none.
 
 ## Gap list (titles whose evidence is missing)
 | # | Title | What is needed | From whom / where | Until |
@@ -105,7 +106,8 @@ where the set is a subset.
 - …
 
 ## Open points for the user
-- …
+- … (when IBCS notation applies: "Deck uses IBCS notation for scenario charts;
+  say if you want it without, or a one-slide preview of both.")
 
 ## Alternative key line (only if useful)
 - …

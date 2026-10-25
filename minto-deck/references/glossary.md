@@ -41,3 +41,11 @@ language. Add pairs here when a new term appears in a project.
 | next steps | nächste Schritte | with owners and dates |
 | placeholder | Platzhalter | marked `[PLACEHOLDER: …]` |
 | blocker / warning / advisory | Blocker / Warnung / Hinweis | audit severity |
+| register | Register | named entities with fixed name, category, status; Stage 1 output |
+| evidence column | Belegspalte | per title: available, missing, placeholder |
+| gap list | Lückenliste | titles without evidence, as analysis tasks |
+| section lead slide | Abschnittsauftakt-Folie | opens a section with three or more evidence slides |
+| comparison type | Vergleichstyp | component, item, time series, frequency, correlation |
+| insight callout | Insight-Box, Kernaussage-Kasten | takeaway box beside a chart |
+| density mode | Dichtemodus | speaker-led or reading-first |
+| revision loop | Überarbeitungsschleife | comments in the file, sorted into deck fix or rule gap |

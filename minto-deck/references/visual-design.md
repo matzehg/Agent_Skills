@@ -134,7 +134,10 @@ Charts are evidence, not decoration. Start from the comparison the title makes
 
 Bar, column and line cover almost everything. Waterfalls for bridges, funnels
 for drop-offs, Harvey balls for scorecards; Mekko, bubble and radar charts only
-when nothing simpler proves the title.
+when nothing simpler proves the title. Time series run horizontally, structural
+comparisons vertically as bars. Where actuals, plans, forecasts or previous
+periods appear, use the scenario fills and variance notation of
+`ibcs-notation.md` section 8.
 
 The same data tells different stories depending on the axis and the
 highlight. Stacked bars with companies on the axis argue "different mix";
@@ -144,7 +147,10 @@ the title, not the first one the tool offers.
 
 Chart craft:
 
-- Chart title states the message; axis titles state the metric and unit.
+- The slide's action title carries the message. The chart's own title is
+  descriptive (measure, unit, dimension, period) so the chart stands alone when
+  copied out; see `ibcs-notation.md` section 1. A chart without an action
+  title above it gets the message as a sentence directly above the chart.
 - Label data directly; drop the legend when one series is shown.
 - Highlight the element the title is about; grey the rest.
 - Sort bars by value unless the order has meaning (time, process).
@@ -152,6 +158,51 @@ Chart craft:
 - Remove gridlines, borders, tick clutter, 3D.
 - Units, period, source and sample on every chart.
 - Keep charts native and editable; never a pasted image.
+
+## 6a. Decluttering a chart, in order
+
+A fixed sequence, after Cole Nussbaumer Knaflic's practice, applied to every
+chart before it goes on a slide. Each step removes or adds one thing; stop
+when the chart proves the title and nothing else.
+
+1. Name the one point the chart must make (the slide title or, without one,
+   a sentence above the chart).
+2. Pick the simplest form that shows that comparison (section 6).
+3. Remove: chart border, gridlines, tick marks, background fill, 3D, drop
+   shadows, the legend when series can be labelled directly, data labels on
+   points the message is not about, trailing zeros and excess decimals,
+   diagonal text.
+4. Align: labels left, numbers right, one axis label orientation, the same
+   font and size as the slide body.
+5. Grey everything, then colour only the element the point rests on. If two
+   elements must be compared, colour both and nothing else.
+6. Add what directs attention: a direct label on the highlighted element, a
+   thin reference line (target, average, previous year) if the comparison
+   needs one, a short annotation in a sentence where the chart alone would
+   leave a question.
+7. Check the result against the title: can a reader state the title from the
+   chart alone?
+
+Preattentive attributes do the work in step 5 and 6: colour, size, position
+and enclosure are seen before reading starts; use one or two, never all.
+
+## 6b. Tables that are read, not looked up
+
+For tables in reading decks and backup, after Stephen Few's rules for tables
+that support comparison:
+
+- Rows and columns ordered for the comparison the reader will make (by size,
+  by time, by category), not alphabetically unless lookup is the purpose.
+- Numbers right-aligned with equal decimals; units in the header; thousands
+  separators; negative values with a sign, not in parentheses, unless the
+  template says otherwise.
+- Group columns with white space, not rules; one thin rule under the header,
+  totals set off by a rule above and bold.
+- Highlight one row or column by light fill; mark one or two cells by a
+  bolder weight or a small symbol. Never alternate row bands and a highlight
+  on the same table.
+- Delete columns the message does not need; move the rest to backup.
+- A table longer than eight rows on a projected slide is a backup table.
 
 ## 7. Tables, scorecards, callouts
 
@@ -255,5 +306,15 @@ note which rules they changed.
   Sections 6, 8, 9. https://slidescience.co
 - thinkinsights.net, "Designing Effective Slides": Duarte's principles applied
   to consulting decks. Sections 3, 4.
+- Cole Nussbaumer Knaflic, *Storytelling with Data* (Wiley, 2015): context
+  first, appropriate display, eliminate clutter, focus attention with
+  preattentive attributes, think like a designer, tell a story. Section 6a,
+  from the author's prior knowledge of the book, not re-read for this file.
+- Stephen Few, *Show Me the Numbers* (Analytics Press, 2nd ed. 2012): table
+  and graph design for business communication. Section 6b, from the author's
+  prior knowledge of the book, not re-read for this file.
+- IBCS Standards, see `ibcs-notation.md`: scenario notation, time horizontal
+  and structure vertical, data labels over axes, descriptive chart titles.
+  Sections 6, 6a.
 - General visual-design principles (Gestalt proximity and similarity, WCAG
   contrast ratios): sections 3, 5.

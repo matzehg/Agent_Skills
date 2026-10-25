@@ -56,7 +56,14 @@ in the Stage 1 output and carry on. Do not ask more than three questions at once
    invented. Numbers, quotes and examples come from the user's material or are
    clearly marked as placeholders.
 7. Constraints: template, corporate design, confidentiality, slide limits,
-   mandatory slides.
+   mandatory slides. Templates live in `assets/templates/`, one folder per
+   template with the file and a short note on its layouts; pick the one the
+   briefing names, or ask when several fit. Templates are the user's or their
+   employer's property: keep them out of public repositories.
+8. Notation: when the material contains actuals, plans, forecasts, previous
+   periods or variances, the deck uses IBCS notation by default. Say so in the
+   register and list "without IBCS notation" as an open point at the gate, so
+   the user can decline.
 
 ### Stage 1: the ghost deck
 
@@ -100,11 +107,17 @@ is being skipped at their request and continue.
 When the user edits titles, regenerate only the affected part of the storyline
 and re-run the read-through test. Do not re-open approved sections.
 
+Notation preview: if the user is unsure about IBCS notation, build one chart
+slide in both variants before Stage 2 proper and let them choose. Two complete
+decks in two notations only on explicit request.
+
 ### Stage 2: the full deck
 
 Start only from an approved ghost deck. Read `references/consulting-practices.md`,
 `references/visual-design.md`, `references/speaker-notes.md` and
-`references/timing-qa-handout.md`.
+`references/timing-qa-handout.md`. When the material contains actuals, plans,
+forecasts, previous periods or variances, also read `references/ibcs-notation.md`.
+For a reading-first deck or the handout step, read `references/reading-decks.md`.
 
 Produce, in this order:
 
@@ -131,7 +144,8 @@ Produce, in this order:
 6. **Backup slides** for the evidence that answers anticipated questions but
    does not carry the main argument. Reference them from the Q&A document.
 7. **Handout variant** when the deck will also be read without the presenter:
-   same storyline, reading-first density, sources on the slide, no delivery cues.
+   same storyline, reading-first density, sources on the slide, no delivery
+   cues; conversion rules in `reading-decks.md` section 6.
 8. **Management summary, final.** Rewrite slide 2 against the finished slides:
    every bold line is a claim a slide proves, every number matches its slide.
 9. **Consistency pass.** Dump the deck text and check every set from the
@@ -225,7 +239,10 @@ Read the file when its stage starts; do not load all of them up front.
 | `references/minto-pyramid.md` | Stage 1, and every Audit |
 | `references/storyline-ghost-deck.md` | Stage 1: process, output format, timing skeleton, gate |
 | `references/consulting-practices.md` | Stage 2: slide anatomy, action titles, density, tables, backup, decision wording |
-| `references/visual-design.md` | Stage 2: layout patterns, grid, type, colour, charts, executive summary format, visual check; Audit: form checks |
+| `references/visual-design.md` | Stage 2: layout patterns, grid, type, colour, charts, decluttering, tables, executive summary format, visual check; Audit: form checks |
+| `references/ibcs-notation.md` | Stage 2 and Audit, whenever numbers with scenarios or variances appear: IBCS rules and notation |
+| `references/reading-decks.md` | Stage 2 handout step and any reading-first deck; Audit of pre-reads |
+| `references/sources.md` | Maintenance: every source, its status and what it changed |
 | `references/speaker-notes.md` | Stage 2, step 3 |
 | `references/timing-qa-handout.md` | Stage 2, steps 4 to 7 |
 | `references/audit-checklist.md` | Stage 2 self-check, and every Audit: deck types, checks, severity, report format |

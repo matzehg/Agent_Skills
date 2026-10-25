@@ -3,11 +3,14 @@ name: decision-paper-ai-governance
 expected_outcome: |
   The first reply is a ghost deck only: numbered full-sentence titles in German,
   grouped by section, with a governing thought, an SCQA opening, a key line of
-  three to five claims, a timing skeleton for 30 minutes with 10 minutes
+  three to five claims, an evidence mark per title, a register of named
+  entities (processes, body, roles, options, criteria) with category and
+  status, a gap list, a timing skeleton for 30 minutes with 10 minutes
   discussion reserved, assumptions, open points, and a closing question asking
-  for approval. No slides, notes or files are produced before approval. After
+  for approval of ghost deck and register. No slides, notes or files are produced before approval. After
   approval, the run delivers an editable .pptx with speaker notes in the notes
   pane, a management summary on slide 2, a decision slide, next steps with owners
   and dates, placeholders marked for the missing cost and inventory numbers, a
-  timing plan, a Q&A document pointing to slides or backup, and a self-check
-  summary.
+  timing plan, a Q&A document pointing to slides or backup, named entities
+  identical on every slide, options shown before the recommended option's
+  detail, the decision worded as a proposal, and a self-check summary.

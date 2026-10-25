@@ -16,6 +16,8 @@ has not said and the deck does not make it obvious.
 | **Proposal or pitch** (Angebot) | management summary with the offer in one sentence; understanding of the client's question (SCQA); approach and phases; deliverables; team and roles; timeline; price or effort with assumptions; why this team; next steps and decision needed from the client; references where allowed |
 | **Expert talk** (Fachvortrag) | title with speaker and date; the one claim of the talk on slide 2; three to five sections that prove it; at least one concrete example per section; what the audience can do with it; contact or further reading |
 | **Reading deck** (Lesedeck, pre-read) | management summary that stands alone; every slide self-explanatory; sources and footnotes on the slide; glossary or definitions where terms are new; no delivery cues; page numbers |
+| **Leitungsvorlage** (German public-sector submission to the head of an authority or ministry; proposal derived from public rules of procedure, to be confirmed against the user's practice) | Betreff and purpose of the submission (information, decision, signature); Votum or Beschlussvorschlag first, as a proposal; Anlass (why now, who asked); Sachverhalt as agreed facts; Bewertung or Stellungnahme including possible problems; alternatives examined with reasons for rejection; consequences for budget, staff, law and data protection, IT; involvement of other units and remaining dissent; deadlines and next steps with owners; list of attachments; classification where required |
+| **Decision briefing, BLUF** (Lagevortrag zur Entscheidung; variant for defence and security audiences, optional) | bottom line first: the proposed decision in one sentence; situation; task or problem; courses of action assessed against stated criteria, recommended one marked; risks with mitigations; what is needed from the decision-maker now; next steps and timeline |
 
 Elements that every type needs: action titles throughout, a governing thought
 before the evidence, a visible key line (sections, tracker or agenda in the
@@ -110,6 +112,8 @@ Run in this order; each level depends on the one above.
 | G10 | Section dividers only in long decks; sections with three or more evidence slides open with a lead slide; one divider before backup at most |
 | G11 | Colour in roles: one accent for the message, at most one signal colour, grey only for containers; slide works in greyscale |
 | G12 | Layout pattern matches the claim (big number, chart with callout, comparison, pillars, flow, bridge, scorecard, timeline, executive summary) |
+| G13 | Charts with scenarios or variances follow IBCS notation: time horizontal, structure vertical, scenario fills (actual solid, plan outlined, forecast hatched, previous period light), variances green/red with signs, axes at zero, same scale per unit on a page, descriptive chart title under the action title |
+| G14 | Reading decks and handouts meet `reading-decks.md` section 7: standalone pages, no presenter cues, sources on the page, navigation present, one highlight per page |
 
 ## 3. Severity
 

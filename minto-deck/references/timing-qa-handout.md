@@ -67,6 +67,11 @@ Rules:
 - Note which questions should be pre-empted in the talk track of the relevant
   slide; the hardest objection is often better named by the presenter than
   waited for.
+- Slide references break when slides are renumbered. Write them as number plus
+  short title ("slide 8, options") so a stale number is visible, and regenerate
+  all references after any change in slide order as part of the consistency
+  pass. The same holds for the timing plan and for cross-references inside
+  the notes.
 
 ## 3. Backup slides
 
@@ -88,9 +93,10 @@ Produce one when the deck will be read without the presenter: pre-read,
 circulation after the meeting, email to absentees. Rules:
 
 - Same storyline, same titles, same order. The handout is not a second deck.
-- Reading-first density: the `Key point` and the evidence prompt from each
-  slide's notes move onto the slide as one or two short lines; sources and
-  footnotes stay or expand; delivery cues disappear.
+- Reading-first density: the `Key point` from each slide's notes moves onto the
+  slide as one short line, plus the evidence in reader form: the number and
+  its source, not the presenter's pointing cue ("Point at:" lines never go on
+  a slide). Sources and footnotes stay or expand; delivery cues disappear.
 - Type may shrink one step; nothing below 11 pt.
 - Add the management summary as the first page after the title and the
   next-steps page at the end even when the presented deck had them split.
