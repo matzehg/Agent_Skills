@@ -11,7 +11,7 @@ has not said and the deck does not make it obvious.
 
 | Deck type | Mandatory elements |
 |---|---|
-| **Decision paper** (Entscheidungsvorlage) | title with decision date; management summary with the ask; SCQA opening; options with explicit criteria; recommended option marked; cost and benefit with period; risks with owners and mitigations; decision slide (decision, consequence of no decision); next steps with owners and dates; sources; backup for the Q&A |
+| **Decision paper** (Entscheidungsvorlage) | title with decision date; management summary with the ask; SCQA opening; options with explicit criteria, shown before the detail of the recommended one; recommended option marked; cost and benefit with period; risks with owners and mitigations; decision slide worded as a proposal (Beschlussvorschlag: what is decided, consequence of no decision, what is needed today); next steps with owners and dates; sources; backup for the Q&A |
 | **Status report** (Statusbericht) | management summary with overall status in one sentence; progress against plan (what was planned, what happened); deviations with cause; decisions or support needed from the audience; next period's plan; risks that changed since last report |
 | **Proposal or pitch** (Angebot) | management summary with the offer in one sentence; understanding of the client's question (SCQA); approach and phases; deliverables; team and roles; timeline; price or effort with assumptions; why this team; next steps and decision needed from the client; references where allowed |
 | **Expert talk** (Fachvortrag) | title with speaker and date; the one claim of the talk on slide 2; three to five sections that prove it; at least one concrete example per section; what the audience can do with it; contact or further reading |
@@ -45,6 +45,8 @@ Run in this order; each level depends on the one above.
 | B4 | One logical order per set, visible in wording | order cannot be named |
 | B5 | Sections, tracker, agenda, management summary use the same wording | three versions of the key line |
 | B6 | Deductive chains have at most four steps | five "therefore" steps |
+| B7 | Named sets are consistent: same members, names, order and category on every slide | a committee listed among processes; a fourth member appearing on one slide only |
+| B8 | Subsets name their universe and selection criterion | "three processes" with no word on which others were considered |
 
 ### C. Titles
 
@@ -77,6 +79,7 @@ Run in this order; each level depends on the one above.
 | E2 | Decision or ask explicit where the type requires it |
 | E3 | Next steps have owners and dates |
 | E4 | Backup exists for the evidence the Q&A will need |
+| E5 | Options are shown as options (title names count and criteria) before the detail of the recommended one; the decision is worded as a proposal |
 
 ### F. Didactics
 
@@ -99,6 +102,10 @@ Run in this order; each level depends on the one above.
 | G4 | Number and date formats consistent |
 | G5 | No text overflow, overlap, leftover placeholders |
 | G6 | Charts editable, not pasted images |
+| G7 | Geometry: connectors attach to shapes, boxes span what points to them, peers have equal size, no orphan labels |
+| G8 | Whitespace distributed, not pooled; type and shapes scaled to the density mode |
+| G9 | Tables in list style (no vertical rules, no dark header band); two or three rows shown as cards or list, not table |
+| G10 | Section dividers only in long decks; one before backup at most |
 
 ## 3. Severity
 

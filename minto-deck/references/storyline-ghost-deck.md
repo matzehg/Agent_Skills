@@ -27,9 +27,18 @@ changing it is cheap.
    proven; do not pad a section to match the others.
 6. **Closing.** Restate the governing thought with the confidence the evidence
    earns. Add the decision slide or next steps when the deck type requires them.
-7. **Timing skeleton.** See below.
-8. **Read-through.** Titles only, top to bottom. Fix gaps in the titles.
-9. **Alternative key line** (optional). If the material supports a second
+   Word the decision as a proposal the audience decides on.
+7. **Register.** List every named entity the titles use: processes, bodies,
+   roles, systems, options, criteria. One line each: name as it will appear on
+   every slide, category, definition or source, status (from briefing /
+   hypothesis). Test each set with the plural-noun rule: all members of a set
+   share one category and one naming pattern (three processes are named as
+   processes, not two documents and a function). Mark what the user has to
+   confirm. The register is what the user edits when a name, a member or an
+   order is wrong; Stage 2 takes every entity from here and nowhere else.
+8. **Timing skeleton.** See below.
+9. **Read-through.** Titles only, top to bottom. Fix gaps in the titles.
+10. **Alternative key line** (optional). If the material supports a second
    structure, show its key line only (three to five lines) and say what it
    trades off. Do not build two full ghost decks.
 
@@ -65,6 +74,15 @@ N.   <next steps / ask>
 
 ## Backup (titles only, optional at this stage)
 B1. …
+
+## Register
+| Entity (name used on every slide) | Category | Definition / source | Status |
+|---|---|---|---|
+| DSFA-Prozess | process | … | hypothesis, confirm |
+| Governance-Board | body | … | from briefing |
+| … | | | |
+Sets: <plural noun> = <members in fixed order>; selection universe and criterion
+where the set is a subset.
 
 ## Timing skeleton
 | Section | Slides | Minutes | Cut priority |
@@ -113,7 +131,8 @@ Derive from the total duration and the deck type:
 
 Rules of thumb: a message slide takes one to two minutes; a chart slide two to
 three; a decision slide three to five with the discussion it triggers. If the
-skeleton exceeds the slot, cut slides, not minutes per slide.
+skeleton exceeds the slot, cut slides, not minutes per slide. Section dividers
+only for decks of roughly 20 slides and more; shorter decks use the tracker.
 
 Cut priorities:
 
@@ -124,8 +143,8 @@ Cut priorities:
 
 ## The gate
 
-End the Stage 1 reply with exactly one question: whether the ghost deck is
-approved as is, or which titles to change. Do not continue to Stage 2 in the
+End the Stage 1 reply with exactly one question: whether the ghost deck and
+the register are approved as is, or which titles or register lines to change. Do not continue to Stage 2 in the
 same turn. When the user replies with changes, apply them to the affected
 titles, re-run the read-through, show the changed lines and ask again. When the
 user replies "approved" or equivalent, start Stage 2 and say which version of

@@ -158,21 +158,89 @@ document references backup slides by number.
 
 ## 11. Decision and next-steps slides
 
-A decision paper ends with a decision slide: the decision in one sentence,
-the options with the recommended one marked, what is needed from the audience
-today, and what happens if nothing is decided. The next-steps slide lists
-actions with owner and date. A talk ends with the restated governing thought and
-what the audience can do with it.
+A decision paper ends with a proposal the audience decides on, not an order
+the presenter issues. Title the slide as a proposal ("Beschlussvorschlag",
+"Proposed decision") and word the body as what the body is asked to decide
+("Die Leitungsrunde beschließt: 1. … 2. …"). The directive form ("Entscheidung
+heute: …") is for presenters with the authority to direct; everyone else
+proposes. The slide carries: the decision in one sentence, the options with the
+recommended one marked (or a pointer to the options slide), what is needed from
+the audience today, and what happens if nothing is decided. The next-steps
+slide lists actions with owner and date for every line. A talk ends with the
+restated governing thought and what the audience can do with it.
 
 ## 12. Consistency
 
 - Same term for the same thing throughout; the glossary fixes the pairs.
+- Named entities (processes, bodies, roles, systems, options) come from the
+  ghost deck's register: same name, same order, same category on every slide
+  where the set appears. A member that appears on one slide and not on the
+  next needs a stated reason.
 - Number format, units, date format consistent across slides.
 - Titles at the same height and size; trackers in the same place.
 - Parallel grammar inside each peer set.
-- Colour carries meaning (highlight, section) or is absent; never decorative.
+- Colour carries meaning or is absent. One accent colour marks the element the
+  title is about; a second accent only for a second meaning (e.g. gap vs.
+  recommendation). Grey is for containers and secondary text, never for the
+  message. More than two greys on a slide reads as unfinished.
 
-## 13. Length guidance
+## 13. Selections: name the universe
+
+When a slide or section works with a subset (three of the agency's processes,
+two of five risks, the top three options), the audience will ask "why these?".
+Answer before they ask: name the universe ("of the n processes every AI system
+passes through"), the selection criterion, and where the rest is documented
+(backup). A subset without a universe looks arbitrary even when it is right.
+
+## 14. Section dividers
+
+Dividers cost a slide and a few seconds each. Use them only when the deck is
+long enough to need orientation (roughly 20 slides and more) or when the
+sections are presented by different people. Below that, the tracker, the
+management summary and the section wording carry the structure. One divider
+before the backup is always fine. A divider carries the key-line claim as its
+title and nothing else; no images unless the image is an argument.
+
+## 15. Layout and geometry
+
+The pyramid is argued in the titles; the body still has to look deliberate.
+
+- **Fill and balance.** The body uses the content area. Whitespace is
+  distributed around elements, not pooled at the bottom or right. If a
+  speaker-led slide has little text, scale type and shapes up; do not leave
+  a quarter of the slide empty.
+- **Grid.** One column grid per deck (12 columns or a fixed set of widths),
+  one gutter width, elements aligned to it. Equal peers have equal widths.
+- **Size follows content.** Boxes are as tall as their text plus padding, not
+  taller; a row of peer boxes shares the tallest height. Big numbers are sized
+  so the label beneath them still fits.
+- **Connectors attach.** Every arrow or line starts and ends on a shape edge.
+  A box that other shapes point to spans the width of what points to it.
+- **No orphan labels.** A caption or note belongs visually to the element it
+  describes; a label floating between two elements is removed or attached.
+- **Key-value lines.** Several "label: value" pairs never share one line;
+  they become columns or a small list. A wrapped line of pairs is an error.
+- **Check in full size.** Thumbnails hide overlaps, floating connectors and
+  wrapped lines. Render every slide at full size and look at it before
+  delivery.
+
+## 16. Tables
+
+A consulting table is a list with alignment, not a spreadsheet.
+
+- No vertical rules. Thin horizontal rules between rows, a slightly stronger
+  one under the header.
+- Header as bold text over a rule, not a dark filled band.
+- Left-aligned text, right-aligned numbers, centred marks.
+- Row height with air: at least 1.6 times the text height.
+- Highlight one column (the recommendation) or one row with a light fill;
+  never alternate row bands and a highlight at once.
+- Marks instead of words where a mark is enough: ●, ○, ✓, ✗, Harvey balls.
+- Two or three rows are not a table. Use cards (risks), a list with a rule
+  per row (next steps), or a timeline (dates).
+- Tables longer than eight rows go to backup or get split by the key line.
+
+## 17. Length guidance
 
 | Deck type | Typical main deck | Notes |
 |---|---|---|
@@ -185,7 +253,7 @@ what the audience can do with it.
 Fewer slides with sharper titles beat more slides with weaker ones. Cut slides
 to fit the slot; do not shrink type.
 
-## 14. Anti-patterns
+## 18. Anti-patterns
 
 - Agenda slide that lists topics instead of the key line.
 - "Overview", "Background", "Analysis" as titles.
@@ -195,3 +263,8 @@ to fit the slot; do not shrink type.
 - Appendix used to avoid cutting.
 - Framework labels on slides ("Situation", "Complication", "MECE").
 - Decorative icons, stock photos, gradients, animations that carry no meaning.
+- Spreadsheet-style tables with dark headers and vertical rules.
+- A row of peers where one member belongs to a different category (two
+  documents and a function; three processes and a committee).
+- A subset shown without naming what it was selected from.
+- Dividers in a twelve-slide deck.

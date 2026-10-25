@@ -75,15 +75,22 @@ Build it in this order:
    sufficient, one logical order.
 4. Expand each key-line claim into its supporting slides. Every slide title is a
    full sentence that states one claim. Group peers with parallel grammar.
-5. Add the closing: governing thought restated, decision or next steps, and the
-   explicit ask if the deck type has one.
-6. Derive the timing skeleton from the duration and mark cut priorities.
-7. Run the read-through test: read the titles alone, top to bottom. If the
+5. Add the closing: governing thought restated, decision or next steps as a
+   proposal the audience decides on, and the explicit ask if the deck type has
+   one.
+6. Build the register: every named entity (process, body, role, system,
+   option, criterion) with the exact name that will appear on every slide, its
+   category, definition and status (from briefing or hypothesis). Test each set
+   for one category and one naming pattern. The register is the user's edit
+   point for names, members and order; Stage 2 uses it as the only source.
+7. Derive the timing skeleton from the duration and mark cut priorities.
+   Section dividers only from roughly 20 slides; shorter decks use the tracker.
+8. Run the read-through test: read the titles alone, top to bottom. If the
    argument has a gap, a repeat or a jump, fix the titles, not the bodies.
 
 Output exactly the ghost-deck format in `references/storyline-ghost-deck.md`:
-numbered titles grouped by section, timing skeleton, assumptions, open points,
-and at most one alternative key line if the material supports a different
+numbered titles grouped by section, register, timing skeleton, assumptions,
+open points, and at most one alternative key line if the material supports a different
 structure. Then stop. End the reply with the approval question. Do not produce
 slides, notes or files in the same turn, even if the user asked for "the deck":
 the gate is the point of the method, and a storyline change costs minutes now and
@@ -101,10 +108,14 @@ Start only from an approved ghost deck. Read `references/consulting-practices.md
 Produce, in this order:
 
 1. **Slide bodies.** One message per slide; the body proves the title. Choose the
-   evidence form (chart, table, diagram, text) by the comparison the message
-   makes, per the chart rules in `consulting-practices.md`. Every external
-   claim gets a source line; every number gets unit, period and denominator.
-   Density follows the mode fixed in Stage 0.
+   evidence form (chart, table, cards, diagram, text) by the comparison the
+   message makes, per the chart and table rules in `consulting-practices.md`.
+   Every external claim gets a source line; every number gets unit, period and
+   denominator. Density follows the mode fixed in Stage 0; at speaker-led
+   density, scale type and shapes to fill the slide rather than leaving holes.
+   In a decision paper, show the options before the detail of the recommended
+   one, and signpost them as options in the title. Every entity comes from the
+   register, in the register's name and order.
 2. **Management summary** on slide 2: governing thought, key line, ask. One slide.
 3. **Speaker notes** for every slide in the notes pane, structured as in
    `speaker-notes.md`: key point, opening line, talk track, evidence to point at,
@@ -117,7 +128,12 @@ Produce, in this order:
    does not carry the main argument. Reference them from the Q&A document.
 7. **Handout variant** when the deck will also be read without the presenter:
    same storyline, reading-first density, sources on the slide, no delivery cues.
-8. **Self-check** against `references/audit-checklist.md` before delivery. Fix
+8. **Consistency pass.** Dump the deck text and check every set from the
+   register: same members, same names, same order on every slide where it
+   appears; a member that appears or disappears has a stated reason on the
+   slide or in the notes. Check that subsets name their universe and
+   criterion.
+9. **Self-check** against `references/audit-checklist.md` before delivery. Fix
    blockers; list warnings in the delivery note.
 
 ### Rendering
@@ -135,7 +151,10 @@ Deliver an editable `.pptx`. Keynote and Google Slides import it; do not produce
 a Keynote-native file. Keep charts native. Put speaker notes in the notes pane,
 never in a text box on the slide. Apply the user's template when they supplied
 one; otherwise stay neutral and say so. Before delivery, dump the deck text and
-check titles, order, notes presence and leftover placeholders.
+check titles, order, notes presence and leftover placeholders. Then render every
+slide at full size and look at each one: overlaps, floating connectors, boxes
+narrower than what points to them, wrapped key-value lines, pooled whitespace,
+spreadsheet-style tables. Thumbnails do not show these.
 
 ## Audit mode
 
