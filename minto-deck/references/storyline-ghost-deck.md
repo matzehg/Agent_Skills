@@ -5,6 +5,19 @@ full sentence, in final order, with sections, a timing skeleton and the
 assumptions behind it. Its only purpose is to get the argument approved while
 changing it is cheap.
 
+## Quick checklist
+
+- [ ] Briefing restated in four lines, assumptions marked
+- [ ] Governing thought in one sentence; SCQA variant named
+- [ ] Key line tested (plural noun, overlap, scope, order) before supporting slides
+- [ ] Every numbered line a full sentence; parallel grammar inside each set
+- [ ] Register: every named entity with name, category, definition, status; sets listed
+- [ ] Evidence mark per title; gap list for every missing piece
+- [ ] Timing skeleton fits the slot; discussion reserved; cut priorities set
+- [ ] Output format exactly as specified; ends with one approval question; no Stage 2 in the same turn
+
+Detail follows; the checklist is what gets ticked before delivery.
+
 ## Process
 
 1. **Restate the briefing** in four lines: audience and their question, deck
@@ -131,6 +144,29 @@ same sentence that will later appear in the management summary.
   mixed.
 - No framework labels in titles. "SCQA: Situation" is commentary; the title is
   the situation itself.
+
+## Register and gap list, filled example
+
+```
+## Register
+| Entity | Category | Definition / source | Status |
+|---|---|---|---|
+| Service Desk Nord, Service Desk Süd, Service Desk Zentrale | organisational units | the three desks to be merged, named as in the org chart | from briefing |
+| Ticketsystem A, Ticketsystem B | systems | current tools; B is the target per IT strategy 2025 | from briefing |
+| Merge, Shared tooling only, Status quo | options | alternatives compared in section C | derived, confirm |
+| Resolution time, One-off cost, Time to implement | criteria | evaluation criteria for the options | derived, confirm |
+Sets: desks = Nord, Süd, Zentrale (order as in the org chart); options = Merge, Shared tooling only, Status quo.
+
+## Gap list
+| # | Title | What is needed | From whom / where | Until |
+|---|---|---|---|---|
+| 5 | Each hand-off adds a median of [x] days | hand-off count and duration per ticket, last 12 months | Ticketsystem A and B exports, IT controlling | before Stage 2 |
+| 7 | Staffing stays flat; two coordinator roles change | current role list per desk | HR business partner | before Stage 2 |
+```
+
+Wrong register, same material: "DSFA, IT-Sicherheitskonzept, Beschaffung" as one set.
+Two are documents, one is a function; the plural noun fails. Right: "DSFA-Prozess,
+IT-Sicherheitsprozess, Beschaffungsprozess", category process.
 
 ## Timing skeleton
 

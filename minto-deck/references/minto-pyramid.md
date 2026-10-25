@@ -5,6 +5,18 @@ Terminology follows the English edition. Use this file to build the storyline
 in Stage 1 and to judge a deck in Audit mode. It is not a substitute for the
 book; add further sources as separate files in `references/`.
 
+## Quick checklist
+
+- [ ] Governing thought stated before the evidence (slide 2 by default), as a claim someone could disagree with
+- [ ] SCQA opening with only what the audience does not already know; variant chosen deliberately
+- [ ] Key line of three to five claims: one plural noun, no overlap, scope named, one order
+- [ ] Every title raises exactly the question its body answers (vertical logic)
+- [ ] Each peer set argued one way, deductive (max four steps) or inductive, never mixed
+- [ ] Every parent states an insight, not a count
+- [ ] Read-through of titles alone carries the argument; gaps fixed in the titles
+
+Detail follows; the checklist is what gets ticked before delivery.
+
 ## 1. The core idea
 
 The audience holds a question. The deck answers it first and then proves the

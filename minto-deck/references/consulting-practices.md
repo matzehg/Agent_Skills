@@ -4,6 +4,21 @@ Conventions that strategy consultancies use on top of the Pyramid Principle.
 They are craft rules, not brand property; do not claim affiliation with any
 firm and do not imitate a firm's template.
 
+## Quick checklist
+
+- [ ] Slide anatomy fixed: action title, body with one dominant element, source line, tracker, page number
+- [ ] Every action title passes disagreement, cover, one-claim, specificity, verb and parallelism tests
+- [ ] One message per slide; density mode fixed once and kept
+- [ ] Management summary states conclusions, drafted from the ghost deck, finalised last
+- [ ] Numbers carry unit, period, denominator, source; nothing invented, placeholders marked
+- [ ] Chart chosen by the comparison the title makes; tables in list style; two or three rows become cards or a list
+- [ ] Subsets name their universe and criterion; entities from the register, same name and order everywhere
+- [ ] Decision slide worded as a proposal; options shown before the recommended option's detail; next steps with owner and date
+- [ ] Dividers only in long decks; section lead slide for sections with three or more evidence slides
+- [ ] Layout: body fills the zone, peers equal, connectors attached, no orphan labels, no wrapped key-value lines
+
+Detail follows; the checklist is what gets ticked before delivery.
+
 ## 1. Slide anatomy
 
 Every content slide has the same parts in the same places:
@@ -100,6 +115,18 @@ Slide 2 in almost every deck type. Contents, in this order:
 It summarises conclusions, never topics. "We looked at costs, risks and
 timeline" is an agenda, not a summary. The summary must survive on its own:
 a reader with only this slide knows what is proposed and why.
+
+Before and after:
+
+```
+Before (agenda in disguise)            After (conclusions)
+Management Summary                     Ein Board plus drei bestehende Prozesse erfüllen die KI-VO fristgerecht ohne neue Stellen
+- Ausgangslage und Rechtsrahmen        - Die KI-VO verpflichtet die Behörde als Betreiberin; heute ist niemand zuständig.
+- Analyse der Prozesse                 - Drei Prozesse, die jedes KI-System durchläuft, tragen [x] der [n] Pflichten.
+- Governance-Optionen                  - Ein Governance-Board übernimmt Inventar, Einstufung und Freigabe.
+- Umsetzung und nächste Schritte       - Umsetzung in [x] Monaten mit vorhandenem Personal.
+                                       Beschlussvorschlag: Board einsetzen, Umsetzungsplan freigeben.
+```
 
 Draft it from the ghost deck, finalise it last: after every other slide exists,
 rewrite it against them so that each line is a claim a slide proves and each

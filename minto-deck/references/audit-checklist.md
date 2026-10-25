@@ -4,6 +4,17 @@ Used twice: as the Stage 2 self-check before delivery, and as the full review
 in Audit mode. The checks are the same; only the report differs (self-check:
 fix blockers, list warnings; Audit: full report, no changes).
 
+## Quick checklist
+
+- [ ] Deck type, audience and setting identified or asked
+- [ ] Checks run in order A to G; each finding carries its check ID and slide number
+- [ ] Severity assigned: blocker, warning, advisory
+- [ ] Report in the given format: verdict, title read-through with rewrites, findings, missing elements, three biggest changes
+- [ ] Titles quoted verbatim; rewrite proposed next to each flagged title
+- [ ] What could not be checked is named; the deck is not rewritten unless asked
+
+Detail follows; the checklist is what gets ticked before delivery.
+
 ## 1. Deck types and mandatory elements
 
 A completeness check needs a target. Identify the type first; ask if the user
@@ -158,6 +169,20 @@ Not checked: <what the input did not allow, e.g. notes, layout, charts>
 1. …
 2. …
 3. …
+```
+
+Example findings, one per severity:
+
+```
+### Blockers
+- [A2] Slides 2 to 9: the recommendation first appears on slide 10. Move the governing
+  thought to slide 2 as a management summary; keep slide 10 as the restatement.
+### Warnings
+- [C1] Slide 6, "Risikoübersicht": topic label. → "Zwei der fünf Risiken brauchen in
+  diesem Quartal eine Entscheidung; drei sind abgedeckt."
+### Advisory
+- [G9] Slides 7, 12, 14: spreadsheet-style tables with dark header bands and vertical
+  rules. → list style: header as bold text over a rule, thin horizontal rules only.
 ```
 
 Rules for the report:

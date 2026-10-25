@@ -13,6 +13,19 @@ status reports, business cases, anything with actuals, plans, forecasts or
 variances. For decks without quantitative content, `visual-design.md` is
 enough.
 
+## Quick checklist
+
+- [ ] Applies when actuals, plans, forecasts, previous periods or variances appear; noted in the register; opt-out offered
+- [ ] Slide title carries the message; chart title describes measure, unit, dimension, period
+- [ ] Density by mode: IBCS density for reading decks and handouts, presentation density for projected slides
+- [ ] Time horizontal left to right; structure vertical top to bottom as bars
+- [ ] Scenario fills: actual solid dark, previous period light grey, plan outlined, forecast hatched
+- [ ] Variances as green/red pins with explicit signs; good and bad follow the measure
+- [ ] Axes at zero; same scale per unit on a page; no pies, gauges, radar, traffic lights
+- [ ] Data labels instead of value axes and gridlines; unit and period once in the title
+
+Detail follows; the checklist is what gets ticked before delivery.
+
 ## 1. Where IBCS and this skill agree, and where they differ
 
 Agree: message first, one message per page, precise words, evidence on the
@@ -212,6 +225,17 @@ as separate columns.
 **Indicators.** Highlighting marks (arrows, circles, difference brackets) in
 one consistent style; scaling lines or areas; outlier markers; comment
 numbers linked to elements.
+
+Example, in words: monthly sales 2026, actual to August, forecast September to
+December, plan for all months. Before: twelve blue columns for the plan, twelve
+orange for actuals and forecast mixed, a legend, a value axis, chart title
+"Sales 2026". After: plan as outlined white columns behind, actuals as solid
+dark columns January to August, forecast as hatched columns September to
+December, data labels on the columns, no value axis, a variance tier above
+with green and red pins "ΔPL" carrying signs, chart title "Net sales, kEUR,
+AC/FC vs PL, 2026 by month", and the slide title above stating the message,
+for example "Sales run 6 % below plan; the gap opened in Q2 and the forecast
+does not close it".
 
 ## 9. How to apply IBCS inside this skill
 

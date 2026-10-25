@@ -3,6 +3,19 @@
 The deck is one artefact of a presentation. These four complete it. Produce
 them in Stage 2 after the slides and notes exist; they depend on both.
 
+## Quick checklist
+
+- [ ] Timing plan totals the slot; discussion reserved; half-time checkpoint; short version listed
+- [ ] Minutes per slide identical in plan and notes
+- [ ] Q&A grouped by what it attacks; answer first; evidence pointer per answer; hardest question first per group
+- [ ] Section for questions that cannot be answered yet, with the holding answer
+- [ ] Every backup slide referenced from a question or a main slide
+- [ ] Handout: same storyline, reading-first density, key point and evidence in reader form, no cues, sources on the slide, PDF exported
+- [ ] Slide references as number plus short title; regenerated after any renumbering
+- [ ] Delivery note: files, open placeholders, unfixed warnings, what to rehearse
+
+Detail follows; the checklist is what gets ticked before delivery.
+
 ## 1. Timing plan
 
 A table, delivered as a separate document (Markdown or a sheet), not on a slide:

@@ -15,6 +15,17 @@ critique, and the skill author's prior knowledge of the e-book; they are
 written in the author's words. Add precision from the e-book itself when it
 has been read.
 
+## Quick checklist
+
+- [ ] Every page stands alone; headline is a sentence; headlines in order form the argument
+- [ ] 75 to 250 words per page; paragraphs lead with their point
+- [ ] Evidence as number, unit and source on the page; no presenter cues
+- [ ] Navigation: summary or contents, tracker or section markers, page numbers
+- [ ] One highlight per page; visual language fixed once
+- [ ] Converted from the presented deck without changing storyline or order; PDF exported; file named as handout
+
+Detail follows; the checklist is what gets ticked before delivery.
+
 ## 1. When a reading deck is the right form
 
 Use it when all three hold: the content is detailed enough that people need

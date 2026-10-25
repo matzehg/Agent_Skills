@@ -1,6 +1,10 @@
 ---
 name: minto-deck
-description: "Build and audit slide decks after Barbara Minto's Pyramid Principle and strategy-consulting practice (governing thought, SCQA opening, MECE key line, full-sentence action titles, one message per slide). Two-stage workflow. Stage 1 delivers a ghost deck (numbered action titles, register of named entities, timing skeleton) and stops for approval; Stage 2 builds the deck with speaker notes, timing plan, Q&A prep, backup, management summary and handout. Audit mode reviews an existing deck against the same rules and reports missing elements, weak titles and broken logic with rewrites. Use whenever the user asks for slides, a deck, a presentation, a pitch, a talk, a storyline, a ghost deck, speaker notes, or wants a deck reviewed, critiqued or made consulting-grade; also on the German words Folien, Praesentation, Vortrag, Entscheidungsvorlage, Sprechzettel, Deck pruefen. Trigger even when Minto is not mentioned. German and English."
+description: "Build and audit slide decks after Barbara Minto's Pyramid Principle and strategy-consulting practice (governing thought, SCQA opening, MECE key line, full-sentence action titles, one message per slide). Two-stage workflow. Stage 1 delivers a ghost deck (numbered action titles, register of named entities, timing skeleton) and stops for approval; Stage 2 builds the deck with speaker notes, timing plan, Q&A prep, backup, management summary and handout. Audit mode reviews an existing deck against the same rules and reports missing elements, weak titles and broken logic with rewrites. Use whenever the user asks for slides, a deck, a presentation, a pitch, a talk, a storyline, a ghost deck, speaker notes, or wants a deck reviewed, critiqued or made consulting-grade; also on the German words Folien, Praesentation, Vortrag, Entscheidungsvorlage, Sprechzettel, Deck pruefen. Trigger even when Minto is not mentioned; not for transcribing, summarising or translating an existing talk. German and English."
+metadata:
+  version: "0.5"
+  updated: "2026-10-25"
+  language: "en, de"
 ---
 
 # Minto Deck
@@ -113,7 +117,8 @@ decks in two notations only on explicit request.
 
 ### Stage 2: the full deck
 
-Start only from an approved ghost deck. Read `references/consulting-practices.md`,
+Start only from an approved ghost deck. Read `references/stage-2-checklist.md`
+first; it is the page that gets ticked before delivery. Then read `references/consulting-practices.md`,
 `references/visual-design.md`, `references/speaker-notes.md` and
 `references/timing-qa-handout.md`. When the material contains actuals, plans,
 forecasts, previous periods or variances, also read `references/ibcs-notation.md`.
@@ -166,7 +171,10 @@ offers, in this order of preference:
 1. The host's native PowerPoint capability (Anthropic's `pptx` skill, a
    PowerPoint connector, or an equivalent slides tool), because it keeps text,
    tables and charts editable and puts notes in the notes pane.
-2. `python-pptx` or `pptxgenjs` in a sandbox when no such capability exists.
+2. `pptxgenjs` with `scripts/pptx-helpers.js` in a sandbox when no such
+   capability exists; the helpers encode zones, grid, type scale, list-style
+   tables, cards, chevrons and the notes pane, so a build file holds only the
+   deck's content (see `scripts/README.md` and `scripts/example-build.js`).
 3. A Markdown outline with notes when no file can be produced at all; say so.
 
 Deliver an editable `.pptx`. Keynote and Google Slides import it; do not produce
@@ -177,6 +185,15 @@ check titles, order, notes presence and leftover placeholders. Then render every
 slide at full size and look at each one: overlaps, floating connectors, boxes
 narrower than what points to them, wrapped key-value lines, pooled whitespace,
 spreadsheet-style tables. Thumbnails do not show these.
+
+## Hosts with subagents
+
+Where the host offers subagents (Cowork, Claude Code), run the Stage 2
+self-check as a separate critic agent: it receives the rendered slide images,
+the text dump, the register and `references/audit-checklist.md`, and returns
+findings by severity without changing anything. The builder fixes blockers and
+rebuilds; one round, then delivery with the remaining warnings in the note.
+Without subagents the builder runs the same check itself.
 
 ## Revision loop
 
@@ -236,6 +253,7 @@ Read the file when its stage starts; do not load all of them up front.
 
 | File | Read when |
 |---|---|
+| `references/stage-2-checklist.md` | Stage 2 start and before delivery: the compact list that gets ticked |
 | `references/minto-pyramid.md` | Stage 1, and every Audit |
 | `references/storyline-ghost-deck.md` | Stage 1: process, output format, timing skeleton, gate |
 | `references/consulting-practices.md` | Stage 2: slide anatomy, action titles, density, tables, backup, decision wording |
@@ -248,5 +266,9 @@ Read the file when its stage starts; do not load all of them up front.
 | `references/audit-checklist.md` | Stage 2 self-check, and every Audit: deck types, checks, severity, report format |
 | `references/glossary.md` | Any German deck |
 
-`assets/` holds the approved reference deck once one exists; use it as a pattern
-for format and density, never as a source of content.
+Every reference opens with a quick checklist of its rules; the rest of the file
+is detail to look up.
+
+`assets/` holds the approved reference deck once one exists and user templates;
+use them as patterns for format and density, never as a source of content.
+`scripts/` holds the pptxgenjs helpers for the sandbox rendering path.

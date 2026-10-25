@@ -8,6 +8,20 @@ and in Audit mode for the form checks (G-section of the checklist).
 The order matters: message, then layout, then design. A slide whose title is
 not yet a claim has no layout problem worth solving.
 
+## Quick checklist
+
+- [ ] Message first, then layout pattern from the catalogue, then design
+- [ ] One grid, fixed zones, peers equal, whitespace distributed
+- [ ] Type system per density mode; nothing below 10 pt; titles at most two lines
+- [ ] Colour in three roles: base, one accent for the message, at most one signal; grey for containers only
+- [ ] Charts: comparison type named, simplest form, decluttering sequence applied, one element highlighted, axes at zero
+- [ ] Slide title carries the message; chart title describes measure, unit, period
+- [ ] Tables list-style; executive summary format by mode; section lead slides where due
+- [ ] Icons and images only with a job; nothing decorative
+- [ ] Every slide rendered at full size and looked at before delivery
+
+Detail follows; the checklist is what gets ticked before delivery.
+
 ## 1. Message first, layout second
 
 Write the slide title as a full claim. Then ask which comparison or relation
@@ -182,6 +196,14 @@ when the chart proves the title and nothing else.
    leave a question.
 7. Check the result against the title: can a reader state the title from the
    chart alone?
+
+Before and after, in words: a column chart of resolution time 2021 to 2025 with
+a grey border, horizontal gridlines, a legend for its single series, every
+column labelled, blue columns, title "Resolution time 2021–2025". After: no
+border or gridlines, legend removed, columns grey except 2025 in the accent
+colour, labels only on 2021 and 2025, a thin reference line at the SLA target,
+chart title "Resolution time, days, 2021–2025", and above it the slide title
+"Resolution time doubled since 2023 while headcount stayed flat".
 
 Preattentive attributes do the work in step 5 and 6: colour, size, position
 and enclosure are seen before reading starts; use one or two, never all.
