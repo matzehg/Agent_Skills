@@ -1,6 +1,6 @@
 ---
 name: minto-deck
-description: Build and audit presentation decks that follow Barbara Minto's Pyramid Principle and strategy-consulting practice (governing thought, SCQA opening, MECE key line, one message per slide, full-sentence action titles) in a two-stage workflow. Stage 1 delivers a ghost deck (the storyline as a numbered list of action titles plus a timing skeleton) and stops for approval; Stage 2 builds the full deck with speaker notes in the notes pane, a timing plan, Q&A preparation, backup slides, a management summary and a handout variant. Audit mode reviews an existing deck against the same rules and reports missing elements, weak titles and broken logic with concrete rewrites. Use this skill whenever the user asks for slides, a deck, a presentation, a pitch, a talk, a storyline, a ghost deck, speaker notes, or wants an existing deck reviewed, critiqued, checked, made "Minto-conform" or "consulting-grade". Also trigger on the German words Folien, Präsentation, Vortrag, Entscheidungsvorlage, Sprechzettel, Storyline, Deck prüfen, Deck gegenprüfen. Trigger even when the user does not mention Minto. Works in German and English.
+description: "Build and audit slide decks after Barbara Minto's Pyramid Principle and strategy-consulting practice (governing thought, SCQA opening, MECE key line, full-sentence action titles, one message per slide). Two-stage workflow. Stage 1 delivers a ghost deck (numbered action titles, register of named entities, timing skeleton) and stops for approval; Stage 2 builds the deck with speaker notes, timing plan, Q&A prep, backup, management summary and handout. Audit mode reviews an existing deck against the same rules and reports missing elements, weak titles and broken logic with rewrites. Use whenever the user asks for slides, a deck, a presentation, a pitch, a talk, a storyline, a ghost deck, speaker notes, or wants a deck reviewed, critiqued or made consulting-grade; also on the German words Folien, Praesentation, Vortrag, Entscheidungsvorlage, Sprechzettel, Deck pruefen. Trigger even when Minto is not mentioned. German and English."
 ---
 
 # Minto Deck
@@ -103,7 +103,8 @@ and re-run the read-through test. Do not re-open approved sections.
 ### Stage 2: the full deck
 
 Start only from an approved ghost deck. Read `references/consulting-practices.md`,
-`references/speaker-notes.md` and `references/timing-qa-handout.md`.
+`references/visual-design.md`, `references/speaker-notes.md` and
+`references/timing-qa-handout.md`.
 
 Produce, in this order:
 
@@ -116,7 +117,10 @@ Produce, in this order:
    In a decision paper, show the options before the detail of the recommended
    one, and signpost them as options in the title. Every entity comes from the
    register, in the register's name and order.
-2. **Management summary** on slide 2: governing thought, key line, ask. One slide.
+2. **Management summary** on slide 2: draft from the ghost deck (governing
+   thought, key line, ask); the final version is written in step 8, after all
+   other slides exist and the numbers are known. Format by density mode per
+   `visual-design.md` section 8.
 3. **Speaker notes** for every slide in the notes pane, structured as in
    `speaker-notes.md`: key point, opening line, talk track, evidence to point at,
    transition, time budget. Prompts, not a script.
@@ -128,13 +132,17 @@ Produce, in this order:
    does not carry the main argument. Reference them from the Q&A document.
 7. **Handout variant** when the deck will also be read without the presenter:
    same storyline, reading-first density, sources on the slide, no delivery cues.
-8. **Consistency pass.** Dump the deck text and check every set from the
+8. **Management summary, final.** Rewrite slide 2 against the finished slides:
+   every bold line is a claim a slide proves, every number matches its slide.
+9. **Consistency pass.** Dump the deck text and check every set from the
    register: same members, same names, same order on every slide where it
    appears; a member that appears or disappears has a stated reason on the
    slide or in the notes. Check that subsets name their universe and
-   criterion.
-9. **Self-check** against `references/audit-checklist.md` before delivery. Fix
-   blockers; list warnings in the delivery note.
+   criterion. Check the evidence column of the ghost deck: every title marked
+   "missing" is now a placeholder on the slide and in the delivery note.
+10. **Self-check** against `references/audit-checklist.md` before delivery,
+    including the visual check in `visual-design.md` section 12. Fix blockers;
+    list warnings in the delivery note.
 
 ### Rendering
 
@@ -155,6 +163,24 @@ check titles, order, notes presence and leftover placeholders. Then render every
 slide at full size and look at each one: overlaps, floating connectors, boxes
 narrower than what points to them, wrapped key-value lines, pooled whitespace,
 spreadsheet-style tables. Thumbnails do not show these.
+
+## Revision loop
+
+Feedback on a delivered deck comes in three ways; handle each the same way.
+
+- **Comments in the file.** The user comments in PowerPoint (or another tool
+  that writes comments into the .pptx) and uploads the file. Extract the
+  comments per slide (`ppt/comments/*.xml` or the host's reading tool) and
+  quote each before answering it.
+- **Annotated PDF.** Extract the annotations per page.
+- **List in the chat.** Slide numbers as printed on the slides.
+
+Sort every item into two classes before changing anything: a deck fix (wrong
+on this deck only) or a rule gap (the skill would make the same mistake again).
+Deck fixes go into the deck. Rule gaps go into `SKILL.md` or the reference
+they belong to, and then into the deck. Report the sorting to the user, apply
+title changes through the ghost deck and the register, and rebuild from the
+approved storyline. A revision that changes the key line re-opens the gate.
 
 ## Audit mode
 
@@ -198,7 +224,8 @@ Read the file when its stage starts; do not load all of them up front.
 |---|---|
 | `references/minto-pyramid.md` | Stage 1, and every Audit |
 | `references/storyline-ghost-deck.md` | Stage 1: process, output format, timing skeleton, gate |
-| `references/consulting-practices.md` | Stage 2: slide anatomy, action titles, charts, density, backup |
+| `references/consulting-practices.md` | Stage 2: slide anatomy, action titles, density, tables, backup, decision wording |
+| `references/visual-design.md` | Stage 2: layout patterns, grid, type, colour, charts, executive summary format, visual check; Audit: form checks |
 | `references/speaker-notes.md` | Stage 2, step 3 |
 | `references/timing-qa-handout.md` | Stage 2, steps 4 to 7 |
 | `references/audit-checklist.md` | Stage 2 self-check, and every Audit: deck types, checks, severity, report format |

@@ -91,6 +91,8 @@ Run in this order; each level depends on the one above.
 | F4 | Timing fits the slot with discussion reserved | 25 slides for 20 minutes |
 | F5 | Q&A preparation exists and points to slides | none, or answers without evidence |
 | F6 | Opening matches the audience's knowledge | three slides explaining what the room knows |
+| F7 | Executive summary written against the finished slides: every line has a proving slide, every number matches | summary promises what no slide shows |
+| F8 | Titles without evidence are marked placeholders or listed as gaps, not stated as fact | confident claim, empty body |
 
 ### G. Form
 
@@ -105,7 +107,9 @@ Run in this order; each level depends on the one above.
 | G7 | Geometry: connectors attach to shapes, boxes span what points to them, peers have equal size, no orphan labels |
 | G8 | Whitespace distributed, not pooled; type and shapes scaled to the density mode |
 | G9 | Tables in list style (no vertical rules, no dark header band); two or three rows shown as cards or list, not table |
-| G10 | Section dividers only in long decks; one before backup at most |
+| G10 | Section dividers only in long decks; sections with three or more evidence slides open with a lead slide; one divider before backup at most |
+| G11 | Colour in roles: one accent for the message, at most one signal colour, grey only for containers; slide works in greyscale |
+| G12 | Layout pattern matches the claim (big number, chart with callout, comparison, pillars, flow, bridge, scorecard, timeline, executive summary) |
 
 ## 3. Severity
 

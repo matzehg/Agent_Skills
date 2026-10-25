@@ -36,9 +36,14 @@ changing it is cheap.
    processes, not two documents and a function). Mark what the user has to
    confirm. The register is what the user edits when a name, a member or an
    order is wrong; Stage 2 takes every entity from here and nowhere else.
-8. **Timing skeleton.** See below.
-9. **Read-through.** Titles only, top to bottom. Fix gaps in the titles.
-10. **Alternative key line** (optional). If the material supports a second
+8. **Evidence check and gap list.** For every title, note whether the evidence
+   exists in the material, is missing, or will be a marked placeholder. A title
+   without evidence is either an analysis task (listed in the gap list with
+   what has to be found and from whom) or a weaker claim. Storyline and
+   analysis iterate: the gap list is what goes back to the analysis.
+9. **Timing skeleton.** See below.
+10. **Read-through.** Titles only, top to bottom. Fix gaps in the titles.
+11. **Alternative key line** (optional). If the material supports a second
    structure, show its key line only (three to five lines) and say what it
    trades off. Do not build two full ghost decks.
 
@@ -62,8 +67,8 @@ Governing thought: <one sentence>
 3. Management summary: <governing thought> (key line listed as bullets on this slide)
 
 ## Section A: <key-line claim 1 as a full sentence>
-4. <supporting claim>
-5. <supporting claim>
+4. <supporting claim>  [evidence: available | missing | placeholder]
+5. <supporting claim>  [evidence: …]
 
 ## Section B: <key-line claim 2>
 6. …
@@ -83,6 +88,11 @@ B1. …
 | … | | | |
 Sets: <plural noun> = <members in fixed order>; selection universe and criterion
 where the set is a subset.
+
+## Gap list (titles whose evidence is missing)
+| # | Title | What is needed | From whom / where | Until |
+|---|---|---|---|---|
+| 5 | … | … | … | … |
 
 ## Timing skeleton
 | Section | Slides | Minutes | Cut priority |

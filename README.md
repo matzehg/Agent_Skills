@@ -9,7 +9,7 @@ zip under Customize > Skills), Claude for PowerPoint, Cowork and Claude Code.
 
 | Skill | Purpose | Status |
 |---|---|---|
-| `minto-deck` | Build and audit slide decks after the Pyramid Principle and consulting practice: two-stage workflow (ghost deck with register for approval, then deck with speaker notes, timing plan, Q&A, backup, handout) and an audit mode for existing decks | v0.2, in test |
+| `minto-deck` | Build and audit slide decks after the Pyramid Principle and consulting practice: two-stage workflow (ghost deck with register for approval, then deck with speaker notes, timing plan, Q&A, backup, handout) and an audit mode for existing decks | v0.3, in test |
 
 ## Layout of a skill
 
@@ -34,3 +34,9 @@ zip under Customize > Skills), Claude for PowerPoint, Cowork and Claude Code.
 ## License
 
 Apache 2.0, see `LICENSE`.
+
+## Changelog
+
+- v0.3: `references/visual-design.md` (layout catalogue, grid, type, colour, Zelazny chart rules, executive summary formats, visual check); section lead slides; evidence check and gap list in the ghost deck; executive summary drafted first and finalised last; revision loop via PowerPoint comments; audit checks F7, F8, G11, G12.
+- v0.2: register of named entities in the ghost deck and consistency pass; layout and geometry rules; list-style tables; colour discipline; selections name their universe; decision slide as proposal; options before detail; full-size slide inspection; audit checks B7, B8, E5, G7 to G10.
+- v0.1: initial skill: two-stage workflow, Minto reference, consulting practices, speaker notes, timing plan, Q&A preparation, handout, audit checklist, glossary, one eval case.

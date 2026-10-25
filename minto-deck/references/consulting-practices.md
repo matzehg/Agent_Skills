@@ -101,6 +101,13 @@ It summarises conclusions, never topics. "We looked at costs, risks and
 timeline" is an agenda, not a summary. The summary must survive on its own:
 a reader with only this slide knows what is proposed and why.
 
+Draft it from the ghost deck, finalise it last: after every other slide exists,
+rewrite it against them so that each line is a claim a slide proves and each
+number matches. Format follows the density mode (`visual-design.md` section 8):
+lean for speaker-led decks; for reading decks bold key-line sentences with
+evidence bullets, or the three-column form situation and complication,
+findings, recommendation.
+
 ## 7. Evidence discipline
 
 - Distinguish facts, calculations, interpretations and hypotheses. Label a
@@ -114,8 +121,11 @@ a reader with only this slide knows what is proposed and why.
 
 ## 8. Charts
 
-The chart's job is to show one comparison that proves the title. Choose the
-chart by the comparison, not by taste:
+The chart's job is to show one comparison that proves the title. First name
+the comparison the title makes (component, item, time series, frequency,
+correlation; or in the four-type shorthand: composition, comparison,
+distribution, relationship), then choose the chart. Detail and craft rules in
+`visual-design.md` section 6. Summary:
 
 | Comparison in the title | Chart |
 |---|---|
@@ -192,14 +202,21 @@ Answer before they ask: name the universe ("of the n processes every AI system
 passes through"), the selection criterion, and where the rest is documented
 (backup). A subset without a universe looks arbitrary even when it is right.
 
-## 14. Section dividers
+## 14. Section dividers and section lead slides
 
-Dividers cost a slide and a few seconds each. Use them only when the deck is
-long enough to need orientation (roughly 20 slides and more) or when the
-sections are presented by different people. Below that, the tracker, the
-management summary and the section wording carry the structure. One divider
-before the backup is always fine. A divider carries the key-line claim as its
-title and nothing else; no images unless the image is an argument.
+A bare divider costs a slide and says nothing. Three cases:
+
+- Section with one or two evidence slides: no divider, no lead slide. The
+  tracker, the management summary and the section wording carry the structure.
+- Section with three or more evidence slides: a **section lead slide** that
+  carries the key-line claim as title and the section's evidence in compressed
+  form (the following titles as bullets, or a mini version of the key exhibit).
+  The reader can stop after the lead slide and still have the argument.
+- Decks of roughly 20 slides and more, or sections presented by different
+  people: dividers are acceptable in addition, with the key-line claim as title
+  and nothing else. No images unless the image is an argument.
+
+One divider before the backup is always fine.
 
 ## 15. Layout and geometry
 
