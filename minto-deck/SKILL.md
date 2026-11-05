@@ -2,7 +2,7 @@
 name: minto-deck
 description: "Build, write and audit after Barbara Minto's Pyramid Principle and consulting practice: governing thought, SCQA opening, MECE key line, full-sentence claims. Build mode makes slide decks in two stages: ghost deck for approval, then deck with speaker notes, timing, Q&A, backup, handout. Memo mode writes answer-first prose: management summaries, briefing notes, event or meeting reports, the thesis of a day, after a short storyline gate. Audit mode reviews a deck or memo and reports weak claims, broken logic and missing elements, with rewrites. Use whenever the user asks for slides, a deck, presentation, pitch, talk, storyline, ghost deck, speaker notes, management summary, Kernbotschaft, These, Vermerk, Veranstaltungsbericht, an answer-first or Minto summary, or wants a deck or memo reviewed; also on Folien, Praesentation, Vortrag, Entscheidungsvorlage, Sprechzettel, Deck pruefen. Trigger even without the word Minto. Not for transcription, translation or plain recaps. German, English."
 metadata:
-  version: "0.6"
+  version: "0.6.1"
   updated: "2026-11-05"
   language: "en, de"
 ---
@@ -226,13 +226,21 @@ questions at once.
 ### Stage 1: storyline
 
 Deliver, in the format in `memo-format.md` section 2: the governing thought in
-one sentence; the SCQA variant with situation and complication as one sentence
-each; the key line of three to five claims as full sentences, ordered by theme
-or argument, never by the order of the source material; the order and its
-criterion; the attribution setting; assumptions and open points; a short
-register when the memo names processes, bodies, roles, systems or options that
-must stay consistent. Run the read-through test on the key line. End with one
-approval question and stop. Exceptions: the user asked for a one-shot run, or
+one sentence; the opening as all four SCQA lines, situation and complication
+as one sentence each, the question the complication raises, and the answer as
+the governing thought verbatim, so the reader can check at the gate that the
+answer answers the question; the key line of three to five claims as full
+sentences, ordered by theme or argument, never by the order of the source
+material, each with an evidence mark (available, missing or placeholder, and
+the source); the order and its criterion; where dissent between sources sits
+and under which claim it will be argued; what the memo says follows for the
+reader, when the memo type has that element; the attribution setting;
+assumptions and open points; a short register when the memo names processes,
+bodies, roles, systems or options that must stay consistent, with a "Sets"
+line that names each set by one plural noun and lists its members in fixed
+order (the plural-noun test: an institute does not belong in a set of
+processes). Run the read-through test on the key line. End with one approval
+question and stop. Exceptions: the user asked for a one-shot run, or
 the memo is under roughly 300 words; then state governing thought and key line
 in two lines and continue in the same turn.
 
@@ -243,17 +251,26 @@ Write from the approved storyline, in this order:
 1. **Lead.** The governing thought, with the SCQA opening before or after it as
    the chosen variant says. Keep only what the reader does not already know.
 2. **Sections.** One per key-line claim. Heading = the claim as a full sentence
-   in the storyline's wording. The first sentence of each section restates or
-   sharpens the claim; the rest proves it. One idea per paragraph, the first
-   sentence of a paragraph is its claim, at most three sentences per paragraph.
-3. **Closing.** Governing thought restated with the confidence the evidence
+   in the storyline's wording, up to roughly 20 words; a longer claim gets a
+   short-form heading and appears in full as the section's first sentence. The
+   first sentence of each section restates or sharpens the claim; the rest
+   proves it. One idea per paragraph, the first sentence of a paragraph is its
+   claim, at most three sentences per paragraph; three or more parallel items
+   or questions inside a paragraph become a list. Dissent is argued under the
+   claim it concerns, as the storyline placed it.
+3. **Implications.** When the memo type calls for it (event or meeting report,
+   status note, thesis of a day): what follows for the reader or the reader's
+   groups, the steps that were announced, and the questions that stayed open.
+   Claims and evidence from the sections only; nothing new.
+4. **Closing.** Governing thought restated with the confidence the evidence
    earns, then the ask or next steps when the memo type has one.
-4. **Evidence.** Numbers with unit and period, named sources, attribution as
+5. **Evidence.** Numbers with unit and period, named sources, attribution as
    settled in Stage 0. Unknowns as `[PLACEHOLDER: what is needed]`, listed
    under the closing. Source material in an annex (session table, list of
    documents) when the type calls for it, never in the body.
-5. **Consistency pass** against the register; terms per `glossary.md`.
-6. **Self-check** against the quick checklist in `memo-format.md` and checks
+6. **Consistency pass** against the register and its sets; terms per
+   `glossary.md`.
+7. **Self-check** against the quick checklist in `memo-format.md` and checks
    A to D of `audit-checklist.md`, reading "heading" for "title".
 
 No framework labels in the text: the lead is the situation, not "Situation:".

@@ -62,3 +62,6 @@ language. Add pairs here when a new term appears in a project.
 | annex | Anlage, Anhang | session table, document list; source material outside the body |
 | length budget | Längenbudget | words or pages agreed in Stage 0 |
 | derived governing thought | abgeleitete Kernbotschaft | thesis proposed from the material, to be confirmed at the gate |
+| implications for the reader | Folgerungen für den Leser, "Was daraus folgt" | memo section before the closing, where the type requires it |
+| dissent | Dissens, Gegenposition | contradiction between sources, argued under the claim it concerns |
+| evidence mark | Belegmarke | per key-line claim: available, missing, placeholder, plus source |

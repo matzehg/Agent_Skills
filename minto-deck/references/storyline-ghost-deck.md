@@ -29,8 +29,10 @@ Detail follows; the checklist is what gets ticked before delivery.
    AI Act deadline with one governance board and three existing processes, at
    no additional headcount."
 3. **Opening (SCQA).** Pick the variant from `minto-pyramid.md` section 2.
-   Write the situation and complication as titles. Drop whatever the audience
-   already knows.
+   Write the situation and complication as titles, state the question they
+   raise in one line, and put the governing thought verbatim as the answer on
+   the management-summary slide. Check that the answer answers the question.
+   Drop whatever the audience already knows.
 4. **Key line.** Three to five claims that together prove the governing
    thought. Run the plural-noun test, the overlap test, the scope test and the
    order test before going further. Write the key line as full sentences; they
@@ -75,9 +77,10 @@ Material: … | Not available / placeholders: …
 Governing thought: <one sentence>
 
 ## Opening (SCQA, variant: …)
+Question the opening raises: <one sentence; the audience's question after the complication>
 1. <Situation as a full sentence>
 2. <Complication as a full sentence>
-3. Management summary: <governing thought> (key line listed as bullets on this slide)
+3. Management summary: <governing thought, verbatim; it is the Answer> (key line listed as bullets on this slide)
 
 ## Section A: <key-line claim 1 as a full sentence>
 4. <supporting claim>  [evidence: available | missing | placeholder]

@@ -9,7 +9,7 @@ zip under Customize > Skills), Claude for PowerPoint, Cowork and Claude Code.
 
 | Skill | Purpose | Status |
 |---|---|---|
-| `minto-deck` | Build and audit slide decks after the Pyramid Principle and consulting practice: two-stage workflow (ghost deck with register for approval, then deck with speaker notes, timing plan, Q&A, backup, handout) and an audit mode for existing decks | v0.5, in test |
+| `minto-deck` | Build, write and audit after the Pyramid Principle and consulting practice: two-stage deck workflow (ghost deck with register for approval, then deck with speaker notes, timing plan, Q&A, backup, handout), a memo mode for answer-first prose (management summaries, Vermerke, event reports, thesis of a day) with a storyline gate, and an audit mode for existing decks and memos | v0.6.1, in test |
 
 ## Layout of a skill
 
@@ -41,6 +41,10 @@ zip under Customize > Skills), Claude for PowerPoint, Cowork and Claude Code.
 Apache 2.0, see `LICENSE`.
 
 ## Changelog
+
+- v0.6.1: Memo-mode fixes from the first real run: SCQA opening with Question and Answer in memo and ghost-deck storylines; Sets line in the memo register; evidence marks per key-line claim; dissent and implications lines in the storyline; Implications step in Stage 2; heading length rule; list rule for enumerated items.
+
+- v0.6: Memo mode (`references/memo-format.md`): memo types with mandatory elements, storyline gate, writing rules, deriving a thesis from source material, attribution settings, bridge from memo to ghost deck; audit mode extended to memos; description trimmed under 1,000 characters with memo triggers in EN and DE; glossary pairs for memo terms; eval case `memo-event-report`.
 
 - v0.5: quick checklist at the top of every reference; `references/stage-2-checklist.md` as the page ticked before delivery; worked examples (register and gap list, speaker-notes block, audit findings, management summary before/after, chart declutter before/after, IBCS chart before/after); `scripts/pptx-helpers.js` with example build and README for the sandbox rendering path; frontmatter metadata with version; description excludes transcription and summarising of existing talks; critic-subagent pattern for hosts with subagents.
 

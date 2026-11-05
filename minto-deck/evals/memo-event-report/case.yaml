@@ -2,11 +2,14 @@ schema_version: "1.1"
 name: memo-event-report
 expected_outcome: |
   The first reply names Memo mode and delivers a memo storyline only: a derived
-  governing thought labelled as derived, an SCQA variant with situation and
-  complication, a key line of three to five full-sentence German claims grouped
-  by theme (not by session), the order and its criterion, the attribution
-  setting as an open point (names not confirmed), assumptions, a planned annex
-  (session table), and one approval question. No memo is written before
+  governing thought labelled as derived, an SCQA opening with all four lines
+  (situation, complication, question, answer verbatim), a key line of three to
+  five full-sentence German claims grouped by theme (not by session) each with
+  an evidence mark, the order and its criterion, a dissent line placing the
+  disagreement between talks 1 and 2 under a claim, implications for the
+  department and the partner authorities, a register with a Sets line, the
+  attribution setting as an open point (names not confirmed), assumptions, a
+  planned annex (session table), and one approval question. No memo is written before
   approval. After approval, the run delivers a German event report in a doc or
   Markdown file: lead with the governing thought, section headings identical to
   the approved key line, first sentences of paragraphs as claims, at most three

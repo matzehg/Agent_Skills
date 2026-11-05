@@ -11,9 +11,11 @@ first; it carries the rules this file applies.
 
 - [ ] Memo type, audience and their question named; attribution setting settled
 - [ ] Governing thought in the first sentence or title, as a claim someone could disagree with; marked "derived" when the user did not supply it
-- [ ] SCQA opening with only what the reader does not know; variant named in the storyline
-- [ ] Key line of three to five full-sentence claims, grouped by theme or argument, never by source order; one order, criterion named
-- [ ] Every heading a full sentence; first sentence of every section and paragraph a claim; at most three sentences per paragraph
+- [ ] SCQA opening with all four lines in the storyline (situation, complication, question, answer = governing thought verbatim); only what the reader does not know; variant named
+- [ ] Key line of three to five full-sentence claims, grouped by theme or argument, never by source order; one order, criterion named; evidence mark per claim
+- [ ] Register with a "Sets" line: each set one plural noun, members in fixed order
+- [ ] Dissent placed under the claim it concerns; implications for the reader planned where the type requires them
+- [ ] Every heading a full sentence of up to roughly 20 words; first sentence of every section and paragraph a claim; at most three sentences per paragraph; three or more parallel items or questions as a list
 - [ ] Closing restates the governing thought; ask or next steps where the type requires
 - [ ] Evidence with unit, period and source; attribution as settled; placeholders marked and listed
 - [ ] Source material (sessions, documents, speakers) in an annex, not in the body
@@ -57,18 +59,28 @@ Governing thought (<from user | derived>): <one sentence>
 Opening (SCQA, variant: …)
 - Situation: <one sentence the reader already accepts>
 - Complication: <one sentence; what changed or is at stake>
+- Question: <the question the complication raises for this reader>
+- Answer: <the governing thought, verbatim>
 
 Key line (order: <theme | time | structure | degree | chain>, criterion: …)
-1. <claim as a full sentence>
-2. <claim as a full sentence>
-3. <claim as a full sentence>
+1. <claim as a full sentence>  [evidence: available | missing | placeholder; <source>]
+2. <claim as a full sentence>  [evidence: …]
+3. <claim as a full sentence>  [evidence: …]
 (4., 5. only when the material needs them)
+
+Dissent: <positions that contradict each other, with their sources; argued under claim n> | none
+
+Implications for the reader (event or meeting report, status note, thesis of a day):
+<one line per reader group or decision; "none for this type" otherwise>
 
 Closing: <governing thought restated> | Ask / next steps: <… or "none for this type">
 
 Register (only when names must stay consistent)
 | Entity | Category | Definition / source | Status |
 |---|---|---|---|
+Sets: <plural noun> = <members in fixed order>; one category per set (an institute
+is not a process; a document is not a body), selection universe and criterion
+where the set is a subset.
 
 Annex planned: <session table | document list | none>
 
@@ -83,7 +95,10 @@ Alternative key line (only if the material supports a second structure)
 ```
 
 Every key-line line is a complete sentence with subject and verb, in the memo
-language. The headings in Stage 2 repeat these sentences verbatim.
+language. The headings in Stage 2 repeat these sentences verbatim, or in a
+short form of up to roughly 20 words with the full claim as the section's
+first sentence. The answer line repeats the governing thought word for word;
+if it does not answer the question line, one of the two is wrong.
 
 ## 3. Writing rules
 
@@ -93,14 +108,19 @@ The lead carries the key line in compressed form when the memo exceeds roughly
 500 words, so that a reader who stops after the lead still has the argument.
 Two to four sentences. No "This memo summarises", no "In the following".
 
-**Headings.** The key-line claims, verbatim. A heading is a sentence the reader
-can disagree with. "Regulierung" is a topic; "Die Regulierungsdebatte hat sich
-von Verboten zu Kontrollmaßnahmen verlagert" is a heading. Sub-headings only
-when a section exceeds roughly 300 words, and then as claims too.
+**Headings.** The key-line claims, verbatim, up to roughly 20 words. A longer
+claim gets a short-form heading that keeps its verb and its point, and the
+full claim becomes the section's first sentence. A heading is a sentence the
+reader can disagree with. "Regulierung" is a topic; "Die Regulierungsdebatte
+hat sich von Verboten zu Kontrollmaßnahmen verlagert" is a heading.
+Sub-headings only when a section exceeds roughly 300 words, and then as claims
+too.
 
 **Paragraphs.** One idea each. The first sentence states the idea; the following
 sentences prove or qualify it. At most three sentences; a fourth sentence is a
-new paragraph or belongs in a list. Sentences under 25 words, plain words, the
+new paragraph or belongs in a list. Three or more parallel items or questions
+inside a paragraph ("Drei Leitfragen bestimmen es: …? …? …?") become a list
+under a one-sentence lead-in. Sentences under 25 words, plain words, the
 reader's language.
 
 **Order inside a section.** The paragraphs of a section form one peer set:
@@ -112,6 +132,12 @@ each item one line, starting with the claim. A table for items compared on
 several attributes (options against criteria, sessions with speaker, format
 and message). Neither as a substitute for an argument: a list of topics is a
 topic heading in disguise.
+
+**Implications.** Where the memo type requires them (section 1), one short
+paragraph per reader group or decision, each opening with what that group
+should do or expect, followed by the announced next steps and the open
+questions as a list. Everything here is drawn from the sections; a new claim
+belongs in a section, not here.
 
 **Closing.** The governing thought in the same words as the lead, with the
 confidence the evidence earned. Then the ask, the next steps with owners and
@@ -212,7 +238,9 @@ two lines, write the memo, and invite changes afterwards.
 |---|---|
 | governing thought | governing thought; title of slide 2 (management summary) |
 | SCQA lead | opening slides 1 to 3 |
-| key-line claims (headings) | section titles; bullets of the management summary |
+| key-line claims (headings) with evidence marks | section titles; bullets of the management summary; evidence column of the ghost deck |
+| dissent line | Q&A preparation; the slide under which the counter-position is shown |
+| implications for the reader | "what the audience can do with it" slide; next-steps slide |
 | first sentence of each paragraph | candidate slide title; proven by that paragraph's evidence |
 | lists and tables | evidence slides (table, cards, chart by comparison type) |
 | closing with ask | closing slide, decision slide or next steps |
