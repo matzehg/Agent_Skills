@@ -1,33 +1,43 @@
 ---
 name: minto-deck
-description: "Build and audit slide decks after Barbara Minto's Pyramid Principle and strategy-consulting practice (governing thought, SCQA opening, MECE key line, full-sentence action titles, one message per slide). Two-stage workflow. Stage 1 delivers a ghost deck (numbered action titles, register of named entities, timing skeleton) and stops for approval; Stage 2 builds the deck with speaker notes, timing plan, Q&A prep, backup, management summary and handout. Audit mode reviews an existing deck against the same rules and reports missing elements, weak titles and broken logic with rewrites. Use whenever the user asks for slides, a deck, a presentation, a pitch, a talk, a storyline, a ghost deck, speaker notes, or wants a deck reviewed, critiqued or made consulting-grade; also on the German words Folien, Praesentation, Vortrag, Entscheidungsvorlage, Sprechzettel, Deck pruefen. Trigger even when Minto is not mentioned; not for transcribing, summarising or translating an existing talk. German and English."
+description: "Build, write and audit after Barbara Minto's Pyramid Principle and consulting practice: governing thought, SCQA opening, MECE key line, full-sentence claims. Build mode makes slide decks in two stages: ghost deck for approval, then deck with speaker notes, timing, Q&A, backup, handout. Memo mode writes answer-first prose: management summaries, briefing notes, event or meeting reports, the thesis of a day, after a short storyline gate. Audit mode reviews a deck or memo and reports weak claims, broken logic and missing elements, with rewrites. Use whenever the user asks for slides, a deck, presentation, pitch, talk, storyline, ghost deck, speaker notes, management summary, Kernbotschaft, These, Vermerk, Veranstaltungsbericht, an answer-first or Minto summary, or wants a deck or memo reviewed; also on Folien, Praesentation, Vortrag, Entscheidungsvorlage, Sprechzettel, Deck pruefen. Trigger even without the word Minto. Not for transcription, translation or plain recaps. German, English."
 metadata:
-  version: "0.5"
-  updated: "2026-10-25"
+  version: "0.6"
+  updated: "2026-11-05"
   language: "en, de"
 ---
 
 # Minto Deck
 
-A deck is an argument the audience can follow from the titles alone. This skill
-makes every deck answer-first, builds it in two stages so the argument gets
-approved before any slide is produced, and reviews existing decks against the
-same standard. The methodology lives in `references/`, independent of any
-rendering tool, so the skill behaves the same in Claude.ai, Cowork, Claude Code
-or any Agent-Skills-compatible host.
+A deck or a memo is an argument the audience can follow from the headings
+alone. This skill makes every deck and every memo answer-first, builds the
+storyline first so the argument gets approved while changing it is cheap, and
+reviews existing decks and memos against the same standard. The methodology
+lives in `references/`, independent of any rendering tool, so the skill behaves
+the same in Claude.ai, Cowork, Claude Code or any Agent-Skills-compatible host.
 
-## Two modes
+## Three modes
 
 Choose exactly one mode per request and name it in the first line of the reply.
 
 - **Build**: the user wants a new deck, a storyline, a ghost deck, speaker notes
   for a deck that does not exist yet, or a rework of material into slides.
-- **Audit**: the user has a deck (file, link, pasted outline, exported text) and
-  wants it reviewed, checked, critiqued or scored. Do not change the deck in
+- **Memo**: the user wants prose that argues answer-first: a management summary,
+  a briefing note or Vermerk, an event or meeting report, the thesis of a day
+  or a meeting, a decision memo, a status note, or a summary that should lead
+  with the conclusion rather than retell the source. Output is text (chat, doc
+  or file), never slides.
+- **Audit**: the user has a deck or a memo (file, link, pasted outline, exported
+  text) and wants it reviewed, checked, critiqued or scored. Do not change it in
   Audit mode unless the user asks for a rewrite; then report first, rewrite second.
 
 A request like "fix my deck" is Audit followed by Build Stage 1 on the corrected
-storyline. Say so before starting.
+storyline. Say so before starting. "Summarise these notes" with no further wish
+is a plain summary and outside this skill; "summarise so the key message comes
+first", "what is the thesis of the day", "write the management summary" is Memo
+mode. When a memo and a deck are both wanted, run Memo first: the approved memo
+storyline becomes the ghost deck's governing thought and key line (see "Bridge
+to Build" under Memo mode).
 
 ## Language
 
@@ -186,6 +196,87 @@ slide at full size and look at each one: overlaps, floating connectors, boxes
 narrower than what points to them, wrapped key-value lines, pooled whitespace,
 spreadsheet-style tables. Thumbnails do not show these.
 
+## Memo mode
+
+Read `references/memo-format.md` and `references/minto-pyramid.md` before
+starting. A memo applies the same pyramid as a deck, flattened into prose: the
+governing thought leads, the section headings are the key-line claims, every
+paragraph proves its heading. Two stages, one light gate.
+
+### Stage 0: briefing
+
+Take the items below from the request, the material and the conversation; ask
+only for one that is missing and would change the storyline, at most three
+questions at once.
+
+1. Audience and their question: who reads this and what they must understand,
+   decide or do afterwards. A mixed audience (internal and external readers)
+   lowers the density of internal references and raises the attribution bar.
+2. Memo type: management summary, briefing note (Vermerk), event or meeting
+   report, decision memo, status note. `memo-format.md` lists the mandatory
+   elements per type.
+3. Governing thought the user already has. If none, derive one from the
+   material and label it as derived; the gate exists so the user can replace it.
+4. Length budget (words or pages) and destination: chat reply, a doc, a file.
+5. Material and sources: what may be used, what must not be invented, how
+   statements are attributed. For a report on talks or meetings, settle whether
+   speakers are named, named by role, or not at all (`memo-format.md` section 5).
+6. Whether a deck follows. If yes, build the storyline so that it carries over.
+
+### Stage 1: storyline
+
+Deliver, in the format in `memo-format.md` section 2: the governing thought in
+one sentence; the SCQA variant with situation and complication as one sentence
+each; the key line of three to five claims as full sentences, ordered by theme
+or argument, never by the order of the source material; the order and its
+criterion; the attribution setting; assumptions and open points; a short
+register when the memo names processes, bodies, roles, systems or options that
+must stay consistent. Run the read-through test on the key line. End with one
+approval question and stop. Exceptions: the user asked for a one-shot run, or
+the memo is under roughly 300 words; then state governing thought and key line
+in two lines and continue in the same turn.
+
+### Stage 2: the memo
+
+Write from the approved storyline, in this order:
+
+1. **Lead.** The governing thought, with the SCQA opening before or after it as
+   the chosen variant says. Keep only what the reader does not already know.
+2. **Sections.** One per key-line claim. Heading = the claim as a full sentence
+   in the storyline's wording. The first sentence of each section restates or
+   sharpens the claim; the rest proves it. One idea per paragraph, the first
+   sentence of a paragraph is its claim, at most three sentences per paragraph.
+3. **Closing.** Governing thought restated with the confidence the evidence
+   earns, then the ask or next steps when the memo type has one.
+4. **Evidence.** Numbers with unit and period, named sources, attribution as
+   settled in Stage 0. Unknowns as `[PLACEHOLDER: what is needed]`, listed
+   under the closing. Source material in an annex (session table, list of
+   documents) when the type calls for it, never in the body.
+5. **Consistency pass** against the register; terms per `glossary.md`.
+6. **Self-check** against the quick checklist in `memo-format.md` and checks
+   A to D of `audit-checklist.md`, reading "heading" for "title".
+
+No framework labels in the text: the lead is the situation, not "Situation:".
+Lists for three or more parallel items, tables for items compared on several
+attributes, prose for everything else. Keep the length budget; a memo that runs
+over is cut at the evidence, never at the key line.
+
+### Rendering
+
+A short memo goes in the chat reply. Anything the user will share or keep goes
+in a doc or Markdown file; a Word file only on request. The structure is
+independent of the host.
+
+### Bridge to Build
+
+An approved memo storyline is a ghost deck in waiting. Governing thought and
+key line carry over verbatim; memo sections become deck sections; each
+paragraph claim becomes a candidate slide title; the memo's register is the
+deck's register. Start Build Stage 1 from the memo, add the evidence marks and
+the timing skeleton, and gate again only on what changed. In the other
+direction, the management summary and the handout of a finished deck are memos
+and follow this mode's writing rules.
+
 ## Hosts with subagents
 
 Where the host offers subagents (Cowork, Claude Code), run the Stage 2
@@ -220,9 +311,12 @@ Read `references/audit-checklist.md` and `references/minto-pyramid.md`.
 1. Extract the deck: titles, bodies, notes, slide count, sources. For a `.pptx`
    use the host's reading tool or `markitdown`; for a PDF extract text; for a
    pasted outline work with what is there and say what could not be checked
-   (visual layout, notes, charts).
+   (visual layout, notes, charts). For a memo extract lead, headings, first
+   sentences of paragraphs, closing and sources.
 2. Identify or ask for the deck type, audience and setting. The completeness
-   check needs a target.
+   check needs a target. For a memo, the type comes from the table in
+   `memo-format.md` section 1; checks on timing, notes and visuals do not apply
+   and the report says so.
 3. Run the checks in the order of the checklist: governing thought, key line,
    titles, read-through, slide-level logic, completeness per deck type,
    didactics (notes, transitions, timing, Q&A), form.
@@ -242,7 +336,10 @@ Read `references/audit-checklist.md` and `references/minto-pyramid.md`.
   may indicate…"). A title states a claim.
 - Mix logical orders inside a peer set, or mix speaker-led and reading-first
   density inside one deck.
-- Skip the Stage 1 gate silently.
+- Skip the Stage 1 gate silently, in Build or in Memo mode.
+- Retell a source in its own order. A Memo-mode summary reorders the material
+  under the answer; a chronological recap, a transcript or a translation is not
+  this skill's job.
 - Write speaker notes as a verbatim script, or put notes on the slide.
 - Output framework labels (SCQA, key line, MECE) inside the deck. They belong
   in the ghost-deck commentary and the notes, not on slides.
@@ -256,6 +353,7 @@ Read the file when its stage starts; do not load all of them up front.
 | `references/stage-2-checklist.md` | Stage 2 start and before delivery: the compact list that gets ticked |
 | `references/minto-pyramid.md` | Stage 1, and every Audit |
 | `references/storyline-ghost-deck.md` | Stage 1: process, output format, timing skeleton, gate |
+| `references/memo-format.md` | Memo mode, all stages, and Audit of a memo: memo types and mandatory elements, storyline format, writing rules, length budgets, deriving a thesis from source material, attribution |
 | `references/consulting-practices.md` | Stage 2: slide anatomy, action titles, density, tables, backup, decision wording |
 | `references/visual-design.md` | Stage 2: layout patterns, grid, type, colour, charts, decluttering, tables, executive summary format, visual check; Audit: form checks |
 | `references/ibcs-notation.md` | Stage 2 and Audit, whenever numbers with scenarios or variances appear: IBCS rules and notation |

@@ -12,7 +12,7 @@ which reference file it changed.
 
 | Source | Status | Contributed to |
 |---|---|---|
-| Barbara Minto, *The Pyramid Principle* (Pearson, English ed.) | prior knowledge; the user owns the book | `minto-pyramid.md`: SCQA, pyramid rules, vertical and horizontal logic, orders, MECE, key line, problem definition |
+| Barbara Minto, *The Pyramid Principle* (Pearson, English ed.) | prior knowledge; the user owns the book | `minto-pyramid.md`: SCQA, pyramid rules, vertical and horizontal logic, orders, MECE, key line, problem definition; `memo-format.md`: the same rules applied to prose (lead, headings as claims, topic sentences, deriving the apex from grouped claims), which is the book's original subject |
 | Gene Zelazny, *Say It With Charts* (McGraw-Hill) | prior knowledge, plus the public summary in StrategyU's "Think Before You Chart" | `visual-design.md` sections 1 and 6: five comparison types, message-first charting |
 | Nancy Duarte, *slide:ology* (O'Reilly, 2008) | prior knowledge, plus thinkinsights.net summary | `visual-design.md` sections 3, 4, 10: whitespace, glance test, hierarchy, restraint |
 | Nancy Duarte, *Slidedocs* (Duarte Press, 2014, free e-book) | not read: registration form; public summaries and guide pages used | `reading-decks.md` |

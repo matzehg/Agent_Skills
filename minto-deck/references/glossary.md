@@ -49,3 +49,16 @@ language. Add pairs here when a new term appears in a project.
 | insight callout | Insight-Box, Kernaussage-Kasten | takeaway box beside a chart |
 | density mode | Dichtemodus | speaker-led or reading-first |
 | revision loop | Überarbeitungsschleife | comments in the file, sorted into deck fix or rule gap |
+| memo | Memo, Vermerk, Kurzbericht | Memo mode output; prose, answer-first |
+| briefing note | Vermerk, Briefing, Sprechzettel in Prosa | memo type |
+| event report, meeting report | Veranstaltungsbericht, Sitzungsbericht, Tagungsbericht | memo type |
+| decision memo | Entscheidungsvermerk | memo type |
+| status note | Statusnotiz | memo type |
+| thesis of a day | These des Tages | shortest event report: governing thought plus key line |
+| lead | Vorspann, Einstiegsabsatz | first paragraph; carries the governing thought |
+| heading (memo) | Überschrift, Aussageüberschrift | key-line claim as a full sentence |
+| topic sentence | Leitsatz des Absatzes | first sentence of a paragraph; its claim |
+| attribution (named / role only / none) | Zuordnung von Aussagen (namentlich / nach Rolle / keine) | settled in Memo Stage 0 |
+| annex | Anlage, Anhang | session table, document list; source material outside the body |
+| length budget | Längenbudget | words or pages agreed in Stage 0 |
+| derived governing thought | abgeleitete Kernbotschaft | thesis proposed from the material, to be confirmed at the gate |
