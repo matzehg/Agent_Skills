@@ -25,7 +25,7 @@ has not said and the deck does not make it obvious.
 | **Decision paper** (Entscheidungsvorlage) | title with decision date; management summary with the ask; SCQA opening; options with explicit criteria, shown before the detail of the recommended one; recommended option marked; cost and benefit with period; risks with owners and mitigations; decision slide worded as a proposal (Beschlussvorschlag: what is decided, consequence of no decision, what is needed today); next steps with owners and dates; sources; backup for the Q&A |
 | **Status report** (Statusbericht) | management summary with overall status in one sentence; progress against plan (what was planned, what happened); deviations with cause; decisions or support needed from the audience; next period's plan; risks that changed since last report |
 | **Proposal or pitch** (Angebot) | management summary with the offer in one sentence; understanding of the client's question (SCQA); approach and phases; deliverables; team and roles; timeline; price or effort with assumptions; why this team; next steps and decision needed from the client; references where allowed |
-| **Expert talk** (Fachvortrag) | title with speaker and date; the one claim of the talk on slide 2; three to five sections that prove it; at least one concrete example per section; what the audience can do with it; contact or further reading |
+| **Expert talk** (Fachvortrag) | title with speaker and date; the one claim of the talk on the first slide after the title; three to five sections that prove it; at least one concrete example per section (a named case, project, date or number; a generic illustration does not count); what the audience can do with it, as actions rather than aphorisms; contact or further reading |
 | **Reading deck** (Lesedeck, pre-read) | management summary that stands alone; every slide self-explanatory; sources and footnotes on the slide; glossary or definitions where terms are new; no delivery cues; page numbers |
 | **Leitungsvorlage** (German public-sector submission to the head of an authority or ministry; proposal derived from public rules of procedure, to be confirmed against the user's practice) | Betreff and purpose of the submission (information, decision, signature); Votum or Beschlussvorschlag first, as a proposal; Anlass (why now, who asked); Sachverhalt as agreed facts; Bewertung or Stellungnahme including possible problems; alternatives examined with reasons for rejection; consequences for budget, staff, law and data protection, IT; involvement of other units and remaining dissent; deadlines and next steps with owners; list of attachments; classification where required |
 | **Decision briefing, BLUF** (Lagevortrag zur Entscheidung; variant for defence and security audiences, optional) | bottom line first: the proposed decision in one sentence; situation; task or problem; courses of action assessed against stated criteria, recommended one marked; risks with mitigations; what is needed from the decision-maker now; next steps and timeline |
@@ -42,8 +42,8 @@ Run in this order; each level depends on the one above.
 
 | # | Check | Red flag |
 |---|---|---|
-| A1 | A governing thought exists as a claim | title of slide 2 is a noun phrase; the only claim appears at the end |
-| A2 | It appears before the evidence | first substantive claim after the midpoint |
+| A1 | A governing thought exists as a claim | title of the management summary is a noun phrase or an agenda; the only claim appears at the end |
+| A2 | It appears before the evidence, on the first slide after the title | first substantive claim after the midpoint; an agenda or a goal statement where the claim should be |
 | A3 | It answers the audience's question | audience asks "what should we do?", deck answers "what happened" |
 | A4 | It can be disagreed with | platitude ("digitalisation is important") |
 | A5 | The closing restates it in the same words (deck and long memo; short prose needs no restatement) | ending introduces a new claim or none |
@@ -113,7 +113,7 @@ Run in this order; each level depends on the one above.
 |---|---|
 | G1 | Titles same position and size on every slide |
 | G2 | Tracker and page numbers present and consistent |
-| G3 | Terminology consistent (glossary) |
+| G3 | Terminology consistent (glossary); one language per deck in titles and labels, loanwords aside |
 | G4 | Number and date formats consistent |
 | G5 | No text overflow, overlap, leftover placeholders |
 | G6 | Charts editable, not pasted images |
@@ -130,7 +130,7 @@ Run in this order; each level depends on the one above.
 
 | # | Check | Signal |
 |---|---|---|
-| H1 | Density mode declared and kept: body words per content slide within the budget for the mode (speaker-led up to about 40, reading-first 75 to 250) | a "speaker-led" deck averaging 100 words of body text; a handout with label-only slides |
+| H1 | Density mode declared and kept: body words per content slide within the budget for the mode (speaker-led up to about 40, reading-first 75 to 250); management summary and decision slide against their own budget (`exhibits.md` section 6) | a "speaker-led" deck averaging 100 words of body text; a handout with label-only slides |
 | H2 | Every exhibit has the form its body shape calls for (`exhibits.md` section 1) | a sequence drawn as pillars; peers drawn as layers; a 2 x 2 with correlated axes |
 | H3 | The subject of the title is the highlighted element, one highlight per exhibit | all bars or nodes in one colour; the accent on an element the title does not name |
 | H4 | Order and reading direction follow the message and the fixed conventions | items in source order; time running right to left; the good corner bottom left |
@@ -142,7 +142,8 @@ Run in this order; each level depends on the one above.
 
 Severity: H1 is a blocker only for a speaker-led deck whose mean over the
 content slides exceeds the budget or whose single slide exceeds twice the
-budget; single slides above budget are warnings; under the lower bound in a
+budget; the management summary and the decision slide are excluded from the
+mean and measured against their own budget; single slides above budget are warnings; under the lower bound in a
 reading deck is advisory (`exhibits.md` section 6). H9 is a blocker. H2, H3
 and H5 are warnings that become blockers in a decision paper; the rest are
 warnings. H8 is information unless a text mark has no reason.
@@ -182,7 +183,7 @@ warnings in the delivery note. In Audit mode, report all three levels.
 
 Verdict: <one sentence: does the deck do its job, and what is the main fix>
 Deck type assumed: … | Audience: … | Setting: … | Slides: n (+ backup m)
-Not checked: <what the input did not allow, e.g. notes, layout, charts>
+Not checked: <what the input did not allow, e.g. notes, layout, charts; fonts missing in the render environment and the overflow findings this suspends>
 
 ## Title read-through
 | # | Title (verbatim) | Flag | Proposed title |
@@ -212,7 +213,8 @@ Example findings, one per severity:
 ```
 ### Blockers
 - [A2] Slides 2 to 9: the recommendation first appears on slide 10. Move the governing
-  thought to slide 2 as a management summary; keep slide 10 as the restatement.
+  thought to the first slide after the title as a management summary; keep slide 10
+  as the restatement.
 ### Warnings
 - [C1] Slide 6, "Risikoübersicht": topic label. → "Zwei der fünf Risiken brauchen in
   diesem Quartal eine Entscheidung; drei sind abgedeckt."

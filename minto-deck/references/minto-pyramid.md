@@ -7,7 +7,7 @@ book; add further sources as separate files in `references/`.
 
 ## Quick checklist
 
-- [ ] Governing thought stated before the evidence (slide 2 by default), as a claim someone could disagree with
+- [ ] Governing thought stated before the evidence (first slide after the title), as a claim someone could disagree with
 - [ ] SCQA opening with only what the audience does not already know; variant chosen deliberately
 - [ ] Key line of three to five claims: one plural noun, no overlap, scope named, one order
 - [ ] Every title raises exactly the question its body answers (vertical logic)
@@ -27,7 +27,7 @@ each lower level answers exactly that question.
 Consequences for a deck:
 
 - The main answer (governing thought, Kernbotschaft) appears before the
-  evidence, normally on slide 2.
+  evidence, normally on the first slide after the title.
 - Every slide title is a statement the audience can agree or disagree with.
 - The structure is a pyramid: one apex claim, a key line of three to five
   supporting claims, and evidence under each. A deck flattens this pyramid into
@@ -50,7 +50,7 @@ Order variants, chosen by the audience's mood and prior knowledge:
 | Variant | Order | Use when |
 |---|---|---|
 | Standard | S, C, A | audience needs the context |
-| Direct | A, S, C | audience wants the answer first, context afterwards |
+| Direct | A, S, C | audience wants the answer first, context afterwards; default for decision papers and Leitungsvorlagen |
 | Concerned | C, S, A | the problem is urgent and known |
 | Questioning | Q, S, C, A | the audience arrives with the question already formed |
 
@@ -182,7 +182,7 @@ it on a status report or a faithful summary of a given source.
 
 | Failure | Looks like | Fix |
 |---|---|---|
-| Buried answer | governing thought on the last slide | move it to slide 2, keep the ending as restatement |
+| Buried answer | governing thought on the last slide | move it to the first slide after the title, keep the ending as restatement |
 | Topic titles | "Current situation", "Next steps" | write the claim the slide proves |
 | Container summary | "Three findings" | state what the three findings mean together |
 | Mixed kinds | two reasons and one step in one set | split or regroup; find the missing idea |

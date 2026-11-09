@@ -1,9 +1,11 @@
 // Smoke test for pptx-helpers.js. Run: node scripts/test-helpers.js
 // Needs pptxgenjs resolvable from the working directory (npm install pptxgenjs).
-// Checks the fixes of v0.6.2: content passed in is rendered (chevron sub
-// lines), timing adds up over every slide type, the handout filter applies to
-// every slide type, no scheme colours, no font under the handout minimum, and
-// bigStat boxes do not overlap.
+// Checks the fixes of v0.6.2 to v0.7.2: content passed in is rendered (chevron
+// sub lines), timing adds up over every slide type, the handout filter applies
+// to every slide type, no scheme colours, no font under the handout minimum,
+// bigStat boxes do not overlap, chevron text starts behind the notch, numbered
+// cards use list numbering, narrow table columns are reported, marks and
+// placeholders are not counted as words, PH() follows the deck language.
 const path = require("path");
 const fs = require("fs");
 const os = require("os");
@@ -46,7 +48,8 @@ async function build(mode) {
   const sp = await build("speaker");
   assert(Math.abs(sp.r.minutes - 5.0) < 1e-9, `speaker minutes add up over title, section and content (got ${sp.r.minutes})`);
   assert(Array.isArray(sp.r.wordsPerSlide) && sp.r.wordsPerSlide.length === 6, `wordsPerSlide reported per slide (${JSON.stringify(sp.r.wordsPerSlide)})`);
-  assert(sp.r.wordsPerSlide[2].words >= 25 + 24, `table words are counted in wordsPerSlide (slide 3: ${sp.r.wordsPerSlide[2].words}, expected text plus 24 table words)`);
+  // 24 text words ("%" in "42 %" is a symbol, not a word) plus 24 table words
+  assert(sp.r.wordsPerSlide[2].words === 24 + 24, `table words are counted in wordsPerSlide (slide 3: ${sp.r.wordsPerSlide[2].words}, expected 24 text plus 24 table words)`);
   const entries = listEntries(sp.out);
   const slideXml = entries.filter(e => /^ppt\/slides\/slide\d+\.xml$/.test(e)).map(e => unzipXml(sp.out, e)).join("\n");
   assert(slideXml.includes("Owner A, bis Q1"), "chevron sub line is rendered");
@@ -78,5 +81,30 @@ async function build(mode) {
   assert(okDir && okLen, `six-node cycle: all arrows point forward and are at least 0.25 in long (node ${g.nodeW.toFixed(2)} x ${g.nodeH.toFixed(2)}, chord ${g.chord.toFixed(2)})`);
   const g4 = dk.cycleGeometry(4, 3.2, 4, 1.5, 2.0, 0.7);
   assert(g4.arrows.every(ar => Math.hypot(ar.b.x - ar.a.x, ar.b.y - ar.a.y) >= 0.25), "four-node cycle keeps visible arrows");
+  // v0.7.2: chevron text behind the notch, for a tall chevron
+  const d7 = createDeck({ mode: "speaker" });
+  d7.content("X", "Chevron-Test als Satz", "Quelle: Test", { key: "k", time: 0.5 }, (s, h) => {
+    h.chevrons(s, [{ head: "Meldung", sub: "a" }, { head: "Einstufung", sub: "b" }, { head: "Freigabe", sub: "c" }], h.BODY_Y + 0.5, 1.4, { hl: 1 });
+  });
+  d7.content("Y", "Karten-Test als Satz", "Quelle: Test", { key: "k", time: 0.5 }, (s, h) => {
+    h.card(s, h.M, h.BODY_Y, 5, 3, "Beschluss", ["Board einrichten", "Plan freigeben"], { numbered: true });
+    h.ltable(s, h.M + 5.5, h.BODY_Y, 4, [["Phase", "Personentage"], ["Phase 1", h.PH("PT")]], [2.8, 1.2]);
+    h.txt(s, "● ◐ ○  ✓ ✗", h.M, h.BODY_Y + 3.5, 4, 0.4);
+  });
+  const out7 = path.join(os.tmpdir(), "smoke-072.pptx");
+  const r7 = await d7.write(out7);
+  const s1 = unzipXml(out7, "ppt/slides/slide1.xml");
+  const EMU = 914400;
+  const shapes = [...s1.matchAll(/<p:sp>.*?<\/p:sp>/gs)].map(m => m[0]);
+  const geo = (x) => { const o = /<a:off x="(\d+)" y="(\d+)"\/><a:ext cx="(\d+)" cy="(\d+)"\/>/.exec(x); return o ? { x: +o[1] / EMU, y: +o[2] / EMU, w: +o[3] / EMU, h: +o[4] / EMU } : null; };
+  const chev = shapes.filter(x => /name="chevron"/.test(x)).map(geo);
+  const texts = shapes.filter(x => /name="text"/.test(x)).map(geo).filter(Boolean);
+  const behindNotch = texts.every(t => chev.some(c => t.x >= c.x && t.x + t.w <= c.x + c.w + 1e-6 && t.x >= c.x + c.h / 2 - 1e-6));
+  assert(chev.length === 3 && behindNotch, `chevron text starts behind the h/2 notch (h ${chev[0] && chev[0].h.toFixed(2)} in)`);
+  const s2 = unzipXml(out7, "ppt/slides/slide2.xml");
+  assert(/<a:buAutoNum/.test(s2) && !/>1\. Board/.test(s2), "numbered card uses list numbering, no literal number in the text");
+  assert(r7.warnings.some(w => w.kind === "narrow-column" && w.slide === 2), `narrow-column warning fires for a 1.2 in placeholder column (${JSON.stringify(r7.warnings)})`);
+  assert(d7.wordsOf("● ◐ ○  ✓ ✗") === 0 && d7.wordsOf("[PLACEHOLDER: x] a b") === 2 && d7.wordsOf("[PLATZHALTER: PT] 42 %") === 1, "marks and placeholders are not counted as words");
+  assert(createDeck({ mode: "speaker", lang: "en" }).PH("x") === "[PLACEHOLDER: x]" && d7.PH("x") === "[PLATZHALTER: x]", "PH() follows the deck language");
   console.log("themeApplied:", sp.r.themeApplied);
 })().catch(e => { console.error(e); process.exitCode = 1; });

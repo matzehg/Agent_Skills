@@ -11,7 +11,7 @@
 //
 // Usage (see scripts/README.md and scripts/example-build.js):
 //   const { createDeck } = require("./pptx-helpers.js");
-//   const d = createDeck({ mode: "speaker" | "handout", title, author, theme });
+//   const d = createDeck({ mode: "speaker" | "handout", lang: "de" | "en", title, author, theme });
 //   d.titleSlide(...); d.content(tracker, title, source, notes, (s, h) => { ... });
 //   await d.write("/mnt/user-data/outputs/deck.pptx");
 //
@@ -69,7 +69,12 @@ function createDeck(opts = {}) {
   const F = HANDOUT ? { body: 14, head: 16, big: 50, small: 11, tbl: 12, title: 20 }
                     : { body: 16, head: 18, big: 62, small: 12, tbl: 14, title: 22 };
   const cols = (n, g = G) => { const w = (CW - (n - 1) * g) / n; return Array.from({ length: n }, (_, i) => ({ x: M + i * (w + g), w })); };
-  const PH = (t) => `[PLATZHALTER: ${t}]`;
+  // placeholder marker in the deck language (SKILL.md "What this skill does not do")
+  const LANG = opts.lang || "de";
+  const PH = (t) => LANG === "en" ? `[PLACEHOLDER: ${t}]` : `[PLATZHALTER: ${t}]`;
+  const PH_RE = /\[(PLATZHALTER|PLACEHOLDER):[^\]]*\]/g;
+  // warnings collected while building, returned by write() (exhibits.md 7)
+  const warnings = [];
 
   // ---- masters ----
   pres.defineSlideMaster({ title: "TITLE", background: { color: T.colors.dk1 }, objects: [
@@ -113,21 +118,27 @@ function createDeck(opts = {}) {
   // Body words per slide (exhibits.md section 6). txt() counts what it writes
   // into the body; title, tracker, source and slide number are not body text.
   const wordLog = new Map();
+  // A token is a word only when it carries a letter or a digit: marks
+  // (● ◐ ○ ✓ ✗), bullets and dashes are not counted; both placeholder forms
+  // are removed first.
   const wordsOf = (text) => (Array.isArray(text) ? text.map(r => (typeof r === "string" ? r : (r.text || ""))).join(" ") : String(text || ""))
-    .replace(/\[PLATZHALTER:[^\]]*\]/g, "").split(/\s+/).filter(Boolean).length;
+    .replace(PH_RE, "").split(/\s+/).filter(w => /[0-9A-Za-zÀ-ÿ]/.test(w)).length;
   const countWords = (s, text) => wordLog.set(s, (wordLog.get(s) || 0) + wordsOf(text));
   const txt = (s, text, x, y, w, h, o = {}) => {
     countWords(s, text);
     return s.addText(text, Object.assign({ x, y, w, h, fontSize: F.body, color: C.text1, margin: 0, isTextBox: true, valign: "top", objectName: "text" }, o));
   };
+  // bullets(s, items, ...): o.numbered renders a numbered list instead of
+  // bullets (decision points, ordered steps); never write "1." into the text.
   function bullets(s, items, x, y, w, h, o = {}) {
-    const runs = items.map((t, i) => ({ text: t, options: { bullet: { indent: 14 }, breakLine: i < items.length - 1, paraSpaceAfter: o.gap || 8 } }));
+    const marker = o.numbered ? { type: "number", indent: 18 } : { indent: 14 };
+    const runs = items.map((t, i) => ({ text: t, options: { bullet: marker, breakLine: i < items.length - 1, paraSpaceAfter: o.gap || 8 } }));
     txt(s, runs, x, y, w, h, Object.assign({ fontSize: F.body, color: C.text2 }, o));
   }
   function card(s, x, y, w, h, head, items, o = {}) {
     box(s, x, y, w, h, o.fill || C.background2, "card");
     txt(s, head, x + 0.25, y + 0.22, w - 0.5, 0.5, { fontSize: F.head, bold: true, color: o.headColor || C.text1 });
-    bullets(s, items, x + 0.25, y + 0.85, w - 0.5, h - 1.05, { fontSize: o.size || F.body, gap: o.gap });
+    bullets(s, items, x + 0.25, y + 0.85, w - 0.5, h - 1.05, { fontSize: o.size || F.body, gap: o.gap, numbered: o.numbered });
   }
   // Lines a text needs at a font size in a box of width w (inches); average
   // glyph width taken as 0.5 em, which is generous for Latin body text.
@@ -159,8 +170,29 @@ function createDeck(opts = {}) {
     txt(s, text, x, y, w, 0.35, Object.assign({ fontSize: F.small, color: C.accent6, charSpacing: 1 }, o));
   }
   // list-style table (consulting-practices.md section 16, visual-design.md 6b)
+  // longestWordWidth(text, fontSize): inches the longest token of a cell
+  // needs at one line; average glyph width taken as 0.5 em plus cell margins.
+  const longestWordWidth = (text, fontSize) => {
+    // a placeholder is one unit: it must not break at its inner space
+    const joined = String(text || "").replace(PH_RE, (m) => m.replace(/\s+/g, "_"));
+    const tokens = joined.split(/\s+/).filter(Boolean);
+    const longest = tokens.reduce((m, t) => Math.max(m, t.length), 0);
+    // 0.45 em average glyph width (Calibri, mixed case with capitals) plus
+    // the cell margins; calibrated on rendered decks, a signal not a measure
+    return (longest * fontSize * 0.45) / 72 + 0.2;
+  };
   function ltable(s, x, y, w, rows, colW, o = {}) {
     const B = (pt, color) => ({ type: "solid", pt, color }); const NONE = { type: "none" };
+    // narrow-column check: a token that cannot fit its column wraps inside
+    // the word (placeholders are the usual victims); report, do not guess
+    const slideNo = pres.slides.indexOf(s) + 1;
+    rows.forEach((r, ri) => r.forEach((cell, ci) => {
+      const text = (cell && typeof cell === "object") ? cell.text : cell;
+      const size = ri === 0 ? (o.hSize || F.tbl - 1) : (o.size || F.tbl);
+      const need = longestWordWidth(text, size);
+      if (colW[ci] !== undefined && need > colW[ci] && !warnings.some(w => w.slide === slideNo && w.kind === "narrow-column" && w.column === ci))
+        warnings.push({ slide: slideNo, kind: "narrow-column", column: ci, width: colW[ci], needs: Number(need.toFixed(2)), text: String(text).slice(0, 40) });
+    }));
     const fillFor = (ci) => (o.hl !== undefined && ci === o.hl) ? { color: TINT } : { color: T.colors.lt1 };
     const alignFor = (ci) => (o.center && o.center.includes(ci)) ? "center" : (o.right && o.right.includes(ci)) ? "right" : "left";
     const hdr = rows[0].map((t, ci) => ({ text: t, options: { bold: true, color: T.colors.dk1, fontSize: o.hSize || F.tbl - 1, valign: "bottom", border: [NONE, NONE, B(1.25, T.colors.dk2), NONE], fill: fillFor(ci), align: alignFor(ci) } }));
@@ -177,13 +209,16 @@ function createDeck(opts = {}) {
     // items: [{head, sub}] ; highlight index via o.hl. A sub line (owner, date,
     // deliverable) renders under the head; nothing passed in is dropped.
     const hasSub = items.some(it => it && it.sub);
+    // the left notch of a pptxgenjs chevron is h/2 deep; the text starts
+    // behind it and may run into the right point, which is solid
+    const inset = h / 2 + 0.1, tw = (cw) => Math.max(0.5, cw - inset - 0.25);
     cols(items.length).forEach((c, i) => {
       s.addShape(pres.ShapeType.chevron, { x: c.x, y, w: c.w, h, fill: { color: i === o.hl ? T.colors.accent2 : T.colors.dk2 }, line: { color: T.colors.lt1, width: 0 }, objectName: "chevron" });
       if (hasSub) {
-        txt(s, items[i].head, c.x + 0.55, y + 0.08, c.w - 0.95, h * 0.5, { fontSize: F.body, bold: true, color: C.background1, valign: "bottom" });
-        if (items[i].sub) txt(s, items[i].sub, c.x + 0.55, y + h * 0.56, c.w - 0.95, h * 0.4, { fontSize: F.small, color: C.accent5, valign: "top" });
+        txt(s, items[i].head, c.x + inset, y + 0.08, tw(c.w), h * 0.5, { fontSize: F.body, bold: true, color: C.background1, valign: "bottom" });
+        if (items[i].sub) txt(s, items[i].sub, c.x + inset, y + h * 0.56, tw(c.w), h * 0.4, { fontSize: F.small, color: C.accent5, valign: "top" });
       } else {
-        txt(s, items[i].head, c.x + 0.55, y, c.w - 0.95, h, { fontSize: F.body, bold: true, color: C.background1, valign: "middle" });
+        txt(s, items[i].head, c.x + inset, y, tw(c.w), h, { fontSize: F.body, bold: true, color: C.background1, valign: "middle" });
       }
     });
   }
@@ -312,11 +347,11 @@ function createDeck(opts = {}) {
     let themeApplied = false;
     if (applyTheme) { await applyTheme(path, T); themeApplied = true; }
     const wordsPerSlide = pres.slides.map((sl, i) => ({ slide: i + 1, words: wordLog.get(sl) || 0 }));
-    return { path, slides: pres.slides.length, minutes: notesLog.reduce((a, n) => a + (Number(n.time) || 0), 0), notesLog, themeApplied, wordsPerSlide };
+    return { path, slides: pres.slides.length, minutes: notesLog.reduce((a, n) => a + (Number(n.time) || 0), 0), notesLog, themeApplied, wordsPerSlide, warnings };
   }
 
-  const api = { pres, C, T, F, MODE, HANDOUT, W, M, CW, G, TITLE_Y, TITLE_H, BODY_Y, BODY_H, KEY_Y, KEY_H, SRC_Y, TINT, TINT_SIGNAL, RULE,
-    cols, PH, box, txt, bullets, card, bigStat, bigStatLayout, label, ltable, MARK, chevrons, pill, line, cycle, cycleGeometry, continuum, timeline, matrix, titleSlide, sectionSlide, content, write, speakerNotes };
+  const api = { pres, C, T, F, MODE, HANDOUT, LANG, W, M, CW, G, TITLE_Y, TITLE_H, BODY_Y, BODY_H, KEY_Y, KEY_H, SRC_Y, TINT, TINT_SIGNAL, RULE,
+    cols, PH, wordsOf, longestWordWidth, warnings, box, txt, bullets, card, bigStat, bigStatLayout, label, ltable, MARK, chevrons, pill, line, cycle, cycleGeometry, continuum, timeline, matrix, titleSlide, sectionSlide, content, write, speakerNotes };
   return api;
 }
 

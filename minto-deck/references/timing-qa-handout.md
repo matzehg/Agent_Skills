@@ -120,8 +120,9 @@ circulation after the meeting, email to absentees. Rules:
 ## 5. Management summary as a standalone
 
 When the user asks for a one-page summary for people who will see neither the
-deck nor the talk, export slide 2 with the source lines of the numbers it
-quotes. If slide 2 cannot stand alone, slide 2 is wrong; fix it there.
+deck nor the talk, export the management summary with the source lines of
+the numbers it quotes. If it cannot stand alone, the slide is wrong; fix it
+there.
 
 ## 6. Delivery note
 

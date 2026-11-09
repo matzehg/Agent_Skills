@@ -2,7 +2,9 @@ schema_version: "1.1"
 name: decision-paper-ai-governance
 expected_outcome: |
   The first reply is a ghost deck only, with a form mark and an evidence mark
-  on every title and the density mode and text budget in the header: numbered full-sentence titles in German,
+  on every title, a title slide T outside the numbering, the management summary
+  as the first slide after the title, and the density mode and text budget in
+  the header: numbered full-sentence titles in German,
   grouped by section, with a governing thought, an SCQA opening, a key line of
   three to five claims, an evidence mark per title, a register of named
   entities (processes, body, roles, options, criteria) with category and
@@ -10,7 +12,7 @@ expected_outcome: |
   discussion reserved, assumptions, open points, and a closing question asking
   for approval of ghost deck and register. No slides, notes or files are produced before approval. After
   approval, the run delivers an editable .pptx with speaker notes in the notes
-  pane, a management summary on slide 2, a decision slide, next steps with owners
+  pane, a management summary on the first slide after the title, a decision slide, next steps with owners
   and dates, placeholders marked for the missing cost and inventory numbers,
   "ohne zusätzliche Stellen" marked as the user's assumption until those numbers exist, a
   timing plan, a Q&A document pointing to slides or backup, named entities

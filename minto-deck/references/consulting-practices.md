@@ -74,7 +74,7 @@ Checks on the flow:
 - No two adjacent slides make the same claim.
 - No jump from finding to recommendation without the slide that connects them.
 - Every section boundary has a transition the notes can speak.
-- The closing restates the governing thought in the words of slide 2.
+- The closing restates the governing thought in the words of the management summary.
 
 ## 4. One message per slide
 
@@ -108,7 +108,7 @@ tries to be both is the slideument `reading-decks.md` warns against.
 
 ## 6. Management summary
 
-Slide 2 in almost every deck type. Contents, in this order:
+The first slide after the title in almost every deck type. Contents, in this order:
 
 1. The governing thought as the slide title.
 2. The key line as three to five bullets, same wording as the section headers.
@@ -145,7 +145,8 @@ findings, recommendation.
 - Every number carries unit, period and denominator. "Costs fell 20 %" needs
   "of what, from when to when".
 - Do not invent numbers, examples, quotes or sources. Insert
-  `[PLACEHOLDER: …]` and list it in the delivery note.
+  `[PLACEHOLDER: …]` (English deck) or `[PLATZHALTER: …]` (German deck) and
+  list it in the delivery note.
 - Old data presented as current is a blocker.
 - A calculation on a slide is reproducible from the source line.
 

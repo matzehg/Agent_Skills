@@ -8,7 +8,7 @@ changing it is cheap.
 ## Quick checklist
 
 - [ ] Briefing restated in four lines, assumptions marked
-- [ ] Governing thought in one sentence; SCQA variant named
+- [ ] Governing thought in one sentence that fits a two-line title (about 20 words German, 16 English); same test on every key-line claim; SCQA variant named
 - [ ] Key line tested (plural noun, overlap, scope, order) before supporting slides
 - [ ] Every title carries an evidence mark and a form mark; density mode and text budget declared in the header
 - [ ] Every numbered line a full sentence; parallel grammar inside each set
@@ -32,8 +32,11 @@ Detail follows; the checklist is what gets ticked before delivery.
 3. **Opening (SCQA).** Pick the variant from `minto-pyramid.md` section 2.
    Write the situation and complication as titles, state the question they
    raise in one line, and put the governing thought verbatim as the answer on
-   the management-summary slide. Check that the answer answers the question.
-   Drop whatever the audience already knows.
+   the management-summary slide. The management summary is the first slide
+   after the title slide; with the Direct variant (default for decision
+   papers and Leitungsvorlagen) it is line 1 and situation and complication
+   follow it. Check that the answer answers the question. Drop whatever the
+   audience already knows.
 4. **Key line.** Three to five claims that together prove the governing
    thought. Run the plural-noun test, the overlap test, the scope test and the
    order test before going further. Write the key line as full sentences; they
@@ -86,9 +89,11 @@ Governing thought: <one sentence>
 
 ## Opening (SCQA, variant: …)
 Question the opening raises: <one sentence; the audience's question after the complication>
+T. Title slide: <working title, occasion, date or placeholder>  (not counted)
 1. <Situation as a full sentence>
 2. <Complication as a full sentence>
 3. Management summary: <governing thought, verbatim; it is the Answer> (key line listed as bullets on this slide)
+   (Direct variant: the management summary is line 1, situation and complication are 2 and 3)
 
 ## Section A: <key-line claim 1 as a full sentence>
 4. <supporting claim>  [evidence: available | missing | placeholder; source | form: chart:<comparison> | table | concept:<type> | text, because …]
@@ -152,7 +157,11 @@ same sentence that will later appear in the management summary.
 - Active verb, named actor where possible.
 - Length: readable in one breath. Around eight to sixteen words in English,
   ten to eighteen in German. Treat the count as a signal, not a rule; a
-  precise long title beats a vague short one.
+  precise long title beats a vague short one. The hard limit is the slide:
+  a title that needs three lines at the deck's title size (about 20 words
+  German, 16 English) is shortened in the ghost deck, not in Stage 2. This
+  holds for the governing thought, which becomes the management-summary
+  title, and for every key-line claim.
 - Every title is a full sentence with a subject and a verb; parallel grammar
   inside each peer set. Noun-phrase assertions ("Three steps that cut approval
   time in half") are not titles in this skill.

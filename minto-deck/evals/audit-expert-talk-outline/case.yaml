@@ -1,0 +1,20 @@
+schema_version: "1.1"
+name: audit-expert-talk-outline
+expected_outcome: |
+  The reply names Audit mode, assumes the deck type expert talk and states
+  audience and setting, lists what the pasted outline does not allow it to
+  check (layout, notes pane beyond the pasted notes, fonts and the overflow
+  findings this suspends), gives a one-sentence verdict, a title read-through
+  that quotes every title verbatim with a flag and a full-sentence German
+  rewrite for each flagged one, and findings by severity with check ids: as
+  blockers the missing governing thought (slide 2 is an agenda with a goal),
+  the key line that is a topic list, the density (speaker-led talk with
+  paragraphs of 95 to 200 words on slides 7 and 9 to 13, reported with the
+  numbers) and the missing mandatory elements (no concrete example, audience
+  action only as aphorisms); as warnings the label titles with the claim in
+  the subtitle, the unsourced "78 %", the repeated title on 15 and 16, the
+  leftover notes on the dividers, the two durations (25 minutes versus a
+  30-minute agenda), the chart as a greyed background image, the mixed
+  German and English in titles, and the orphan slide 18 after the logo. It
+  does not rewrite the deck and ends by offering Build Stage 1 on the
+  corrected storyline.

@@ -16,9 +16,9 @@ up; this page is what gets followed.
 - [ ] Title is the approved action title, one claim, at most two lines (consulting-practices 2)
 - [ ] Layout pattern chosen from the catalogue to prove that claim (visual-design 2); concept visual per its type rules: reading direction, caps, one label per node (exhibits 3)
 - [ ] Title's subject is the highlighted element; order follows the message; register names and colours inside the exhibit; cleaning sequence, cover test and headline test done (exhibits 4, 5)
-- [ ] Body words within the mode's budget; detail in notes, not on the slide, in a speaker-led deck (exhibits 6)
+- [ ] Body words within the mode's budget; management summary and decision slide within their own budget; detail in notes, not on the slide, in a speaker-led deck (exhibits 6)
 - [ ] One dominant element; body answers exactly the question the title raises (minto-pyramid 4)
-- [ ] Numbers with unit, period, denominator, source; placeholders marked `[PLATZHALTER: …]` (consulting-practices 7)
+- [ ] Numbers with unit, period, denominator, source; placeholders marked `[PLATZHALTER: …]` or `[PLACEHOLDER: …]`, one form per deck (consulting-practices 7)
 - [ ] Chart: comparison type named, simplest form, decluttered, one element highlighted, axes at zero, descriptive chart title (visual-design 6, 6a; ibcs-notation 4, 7)
 - [ ] Table: list style; a table when several attributes or clear mappings are compared, cards or list when items carry one attribute (consulting-practices 16; visual-design 6b)
 - [ ] Entities from the register in the register's name and order (consulting-practices 12)
@@ -26,7 +26,7 @@ up; this page is what gets followed.
 - [ ] Speaker notes in the notes pane: key point, open with, talk track, point at, transition, time (speaker-notes)
 
 ## Deck level
-- [ ] Management summary on slide 2: drafted first, rewritten last against the finished slides (consulting-practices 6; visual-design 8)
+- [ ] Management summary on the first slide after the title: drafted first, rewritten last against the finished slides (consulting-practices 6; visual-design 8)
 - [ ] Options slide before the detail of the recommended option; decision slide worded as a proposal (consulting-practices 11)
 - [ ] Section lead slides where a section has three or more evidence slides; no bare dividers in short decks (consulting-practices 14)
 - [ ] Subsets name universe and criterion; backup holds what was left out (consulting-practices 13, 10)

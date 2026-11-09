@@ -5,14 +5,17 @@ the host). When Anthropic's `pptx` skill or a PowerPoint connector is
 available, prefer that; these helpers exist so that a pptxgenjs build does
 not reinvent the layout rules on every run.
 
-- `pptx-helpers.js`: `createDeck({ mode, title, author, theme })` returns an
+- `pptx-helpers.js`: `createDeck({ mode, lang, title, author, theme })` returns an
   API with fixed zones and grid (`BODY_Y`, `BODY_H`, `cols(n)`), the type
   scale per density mode (`F`), masters for title, section and content
   slides, and primitives that encode the design rules: `content()` (title,
   tracker, source line, notes in the notes pane, key-point strip in handout
   mode), `ltable()` (list-style table: no vertical rules, header over a rule,
   one highlighted column), `card()`, `bigStat()`, `chevrons()`, `pill()`,
-  `label()`, `MARK()` for ✓ ✗ ● marks, `PH()` for placeholders, and the
+  `label()`, `MARK()` for ✓ ✗ ● marks, `PH()` for placeholders in the deck
+  language (`lang: "de"` writes `[PLATZHALTER: …]`, `"en"` writes
+  `[PLACEHOLDER: …]`), `bullets()` and `card()` with `numbered: true` for
+  ordered items (never a literal "1." in the text), and the
   concept visuals of `references/exhibits.md` section 3: `cycle()` (nodes on
   a circle, clockwise, arrows node to node), `continuum()` (two poles, markers
   at 0..1), `timeline()` (dated events left to right, not to scale),
@@ -22,17 +25,28 @@ not reinvent the layout rules on every run.
   too small rather than overlapping. Both expose their geometry
   (`cycleGeometry`, `bigStatLayout`) for tests. `write(path)` writes the file, applies the theme when the
   writer is present and returns slide count, total minutes from the notes,
-  `themeApplied` and `wordsPerSlide` (body words per slide, for the text
-  budget in `exhibits.md` section 6).
+  `themeApplied`, `wordsPerSlide` (body words per slide, for the text
+  budget in `exhibits.md` section 6; marks and placeholders are not words) and
+  `warnings` (so far `narrow-column`: a table column too narrow for its
+  longest token, which would wrap inside the word; widen the column or
+  shorten the cell). `chevrons()` starts its text behind the notch (h/2), so
+  tall chevrons stay readable.
 - `example-build.js`: three slides showing the pattern. Copy its structure
   into a per-deck build file; never reuse its content.
 - `deck-metrics.py`: `python3 scripts/deck-metrics.py deck.pptx --mode speaker`
   or `… path/to/slides/ --mode reading` for a Slides-artifact folder. Reports
   body words per slide, exhibit kind, mean words over content slides, exhibit
-  ratio and the slides over the mode's budget. Heuristics for the audit group
-  H and the delivery note; needs python-pptx for `.pptx`.
+  ratio and the slides over the mode's budget. `--skip` names non-content
+  slides, `--special` the management summary and decision slide (own budget,
+  out of the mean; detected by title when not given). Marks and placeholders
+  are not counted; shapes and connectors without text, and pictures smaller
+  than the slide, count toward the exhibit; titles over 20 words are flagged.
+  Heuristics for the audit group H and the delivery note; needs python-pptx
+  for `.pptx`.
 - `test-helpers.js`: smoke test for the helpers (`node scripts/test-helpers.js`
-  with pptxgenjs installed): 14 checks, including table words in
+  with pptxgenjs installed): 19 checks, among them chevron text behind the
+  notch, numbered cards, the narrow-column warning, word counting without
+  marks and `PH()` per language, including table words in
   `wordsPerSlide`, the `bigStatLayout()` text-height rule (a card too small for
   its label is rejected with the height it needs), and `cycleGeometry()` for
   four and six nodes (every arrow keeps its direction and a visible length). Checks that content passed in is rendered

@@ -245,7 +245,7 @@ that support comparison:
 
 ## 8. The executive summary slide
 
-Written last, placed second. Formats by density mode:
+Written last, placed first after the title slide. Formats by density mode:
 
 - **Speaker-led**: governing thought as title, key-line claims as three to five
   lines, the ask in a box. Nothing else; the presenter carries the rest.

@@ -3,6 +3,41 @@
 Detail tables per version, newest first. The one-line summaries live in README.md.
 Changes below v0.6 are listed in README.md only.
 
+# minto-deck v0.7.2 (2026-11-09)
+
+Patch after the first end-to-end runs in Claude.ai: a Build run on the eval case
+`decision-paper-ai-governance` (Stage 1 ghost deck, gate, Stage 2 to .pptx with
+notes, timing plan and Q&A, 20 slides) and an Audit run on a real 21-slide expert
+talk with a corporate font. Findings sorted as rule gaps (below) and deck fixes
+(kept with the deck); fixes tested where code changed.
+
+| # | Finding | Fix | Files |
+|---|---|---|---|
+| 1 | Placeholder convention inconsistent: SKILL.md, consulting-practices, glossary and memo-format said `[PLACEHOLDER: …]`, stage-2-checklist and all three scripts knew only `[PLATZHALTER: …]`; in an English deck placeholders counted as body words and `PH()` wrote German markers | One form per deck: `[PLACEHOLDER: …]` in English, `[PLATZHALTER: …]` in German decks; `createDeck({ lang })` drives `PH()`; the word counters in the helpers and in `deck-metrics.py` strip both forms | `SKILL.md`, `consulting-practices.md` §7, `memo-format.md`, `glossary.md`, `stage-2-checklist.md`, `scripts/pptx-helpers.js`, `scripts/deck-metrics.py` |
+| 2 | Ghost-deck format numbered from the situation, the audit demanded the management summary "on slide 2"; with a title slide the two could not both hold | Title slide "T" in the format, outside the numbering; "first slide after the title" replaces "slide 2" throughout; SCQA variant Direct (answer, then situation and complication) is the default for decision papers and Leitungsvorlagen, Standard only when the audience needs the context first | `SKILL.md` Stage 1 and 2, `storyline-ghost-deck.md`, `minto-pyramid.md`, `consulting-practices.md` §6, `visual-design.md` §8, `audit-checklist.md` A1, A2, example, `glossary.md`, `memo-format.md` bridge, `timing-qa-handout.md` §5 |
+| 3 | A 31-word governing thought passed the gate; the management-summary title allows about 20 words, so Stage 2 had to shorten an approved sentence | Length test in the Stage 1 checklist and the title rules: governing thought and every key-line claim fit a two-line title (about 20 words German, 16 English); longer thoughts get a short form for the title, the long form in the notes; `deck-metrics.py` flags titles over 20 words | `SKILL.md` Stage 1, `storyline-ghost-deck.md` checklist and title rules, `scripts/deck-metrics.py` |
+| 4 | The 40-word speaker budget collided structurally with the management summary (key line verbatim) and the decision slide (decision, consequence, what is needed today); both sat at 77 to 80 words, at the blocker edge | Own budget of about 80 body words for both slides, excluded from the mean; `deck-metrics.py` takes them from `--special` or detects them by title (Management Summary, Executive Summary, Beschlussvorschlag, Proposed decision) or by an `ask-box` object | `exhibits.md` §6, `audit-checklist.md` H1 and severity, `stage-2-checklist.md`, `scripts/deck-metrics.py` |
+| 5 | Scorecard axes contradicted each other: `exhibits.md` 3.11 said items as rows, `visual-design.md` §2 said criteria as rows | One convention: criteria as rows, options as columns, the recommended option highlighted as a column (matches `ltable` `hl`); flip only above four options | `exhibits.md` §3.11 |
+| 6 | Rendering paths 1 and 2 collapse in claude.ai: the host's PowerPoint capability is itself pptxgenjs | One sentence in Rendering: helpers carry the layout rules, the pptx skill carries theme writer, validation and render check | `SKILL.md` Rendering |
+| 7 | Audit had no rule for fonts missing in the render environment; overflow in the preview read as findings | Missing fonts suspend overflow and wrapping findings and go under "Not checked" with the font name and the advice to check in PowerPoint | `SKILL.md` Audit step 1, `audit-checklist.md` report format |
+| 8 | Mixed German and English in titles had no check; G3 covered terminology only | G3: one language per deck in titles and labels, loanwords aside | `audit-checklist.md` G3 |
+| 9 | Expert talk demanded "one concrete example per section" but not what concrete means; "what the audience can do" was satisfied by two aphorisms | A named case, project, date or number counts, a generic illustration does not; audience actions as actions | `audit-checklist.md` §1 |
+| 10 | `chevrons()` placed text at a fixed 0.55 in inset; the notch of a pptxgenjs chevron is h/2, so from 1.1 in height the first letters disappeared | Text starts at h/2 + 0.1 and may run into the solid right point; test checks the inset on a 1.4 in chevron; rendered and inspected | `scripts/pptx-helpers.js`, `scripts/test-helpers.js` |
+| 11 | `ltable()` let placeholders wrap inside the word in narrow columns, silently | `longestWordWidth()` (0.45 em plus margins, placeholder as one unit) reports a `narrow-column` warning per slide and column in `write().warnings`; calibrated on the rendered deck: fires for the broken columns, not for the fixed ones | `scripts/pptx-helpers.js`, `scripts/test-helpers.js`, `scripts/README.md` |
+| 12 | Marks (● ◐ ○ ✓ ✗) and legend lines counted as words: the scorecard read 46 with 16 real words; counts in the helpers and in `deck-metrics.py` differed | A token is a word only with a letter or digit; shapes named label, key-box, tracker, source skipped; both counters agree | `scripts/pptx-helpers.js`, `scripts/deck-metrics.py` |
+| 13 | `deck-metrics.py` classed a box-and-line hierarchy as "text" (text-bearing boxes counted as text boxes) and ignored pictures; exhibit ratio of the audited deck read 29 % | Shapes and connectors without text count as geometry, boxes by name (node, card, pill, box) count, pictures smaller than the slide count as exhibit; audited deck now 64 %, hierarchy slide "13 shapes" | `scripts/deck-metrics.py` |
+| 14 | `card()` always drew bullets; numbered decision points needed "1." in the text, giving a bullet and a number | `bullets()` and `card()` take `numbered: true` (list numbering, never a literal number in the text) | `scripts/pptx-helpers.js`, `scripts/test-helpers.js` |
+| 15 | Evals carried placeholder graders only and no results; the Audit mode had no regression case | Ten graders for `decision-paper-ai-governance` written from the run (ghost deck only, marks on every title, one approval question, title slide T, length test, process set, assumption marked, pptx with notes and mandatory elements, placeholders and metrics, timing and Q&A); new case `audit-expert-talk-outline`: synthetic German expert talk as a pasted outline with planted faults (agenda instead of thesis, label titles, 95 to 200 body words on speaker slides, unsourced number, repeated title, leftover divider notes, two durations, chart as background image, mixed languages, orphan slide), six graders | `evals/decision-paper-ai-governance/`, `evals/audit-expert-talk-outline/` |
+
+Smoke test: 19 checks (was 14), passing with pptxgenjs 4.0.1. Regression caught
+in the retest and fixed: the first chevron fix also narrowed the text box and
+wrapped "Überwachung"; now only the left inset moves. Retest on the 20-slide
+decision deck: validation passed, management summary and decision slide
+detected as special, mean 34 body words (was 40), scorecard 31 (was 46).
+Not retested: Memo mode, the evals themselves (no runner in claude.ai).
+
+---
+
 # minto-deck v0.7.1 (2026-11-09)
 
 Stabilisation after an external review of v0.7 (commit 366fe0a). All findings

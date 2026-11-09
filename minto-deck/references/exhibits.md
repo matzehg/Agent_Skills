@@ -198,8 +198,10 @@ boxes with axis labels (`matrix`); dots or labels inside.
 
 **3.11 Scorecard (Scorecard, Harvey Balls).** Carries when items are rated on
 several criteria with the same scale. Trap: ratings without a stated scale
-or source. Direction: items as rows, criteria as columns, the recommended
-item highlighted; at most eight rows and six columns. Text: marks
+or source. Direction: criteria as rows, options as columns, the recommended
+option highlighted as a column; at most eight rows and four option columns
+(more options: flip to options as rows, criteria as columns). This is the
+convention `visual-design.md` section 2 uses for the options table. Text: marks
 (✓ ✗ ● ◐ ○) or short words, legend on the slide. Rendering: list-style
 table (`ltable`, `MARK`).
 
@@ -337,7 +339,7 @@ excluded); the audit counts them.
 
 | Mode | Body words per content slide | Dominant element | Where the detail lives |
 |---|---|---|---|
-| speaker-led (Vortrag) | up to about 40; a single sentence of 15 to 25 words when the exhibit is text | one exhibit, labels only | speaker notes |
+| speaker-led (Vortrag) | up to about 40; a single sentence of 15 to 25 words when the exhibit is text; management summary and decision slide up to about 80 | one exhibit, labels only | speaker notes |
 | reading-first (Lesedeck, handout) | 75 to 250 | one exhibit plus explanatory text | on the slide, with sources |
 
 **Four orders of work.** Talk only: speaker deck. Pre-read only: reading
@@ -351,7 +353,12 @@ differs. Never ship one deck that tries to be both.
 **Budgets are guardrails, not gates.** Over budget in a speaker-led deck is
 the failure the budget exists for: a blocker when the mean over the content
 slides exceeds the budget or a single slide exceeds twice the budget, a
-warning for single slides above it. Under the lower bound in a reading deck
+warning for single slides above it. Two slides carry text by design and get
+their own budget of about 80 body words in a speaker-led deck: the
+management summary (the key line in its own wording) and the decision slide
+(decision, consequence of no decision, what is needed today). Both are
+excluded from the mean; `deck-metrics.py` detects them by title or takes
+them from `--special`. Under the lower bound in a reading deck
 is information: a clear reading slide with 55 words is not padded to reach
 75. The audit reports the numbers; judgement decides.
 

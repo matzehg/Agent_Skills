@@ -20,7 +20,7 @@ terms and names live in that project's register, not here.
 | vertical logic | vertikale Logik | title to body |
 | horizontal logic | horizontale Logik | slide to slide within a set |
 | deductive / inductive | deduktiv / induktiv | |
-| management summary / executive summary | Management Summary, Zusammenfassung für die Leitung | slide 2 |
+| management summary / executive summary | Management Summary, Zusammenfassung für die Leitung | first slide after the title |
 | speaker notes | Sprechzettel, Notizen | notes pane |
 | talk track | Sprechverlauf, Gesprächsleitfaden | prompts inside the notes |
 | transition | Überleitung | |
@@ -40,7 +40,7 @@ terms and names live in that project's register, not here.
 | reading deck, pre-read | Lesedeck, Vorablektüre | deck type |
 | decision slide | Entscheidungsfolie, Beschlussvorschlag | |
 | next steps | nächste Schritte | with owners and dates |
-| placeholder | Platzhalter | marked `[PLACEHOLDER: …]` |
+| placeholder | Platzhalter | marked `[PLACEHOLDER: …]` in English, `[PLATZHALTER: …]` in German decks |
 | blocker / warning / advisory | Blocker / Warnung / Hinweis | audit severity |
 | register | Register | named entities with fixed name, category, status; Stage 1 output |
 | evidence column | Belegspalte | per title: available, missing, placeholder |

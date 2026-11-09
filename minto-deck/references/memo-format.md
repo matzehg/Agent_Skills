@@ -92,7 +92,7 @@ Write from the approved storyline, in this order:
 4. **Closing.** Governing thought restated with the confidence the evidence
    earns, then the ask or next steps when the memo type has one.
 5. **Evidence.** Numbers with unit and period, named sources, attribution as
-   settled in Stage 0. Unknowns as `[PLACEHOLDER: what is needed]`, listed
+   settled in Stage 0. Unknowns as `[PLACEHOLDER: what is needed]` (English) or `[PLATZHALTER: was fehlt]` (German), listed
    under the closing. Source material in an annex (session table, list of
    documents) when the type calls for it, never in the body.
 6. **Consistency pass** against the register and its sets; terms per
@@ -358,7 +358,7 @@ text directly.
 
 | Memo element | Deck element |
 |---|---|
-| governing thought | governing thought; title of slide 2 (management summary) |
+| governing thought | governing thought; title of the management summary |
 | SCQA lead | opening slides 1 to 3 |
 | key-line claims (headings) with evidence marks | section titles; bullets of the management summary; evidence column of the ghost deck |
 | dissent line | Q&A preparation; the slide under which the counter-position is shown |

@@ -2,7 +2,7 @@
 name: minto-deck
 description: "Build, write and audit after Barbara Minto's Pyramid Principle and consulting practice: governing thought, SCQA opening, MECE key line, full-sentence claims. Build mode makes slide decks in two stages: ghost deck for approval, then deck with speaker notes, timing, Q&A, backup, handout. Memo mode writes answer-first prose: management summaries, briefing notes, event or meeting reports, the thesis of a day, after a short storyline gate. Audit mode reviews a deck or memo and reports weak claims, broken logic and missing elements, with rewrites. Use whenever the user asks for slides, a deck, presentation, pitch, talk, storyline, ghost deck, speaker notes, management summary, Kernbotschaft, These, Vermerk, Veranstaltungsbericht, an answer-first or Minto summary, or wants a deck or memo reviewed; also on Folien, Praesentation, Vortrag, Entscheidungsvorlage, Sprechzettel, Deck pruefen. Trigger even without the word Minto. Not for transcription, translation or plain recaps. German, English."
 metadata:
-  version: "0.7.1"
+  version: "0.7.2"
   updated: "2026-11-09"
   language: "en, de"
 ---
@@ -91,10 +91,16 @@ before building. The ghost deck is the complete argument with no slide bodies.
 Build it in this order:
 
 1. Write the governing thought: one sentence that answers the audience's
-   question and that a reasonable person could disagree with.
+   question and that a reasonable person could disagree with, short enough
+   for a two-line slide title (about 20 words in German, 16 in English);
+   a longer thought gets a short form for the title and the long form in
+   the notes.
 2. Write the opening as SCQA. Keep only the situation and complication the
-   audience does not already share. Decide where the governing thought appears
-   (slide 2 as management summary is the default).
+   audience does not already share. The title slide is "T" and not counted;
+   the management summary is the first slide after the title. That makes
+   the Direct variant (answer, then situation and complication) the default
+   for decision papers and Leitungsvorlagen; Standard only when the audience
+   needs the context before it can hear the answer.
 3. Write the key line: the three to five claims that together prove the
    governing thought. Test them as a set: same kind of idea, no overlap, together
    sufficient, one logical order.
@@ -160,7 +166,7 @@ Produce, in this order:
    show the options before the detail of the recommended one, and signpost
    them as options in the title. Every entity comes from the register, in the
    register's name and order.
-2. **Management summary** on slide 2: draft from the ghost deck (governing
+2. **Management summary** on the first slide after the title: draft from the ghost deck (governing
    thought, key line, ask); the final version is written in step 8, after all
    other slides exist and the numbers are known. Format by density mode per
    `visual-design.md` section 8.
@@ -180,7 +186,7 @@ Produce, in this order:
    a handout for a speaker deck that already exists, extend that deck to
    reading-first density per `reading-decks.md` section 6. Storyline,
    register and exhibits are shared; only the text layer differs.
-8. **Management summary, final.** Rewrite slide 2 against the finished slides:
+8. **Management summary, final.** Rewrite the management summary against the finished slides:
    every bold line is a claim a slide proves, every number matches its slide.
 9. **Consistency pass.** Dump the deck text and check every set from the
    register: same members, same names, same order on every slide where it
@@ -209,6 +215,11 @@ offers, in this order of preference:
    tables, cards, chevrons and the notes pane, so a build file holds only the
    deck's content (see `scripts/README.md` and `scripts/example-build.js`).
 3. A Markdown outline with notes when no file can be produced at all; say so.
+
+Where the host's PowerPoint capability is itself `pptxgenjs` (claude.ai with
+Anthropic's `pptx` skill), paths 1 and 2 are one path: the helpers carry the
+layout rules, the `pptx` skill carries theme writer, validation and the
+render check.
 
 Deliver an editable `.pptx`. Keynote and Google Slides import it; do not produce
 a Keynote-native file. Keep charts native. Put speaker notes in the notes pane,
@@ -346,7 +357,10 @@ Read `references/audit-checklist.md` and `references/minto-pyramid.md`.
 1. Extract the deck: titles, bodies, notes, slide count, sources. For a `.pptx`
    use the host's reading tool or `markitdown`; for a PDF extract text; for a
    pasted outline work with what is there and say what could not be checked
-   (visual layout, notes, charts). For a memo extract lead, headings, first
+   (visual layout, notes, charts). When the deck uses a font the render
+   environment does not have, overflow and wrapping in the preview are not
+   findings: list them under "Not checked" with the font name and the
+   advice to check in PowerPoint. For a memo extract lead, headings, first
    sentences of paragraphs, closing and sources.
 2. Identify or ask for the deck type, audience, setting and density mode.
    The completeness check needs a target, and the text budget (group H) needs
@@ -367,7 +381,9 @@ Read `references/audit-checklist.md` and `references/minto-pyramid.md`.
 ## What this skill does not do
 
 - Invent numbers, quotes, company examples or sources. Mark placeholders as
-  `[PLACEHOLDER: what is needed]` and list them in the delivery note.
+  `[PLACEHOLDER: what is needed]` in an English deck and `[PLATZHALTER: was
+  fehlt]` in a German deck, one form per deck, and list them in the delivery
+  note. The scripts recognise both forms.
 - Write topic titles ("Market overview", "Risks") or filler hedges ("Results
   may indicate various effects"). A title states the strongest claim the
   evidence supports, and keeps the uncertainty, attribution, condition or
