@@ -23,6 +23,11 @@ async function build(mode) {
   d.content("A", "Inhaltstitel als Satz", "Quelle: Test", { key: "Inhaltskern", open: "Einstieg Inhalt", time: 1.25 }, (s, h) => {
     h.chevrons(s, [{ head: "Phase 1", sub: "Owner A, bis Q1" }, { head: "Phase 2", sub: "Owner B, bis Q2" }], h.BODY_Y, 1.0, { hl: 1 });
     h.bigStat(s, h.M, h.BODY_Y + 1.3, 4, 2.2, "42 %", "Eine zweizeilige Beschreibung, die umbricht und Platz braucht", "Unterzeile Quelle 2025");
+    h.ltable(s, h.M + 4.4, h.BODY_Y + 1.3, 5.5, [["Hürde", "Heute", "Vertragliche Lösung"], ["Akzeptanzkriterien", "nicht messbar formuliert", "Zielkorridore im Vertrag"], ["Testdaten", "erst nach Vertragsschluss", "Sandbox vor Vertragsschluss"], ["Schwellenwerte", "nicht vereinbart", "Schwellenwerte für Updates"]], [1.6, 1.9, 2.0]);
+  });
+  // six-node cycle, the case the catalogue allows and v0.7 got wrong
+  d.content("D", "Sechser-Kreislauf als Satz", "Quelle: Test", { key: "Sechser", time: 0.5 }, (s, h) => {
+    h.cycle(s, ["Eins", "Zwei", "Drei", "Vier", "Fünf", "Sechs"], 6.0, h.BODY_Y + 2.3, 1.5, { hl: 5 });
   });
   d.content("B", "Konzeptgrafiken als Satz", "Quelle: Test", { key: "Konzeptkern", time: 1 }, (s, h) => {
     h.cycle(s, ["Anforderung", "Abnahme", "Betrieb", "Revalidierung"], 3.2, h.BODY_Y + 2.3, 1.5, { hl: 3 });
@@ -39,13 +44,14 @@ async function build(mode) {
 
 (async () => {
   const sp = await build("speaker");
-  assert(Math.abs(sp.r.minutes - 4.5) < 1e-9, `speaker minutes add up over title, section and content (got ${sp.r.minutes})`);
-  assert(Array.isArray(sp.r.wordsPerSlide) && sp.r.wordsPerSlide.length === 5 && sp.r.wordsPerSlide[2].words > 0, `wordsPerSlide reported per slide (${JSON.stringify(sp.r.wordsPerSlide)})`);
+  assert(Math.abs(sp.r.minutes - 5.0) < 1e-9, `speaker minutes add up over title, section and content (got ${sp.r.minutes})`);
+  assert(Array.isArray(sp.r.wordsPerSlide) && sp.r.wordsPerSlide.length === 6, `wordsPerSlide reported per slide (${JSON.stringify(sp.r.wordsPerSlide)})`);
+  assert(sp.r.wordsPerSlide[2].words >= 25 + 24, `table words are counted in wordsPerSlide (slide 3: ${sp.r.wordsPerSlide[2].words}, expected text plus 24 table words)`);
   const entries = listEntries(sp.out);
   const slideXml = entries.filter(e => /^ppt\/slides\/slide\d+\.xml$/.test(e)).map(e => unzipXml(sp.out, e)).join("\n");
   assert(slideXml.includes("Owner A, bis Q1"), "chevron sub line is rendered");
   assert(slideXml.includes("Revalidierung") && slideXml.includes("Sandbox-Konzept") && slideXml.includes("Pilotieren") && slideXml.includes("Vertrag"), "cycle, timeline, matrix and continuum render their labels");
-  assert((slideXml.match(/cycle-node/g) || []).length === 4 && (slideXml.match(/timeline-marker/g) || []).length === 4 && (slideXml.match(/matrix-cell/g) || []).length === 4 && (slideXml.match(/continuum-marker/g) || []).length === 3, "concept visuals create the expected number of shapes");
+  assert((slideXml.match(/cycle-node/g) || []).length === 10 && (slideXml.match(/timeline-marker/g) || []).length === 4 && (slideXml.match(/matrix-cell/g) || []).length === 4 && (slideXml.match(/continuum-marker/g) || []).length === 3, "concept visuals create the expected number of shapes");
   assert(!/<a:schemeClr/.test(slideXml), "no scheme colours in slide content (palette comes from T.colors)");
 
   const ho = await build("handout");
@@ -57,10 +63,20 @@ async function build(mode) {
   const sizes = [...hSlideXml.matchAll(/sz="(\d+)"/g)].map(m => Number(m[1]) / 100);
   assert(sizes.length > 0 && Math.min(...sizes) >= 11, `handout font sizes at or above 11 pt (min ${Math.min(...sizes)})`);
 
-  // bigStat geometry, recomputed from the helper's rule for h = 2.2 with a sub line
-  const h = 2.2, pad = 0.2, subH = 0.45;
-  const statH = Math.max(0.6, Math.min(h * 0.42, h - subH - 0.9));
-  const labelY = pad + statH + 0.05, labelH = Math.max(0.3, (h - subH - 0.15) - labelY), subY = h - subH - 0.15;
-  assert(labelY + labelH <= subY + 1e-9, `bigStat label ends (${(labelY + labelH).toFixed(2)}) before sub line starts (${subY.toFixed(2)})`);
+  // bigStat: layout from the helper itself; label box must hold its lines and end before the sub line
+  const dk = createDeck({ mode: "speaker" });
+  const L = dk.bigStatLayout(2.2, 4, "Eine zweizeilige Beschreibung, die umbricht und Platz braucht", "Unterzeile Quelle 2025");
+  const linesFit = (L.labelH * 72) / (L.labelFont * 1.2) >= 2 - 1e-9;
+  assert(linesFit && L.labelY + L.labelH <= L.subY + 1e-9, `bigStat 2.2 in: label box holds two lines at ${L.labelFont} pt and ends (${(L.labelY + L.labelH).toFixed(2)}) before the sub line (${L.subY.toFixed(2)})`);
+  let threw = false;
+  try { dk.bigStatLayout(1.6, 4, "Eine zweizeilige Beschreibung, die umbricht und Platz braucht", "Unterzeile Quelle 2025"); } catch (e) { threw = /too small/.test(e.message); }
+  assert(threw, "bigStat rejects a 1.6 in card that cannot hold a two-line label and a sub line");
+  // cycle: six nodes, every arrow keeps its direction and a visible length
+  const g = dk.cycleGeometry(6, 6, 4, 1.5, 2.0, 0.7);
+  const okDir = g.arrows.every(ar => ((ar.b.x - ar.a.x) * (ar.q.x - ar.p.x) + (ar.b.y - ar.a.y) * (ar.q.y - ar.p.y)) > 0);
+  const okLen = g.arrows.every(ar => Math.hypot(ar.b.x - ar.a.x, ar.b.y - ar.a.y) >= 0.25);
+  assert(okDir && okLen, `six-node cycle: all arrows point forward and are at least 0.25 in long (node ${g.nodeW.toFixed(2)} x ${g.nodeH.toFixed(2)}, chord ${g.chord.toFixed(2)})`);
+  const g4 = dk.cycleGeometry(4, 3.2, 4, 1.5, 2.0, 0.7);
+  assert(g4.arrows.every(ar => Math.hypot(ar.b.x - ar.a.x, ar.b.y - ar.a.y) >= 0.25), "four-node cycle keeps visible arrows");
   console.log("themeApplied:", sp.r.themeApplied);
 })().catch(e => { console.error(e); process.exitCode = 1; });

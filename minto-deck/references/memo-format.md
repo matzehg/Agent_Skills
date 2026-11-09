@@ -254,13 +254,16 @@ passe nicht auf den Einsatz; eine Bereichsausnahme werde geprüft."
 Before (recap)                                  After (answer-first)
 ## Vortrag X                                    ## Ohne Daten keine Handlungsfähigkeit: Daten sind laut Referent X eine strategische Ressource
 Referent X sprach über digitale                 Referent X nennt Daten eine strategische Ressource, weil der Verlust des
-Wehrfähigkeit und stellte sechs                 Zugangs zu Rechenleistung und Modellen Handlungsfähigkeit kostet. Als Beleg
-Dimensionen vor. Danach ging es um              nennt er ein KI-Lagebild, das seit 2025 im Versuch läuft. Die EU-KI-Verordnung
+Wehrfähigkeit und stellte sechs                 Zugangs zu Rechenleistung und Modellen Handlungsfähigkeit kostet. Außerdem
+Dimensionen vor. Danach ging es um              erwähnt er ein KI-Lagebild, das seit 2025 im Versuch läuft. Die EU-KI-Verordnung
 Daten und um die EU-KI-Verordnung.              passt nach seiner Einschätzung nicht auf den Einsatz; eine Bereichsausnahme wird geprüft.
 ```
 
 Every sentence on the right maps to a sentence in the source notes; nothing
-is added. The claim is attributed ("laut Referent X", "nach seiner
+is added, and no relation is added either: the source says he mentioned the
+trial, so the text says "erwähnt", not "belegt". Connectives such as
+"weil", "deshalb", "als Beleg" and "führt zu" assert relations and need the
+source to carry them. The claim is attributed ("laut Referent X", "nach seiner
 Einschätzung") because the source is one speaker's position, not an
 established fact. A derived interpretation (what the talk means for the
 reader) would be marked as derived and kept apart from what he said.

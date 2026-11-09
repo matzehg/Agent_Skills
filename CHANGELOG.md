@@ -3,6 +3,28 @@
 Detail tables per version, newest first. The one-line summaries live in README.md.
 Changes below v0.6 are listed in README.md only.
 
+# minto-deck v0.7.1 (2026-11-09)
+
+Stabilisation after an external review of v0.7 (commit 366fe0a). All findings
+verified against the code and the files; fixes tested where code changed.
+
+| # | Finding | Fix | Files |
+|---|---|---|---|
+| 1 | `wordsPerSlide` counted only text written through `txt()`: a 48-word `ltable()` reported 0 | Shared `countWords()` used by `txt()`, `ltable()` (every cell) and the handout key box; test asserts table words are counted | `scripts/pptx-helpers.js`, `scripts/test-helpers.js` |
+| 2 | `deck-metrics.py`: text inside PowerPoint groups ignored; content slides guessed from a layout name ("Blank" excluded); HTML `<style>` counted as words | Groups walked recursively; `--skip` names non-content slides explicitly, default excludes only TITLE, SECTION, COVER layouts and cover/section/closing ids; `style`, `script`, `noscript` and comments stripped before counting | `scripts/deck-metrics.py` |
+| 3 | `cycle()` with six nodes: shortening exceeded the chord, four of six arrows reversed and hidden | `cycleGeometry()` fits node size to the chord (nodes shrink), clamps shortening to 40 % per end, rejects fewer than three or more than six nodes; test checks direction and length for four and six nodes; six-node slide rendered and inspected | `scripts/pptx-helpers.js`, `scripts/test-helpers.js` |
+| 4 | `bigStat()` still overlapped: 1.6 in cards by 0.15 in, and the 2.2 in example with a two-line label in the rendering | `bigStatLayout()` sizes the label box from the text (lines x font x 1.2), shrinks the label font once, and throws with the height needed when the card is too small; test covers the fitting 2.2 in case and the rejected 1.6 in case; rendered and inspected | `scripts/pptx-helpers.js`, `scripts/test-helpers.js` |
+| 5 | "Both" had two workflows: new rule (reading deck first) versus Stage 2 step 7 (handout from the speaker deck) | Four cases: talk only; pre-read only; both from the start (reading deck first, speaker deck derived); handout for an existing speaker deck (extend per reading-decks 6) | `SKILL.md` Stage 2 step 7, `exhibits.md` §6 |
+| 6 | New eval expected a three-row table; the old rule said two or three rows are never a table | Content criterion: a table when several attributes or clear mappings are compared, cards or list for single-attribute items; eval wording aligned | `consulting-practices.md` §16 and checklist, `visual-design.md` pointer, `stage-2-checklist.md`, `audit-checklist.md` G9, `evals/deck-speaker-density` |
+| 7 | Short prose allowed two claims and no restated closing, but audit A5 and B1 demanded three to five claims and a verbatim restatement; the gate rule asked to announce the short-prose exception | A5 and B1 reworded; applicability table (deck, long memo, short prose) added to the audit checklist; gate exceptions: short prose is delivered without any announcement | `audit-checklist.md`, `SKILL.md` "The gate" |
+| 8 | Text budgets read as hard gates; H1 a blocker in all cases | Budgets as guardrails: blocker only for a speaker-led deck over budget on average or any slide at twice the budget; under the lower bound in a reading deck is advisory | `exhibits.md` §6, `audit-checklist.md` H severity |
+| 9 | Memo example turned a mention into evidence ("Als Beleg nennt er") | "Außerdem erwähnt er"; rule added that connectives (weil, deshalb, als Beleg, führt zu) need the source to carry the relation | `memo-format.md` §3 |
+
+Smoke test: 14 checks, passing with pptxgenjs 4.0.1. Rendered and inspected:
+the 2.2 in stat card with table beside it, and the six-node cycle.
+
+---
+
 # minto-deck v0.7 (2026-11-09)
 
 Exhibits wave. Decks built with v0.6.x were text-heavy (the 05.11. event deck:

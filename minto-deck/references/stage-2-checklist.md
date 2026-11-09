@@ -20,7 +20,7 @@ up; this page is what gets followed.
 - [ ] One dominant element; body answers exactly the question the title raises (minto-pyramid 4)
 - [ ] Numbers with unit, period, denominator, source; placeholders marked `[PLATZHALTER: …]` (consulting-practices 7)
 - [ ] Chart: comparison type named, simplest form, decluttered, one element highlighted, axes at zero, descriptive chart title (visual-design 6, 6a; ibcs-notation 4, 7)
-- [ ] Table: list style; two or three rows as cards or list (consulting-practices 16; visual-design 6b)
+- [ ] Table: list style; a table when several attributes or clear mappings are compared, cards or list when items carry one attribute (consulting-practices 16; visual-design 6b)
 - [ ] Entities from the register in the register's name and order (consulting-practices 12)
 - [ ] Source line, tracker, page number present (consulting-practices 1)
 - [ ] Speaker notes in the notes pane: key point, open with, talk track, point at, transition, time (speaker-notes)

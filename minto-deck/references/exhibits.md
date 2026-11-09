@@ -340,11 +340,20 @@ excluded); the audit counts them.
 | speaker-led (Vortrag) | up to about 40; a single sentence of 15 to 25 words when the exhibit is text | one exhibit, labels only | speaker notes |
 | reading-first (Lesedeck, handout) | 75 to 250 | one exhibit plus explanatory text | on the slide, with sources |
 
-**"Both" (Vortrag und Lesefassung).** Build the reading deck first from the
-approved ghost deck; then derive the speaker deck by cutting each slide to
-its exhibit and the labels, moving the explanatory text into the notes. The
-two decks share titles, register and exhibits; only the text layer differs.
-Never ship one deck that tries to be both.
+**Four orders of work.** Talk only: speaker deck. Pre-read only: reading
+deck. Both from the start: reading deck first from the approved ghost deck,
+then the speaker deck derived by cutting each slide to its exhibit and the
+labels, explanatory text into the notes. A handout for a speaker deck that
+already exists: extend that deck per `reading-decks.md` section 6. In every
+case the two decks share titles, register and exhibits; only the text layer
+differs. Never ship one deck that tries to be both.
+
+**Budgets are guardrails, not gates.** Over budget in a speaker-led deck is
+the failure the budget exists for: a blocker when the mean over the content
+slides exceeds the budget or a single slide exceeds twice the budget, a
+warning for single slides above it. Under the lower bound in a reading deck
+is information: a clear reading slide with 55 words is not padded to reach
+75. The audit reports the numbers; judgement decides.
 
 **Cutting to budget.** Cut explanatory sentences before labels, labels before
 the exhibit, and the exhibit never. If the exhibit alone exceeds the budget

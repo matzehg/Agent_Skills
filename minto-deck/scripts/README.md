@@ -17,7 +17,10 @@ not reinvent the layout rules on every run.
   a circle, clockwise, arrows node to node), `continuum()` (two poles, markers
   at 0..1), `timeline()` (dated events left to right, not to scale),
   `matrix()` (2 x 2 with axis labels), plus `line()` for direction-safe
-  straight lines. `write(path)` writes the file, applies the theme when the
+  straight lines. `cycle()` shrinks its nodes to the chord so six nodes fit;
+  `bigStat()` sizes its label box from the text and throws when the card is
+  too small rather than overlapping. Both expose their geometry
+  (`cycleGeometry`, `bigStatLayout`) for tests. `write(path)` writes the file, applies the theme when the
   writer is present and returns slide count, total minutes from the notes,
   `themeApplied` and `wordsPerSlide` (body words per slide, for the text
   budget in `exhibits.md` section 6).
@@ -29,8 +32,10 @@ not reinvent the layout rules on every run.
   ratio and the slides over the mode's budget. Heuristics for the audit group
   H and the delivery note; needs python-pptx for `.pptx`.
 - `test-helpers.js`: smoke test for the helpers (`node scripts/test-helpers.js`
-  with pptxgenjs installed), including the four concept visuals and
-  `wordsPerSlide`. Checks that content passed in is rendered
+  with pptxgenjs installed): 14 checks, including table words in
+  `wordsPerSlide`, the `bigStatLayout()` text-height rule (a card too small for
+  its label is rejected with the height it needs), and `cycleGeometry()` for
+  four and six nodes (every arrow keeps its direction and a visible length). Checks that content passed in is rendered
   (chevron sub lines), that minutes add up over title, section and content
   slides, that the handout filter applies to every slide type, that no scheme
   colours and no font under 11 pt reach a handout, and that `bigStat()` boxes

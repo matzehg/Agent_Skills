@@ -115,8 +115,9 @@ function createDeck(opts = {}) {
   const wordLog = new Map();
   const wordsOf = (text) => (Array.isArray(text) ? text.map(r => (typeof r === "string" ? r : (r.text || ""))).join(" ") : String(text || ""))
     .replace(/\[PLATZHALTER:[^\]]*\]/g, "").split(/\s+/).filter(Boolean).length;
+  const countWords = (s, text) => wordLog.set(s, (wordLog.get(s) || 0) + wordsOf(text));
   const txt = (s, text, x, y, w, h, o = {}) => {
-    wordLog.set(s, (wordLog.get(s) || 0) + wordsOf(text));
+    countWords(s, text);
     return s.addText(text, Object.assign({ x, y, w, h, fontSize: F.body, color: C.text1, margin: 0, isTextBox: true, valign: "top", objectName: "text" }, o));
   };
   function bullets(s, items, x, y, w, h, o = {}) {
@@ -128,17 +129,31 @@ function createDeck(opts = {}) {
     txt(s, head, x + 0.25, y + 0.22, w - 0.5, 0.5, { fontSize: F.head, bold: true, color: o.headColor || C.text1 });
     bullets(s, items, x + 0.25, y + 0.85, w - 0.5, h - 1.05, { fontSize: o.size || F.body, gap: o.gap });
   }
+  // Lines a text needs at a font size in a box of width w (inches); average
+  // glyph width taken as 0.5 em, which is generous for Latin body text.
+  const linesNeeded = (text, fontSize, w) => Math.max(1, Math.ceil(String(text || "").length / Math.max(1, Math.floor((w * 72) / (fontSize * 0.5)))));
+  const textHeight = (text, fontSize, w) => (linesNeeded(text, fontSize, w) * fontSize * 1.2) / 72;
+  // bigStatLayout(h, w, label, sub): the boxes bigStat() will draw, or an
+  // error when the card is too small for its text. Pure, so it can be tested.
+  function bigStatLayout(h, w, label, sub) {
+    const pad = 0.2, gap = 0.05, bottom = 0.15, subH = sub ? 0.45 : 0, tw = w - 0.6;
+    let labelFont = F.head, labelH = textHeight(label, labelFont, tw);
+    let statH = h - (pad + gap + labelH + subH + bottom);
+    if (statH < 0.5) { labelFont = F.body; labelH = textHeight(label, labelFont, tw); statH = h - (pad + gap + labelH + subH + bottom); }
+    if (statH < 0.5) {
+      const need = 0.5 + pad + gap + labelH + subH + bottom;
+      throw new Error(`bigStat: card height ${h.toFixed(2)} in too small for this label; needs at least ${need.toFixed(2)} in, or shorten the label`);
+    }
+    statH = Math.min(statH, Math.max(0.6, h * 0.42));
+    const labelY = pad + statH + gap;
+    return { pad, statH, labelY, labelH, labelFont, subY: sub ? h - subH - bottom : null, subH };
+  }
   function bigStat(s, x, y, w, h, stat, label, sub) {
-    // Reserve the sub line first, then give the label the space that is left;
-    // the three boxes never overlap (card height of 1.6 in or more).
+    const L = bigStatLayout(h, w, label, sub);
     box(s, x, y, w, h, C.background2, "stat-box");
-    const pad = 0.2, subH = sub ? 0.45 : 0;
-    const statH = Math.max(0.6, Math.min(h * 0.42, h - subH - 0.9));
-    const labelY = y + pad + statH + 0.05;
-    const labelH = Math.max(0.3, (y + h - subH - 0.15) - labelY);
-    txt(s, stat, x + 0.3, y + pad, w - 0.6, statH, { fontSize: F.big, bold: true, color: C.accent1, valign: "middle" });
-    txt(s, label, x + 0.3, labelY, w - 0.6, labelH, { fontSize: F.head, color: C.text1 });
-    if (sub) txt(s, sub, x + 0.3, y + h - subH - 0.15, w - 0.6, subH, { fontSize: F.small, color: C.accent6 });
+    txt(s, stat, x + 0.3, y + L.pad, w - 0.6, L.statH, { fontSize: F.big, bold: true, color: C.accent1, valign: "middle" });
+    txt(s, label, x + 0.3, y + L.labelY, w - 0.6, L.labelH, { fontSize: L.labelFont, color: C.text1 });
+    if (sub) txt(s, sub, x + 0.3, y + L.subY, w - 0.6, L.subH, { fontSize: F.small, color: C.accent6 });
   }
   function label(s, text, x, y, w, o = {}) {
     txt(s, text, x, y, w, 0.35, Object.assign({ fontSize: F.small, color: C.accent6, charSpacing: 1 }, o));
@@ -154,6 +169,7 @@ function createDeck(opts = {}) {
       if (t && typeof t === "object") return { text: t.text, options: Object.assign(base, t.options) };
       return { text: t, options: base };
     }));
+    [hdr, ...body].forEach(row => row.forEach(cell => countWords(s, typeof cell === 'string' ? cell : (cell && cell.text) || (Array.isArray(cell) ? cell.map(c => c.text || '').join(' ') : ''))));
     s.addTable([hdr, ...body], { x, y, w, colW, rowH: o.rowH || 0.42, margin: [0.04, 0.1, 0.04, 0.1], fontFace: T.bodyFontFace });
   }
   const MARK = (color, ch = "●", size) => ({ text: ch, options: { color, bold: true, fontSize: size || F.tbl + 2 } });
@@ -185,16 +201,29 @@ function createDeck(opts = {}) {
   // ---- concept visuals (exhibits.md section 3) ----
   // cycle(s, items, cx, cy, r, {hl}): nodes on a circle, clockwise from twelve
   // o'clock, arrows between them. items: [{head}] or strings; three to six.
-  function cycle(s, items, cx, cy, r, o = {}) {
-    const n = items.length, nodeW = o.nodeW || 2.0, nodeH = o.nodeH || 0.7;
-    const pos = items.map((_, i) => { const a = -Math.PI / 2 + (2 * Math.PI * i) / n; return { x: cx + r * Math.cos(a), y: cy + r * Math.sin(a) }; });
-    // arrows from node edge to node edge, drawn first so nodes sit on top
-    const edgeT = (dx, dy) => Math.min(dx ? (nodeW / 2) / Math.abs(dx) : 9, dy ? (nodeH / 2) / Math.abs(dy) : 9) * 1.15;
-    pos.forEach((p, i) => {
-      const q = pos[(i + 1) % n], dx = q.x - p.x, dy = q.y - p.y, tp = edgeT(dx, dy), tq = edgeT(dx, dy);
-      const a = { x: p.x + dx * tp, y: p.y + dy * tp }, b = { x: q.x - dx * tq, y: q.y - dy * tq };
-      line(s, a, b, { color: T.colors.accent4, width: 1.5, endArrowType: "triangle" }, "cycle-arrow");
+  // cycleGeometry(n, cx, cy, r, nodeW, nodeH): node centres, fitted node size
+  // and the arrow segments between consecutive nodes. Pure, so it can be
+  // tested. Nodes shrink to fit the chord so that every arrow keeps its
+  // direction and a visible length; shortening never exceeds 40 % per end.
+  function cycleGeometry(n, cx, cy, r, nodeW, nodeH) {
+    if (n < 3 || n > 6) throw new Error(`cycle: ${n} nodes; the catalogue allows three to six (exhibits.md 3.2)`);
+    const chord = 2 * r * Math.sin(Math.PI / n);
+    const w = Math.min(nodeW, chord * 0.8), h = Math.min(nodeH, Math.max(0.45, chord * 0.4));
+    const pos = Array.from({ length: n }, (_, i) => { const a = -Math.PI / 2 + (2 * Math.PI * i) / n; return { x: cx + r * Math.cos(a), y: cy + r * Math.sin(a) }; });
+    const edgeT = (dx, dy) => Math.min(dx ? (w / 2) / Math.abs(dx) : 9, dy ? (h / 2) / Math.abs(dy) : 9) * 1.1;
+    const arrows = pos.map((p, i) => {
+      const q = pos[(i + 1) % n], dx = q.x - p.x, dy = q.y - p.y;
+      const tp = Math.min(0.4, edgeT(dx, dy)), tq = Math.min(0.4, edgeT(dx, dy));
+      return { a: { x: p.x + dx * tp, y: p.y + dy * tp }, b: { x: q.x - dx * tq, y: q.y - dy * tq }, p, q };
     });
+    return { pos, nodeW: w, nodeH: h, arrows, chord };
+  }
+  function cycle(s, items, cx, cy, r, o = {}) {
+    const n = items.length;
+    const G0 = cycleGeometry(n, cx, cy, r, o.nodeW || 2.0, o.nodeH || 0.7);
+    const { pos, nodeW, nodeH } = G0;
+    // arrows from node edge to node edge, drawn first so nodes sit on top
+    G0.arrows.forEach(ar => line(s, ar.a, ar.b, { color: T.colors.accent4, width: 1.5, endArrowType: "triangle" }, "cycle-arrow"));
     pos.forEach((p, i) => {
       const head = typeof items[i] === "string" ? items[i] : items[i].head;
       const fill = i === o.hl ? T.colors.accent2 : T.colors.dk2;
@@ -271,6 +300,7 @@ function createDeck(opts = {}) {
     build(s, api);
     if (HANDOUT && notes) {
       box(s, M, KEY_Y, CW, KEY_H, C.background2, "key-box");
+      countWords(s, "Kernpunkt: " + notes.key);
       s.addText([{ text: "Kernpunkt: ", options: { bold: true } }, { text: notes.key }], { x: M + 0.2, y: KEY_Y, w: CW - 0.4, h: KEY_H, fontSize: 12, color: C.text1, valign: "middle", margin: 0, isTextBox: true, objectName: "key-text" });
     }
     if (source) s.addText(source, { x: M, y: SRC_Y, w: CW - 0.8, h: 0.3, fontSize: F.small, color: C.accent6, margin: 0, isTextBox: true, objectName: "source" });
@@ -286,7 +316,7 @@ function createDeck(opts = {}) {
   }
 
   const api = { pres, C, T, F, MODE, HANDOUT, W, M, CW, G, TITLE_Y, TITLE_H, BODY_Y, BODY_H, KEY_Y, KEY_H, SRC_Y, TINT, TINT_SIGNAL, RULE,
-    cols, PH, box, txt, bullets, card, bigStat, label, ltable, MARK, chevrons, pill, line, cycle, continuum, timeline, matrix, titleSlide, sectionSlide, content, write, speakerNotes };
+    cols, PH, box, txt, bullets, card, bigStat, bigStatLayout, label, ltable, MARK, chevrons, pill, line, cycle, cycleGeometry, continuum, timeline, matrix, titleSlide, sectionSlide, content, write, speakerNotes };
   return api;
 }
 

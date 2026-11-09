@@ -2,8 +2,14 @@
 """deck-metrics.py: text budget and exhibit ratio for a finished deck.
 
 Usage:
-  python3 scripts/deck-metrics.py deck.pptx [--mode speaker|reading]
-  python3 scripts/deck-metrics.py path/to/slides/ [--mode speaker|reading]   (Slides artifact type: one .html per slide, deck.json beside it)
+  python3 scripts/deck-metrics.py deck.pptx [--mode speaker|reading] [--skip 1,2,12]
+  python3 scripts/deck-metrics.py path/to/slides/ [--mode speaker|reading] [--skip cover,close]   (Slides artifact type: one .html per slide, deck.json beside it)
+
+--skip names the slides that are not content slides (title, section dividers,
+closing) by number or id and overrides the default guess: for .pptx the guess
+excludes layouts whose name contains TITLE, SECTION or COVER and treats every
+other layout, including Blank, as content; for HTML it excludes ids starting
+with cover, title, close, closing or section.
 
 Reports, per slide: body words (title, tracker, source, slide number and notes
 excluded), whether an exhibit is present (chart, table, or three or more
@@ -16,6 +22,7 @@ a slide to look at, not a verdict.
 import json, os, re, sys
 
 BUDGET = {"speaker": (0, 40), "reading": (75, 250)}
+SKIP = set()
 
 def words(text):
     text = re.sub(r"\[PLATZHALTER:[^\]]*\]", "", text or "")
@@ -38,6 +45,8 @@ def html_slides(folder):
     for f in files:
         html = open(os.path.join(folder, f), encoding="utf-8").read()
         html = re.sub(r"<aside>.*?</aside>", "", html, flags=re.S)
+        html = re.sub(r"<(style|script|noscript)[^>]*>.*?</\1>", "", html, flags=re.S | re.I)
+        html = re.sub(r"<!--.*?-->", "", html, flags=re.S)
         title = " ".join(re.findall(r"<h[12][^>]*>(.*?)</h[12]>", html, flags=re.S))
         # footer: the pinned bottom div
         footer = re.findall(r'<div style="position:absolute;left:[^"]*bottom:[^"]*"[^>]*>.*?</div>\s*</div>', html, flags=re.S)
@@ -56,7 +65,9 @@ def html_slides(folder):
             # boxes carrying labels are an exhibit; boxes carrying sentences are text cards
             kinds.append(f"{boxes} boxes" if bw <= 15 * boxes else f"{boxes} text cards")
         exhibit = any(k.split()[0] in ("table", "svg", "shapes") or k.endswith("boxes") for k in kinds)
-        out.append({"slide": f.replace(".html", ""), "title_words": words(re.sub(r"<[^>]+>", " ", title)), "body_words": bw, "exhibit": exhibit, "kind": ", ".join(kinds) or "text", "is_content": not re.search(r'id="(cover|title|close|closing|section)', html)})
+        sid = f.replace(".html", "")
+        is_content = (sid not in SKIP) if SKIP else not re.search(r'id="(cover|title|close|closing|section)', html)
+        out.append({"slide": sid, "title_words": words(re.sub(r"<[^>]+>", " ", title)), "body_words": bw, "exhibit": exhibit, "kind": ", ".join(kinds) or "text", "is_content": is_content})
     return out
 
 def pptx_slides(path):
@@ -65,11 +76,18 @@ def pptx_slides(path):
         from pptx.util import Emu
     except ImportError:
         sys.exit("python-pptx is not installed: pip install python-pptx")
+    from pptx.enum.shapes import MSO_SHAPE_TYPE
+    def walk(shapes):
+        for sh in shapes:
+            if sh.shape_type == MSO_SHAPE_TYPE.GROUP:
+                yield from walk(sh.shapes)
+            else:
+                yield sh
     prs = Presentation(path)
     out = []
     for i, sl in enumerate(prs.slides, 1):
         body, title_w, shapes, kinds = 0, 0, 0, []
-        for sh in sl.shapes:
+        for sh in walk(sl.shapes):
             name = (sh.name or "").lower()
             if sh.is_placeholder and sh.placeholder_format.type is not None and "TITLE" in str(sh.placeholder_format.type):
                 title_w += words(sh.text_frame.text if sh.has_text_frame else "")
@@ -93,7 +111,8 @@ def pptx_slides(path):
         if shapes >= 3: kinds.append(f"{shapes} shapes" if body <= 15 * shapes else f"{shapes} text cards")
         exhibit = any(k in ("chart", "table") or k.endswith("shapes") for k in kinds)
         layout = (sl.slide_layout.name or "").upper()
-        out.append({"slide": i, "title_words": title_w, "body_words": body, "exhibit": exhibit, "kind": ", ".join(dict.fromkeys(kinds)) or "text", "is_content": "CONTENT" in layout or layout == ""})
+        is_content = (str(i) not in SKIP) if SKIP else not any(k in layout for k in ("TITLE", "SECTION", "COVER"))
+        out.append({"slide": i, "title_words": title_w, "body_words": body, "exhibit": exhibit, "kind": ", ".join(dict.fromkeys(kinds)) or "text", "is_content": is_content})
     return out
 
 def main():
@@ -103,6 +122,10 @@ def main():
     mode = "speaker"
     if "--mode" in sys.argv:
         mode = sys.argv[sys.argv.index("--mode") + 1]
+    global SKIP
+    SKIP = set()
+    if "--skip" in sys.argv:
+        SKIP = set(x.strip() for x in sys.argv[sys.argv.index("--skip") + 1].split(",") if x.strip())
     lo, hi = BUDGET.get(mode, BUDGET["speaker"])
     rows = pptx_slides(target) if target.lower().endswith(".pptx") else html_slides(target)
     content = [r for r in rows if r["is_content"]]

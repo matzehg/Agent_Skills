@@ -2,7 +2,7 @@
 name: minto-deck
 description: "Build, write and audit after Barbara Minto's Pyramid Principle and consulting practice: governing thought, SCQA opening, MECE key line, full-sentence claims. Build mode makes slide decks in two stages: ghost deck for approval, then deck with speaker notes, timing, Q&A, backup, handout. Memo mode writes answer-first prose: management summaries, briefing notes, event or meeting reports, the thesis of a day, after a short storyline gate. Audit mode reviews a deck or memo and reports weak claims, broken logic and missing elements, with rewrites. Use whenever the user asks for slides, a deck, presentation, pitch, talk, storyline, ghost deck, speaker notes, management summary, Kernbotschaft, These, Vermerk, Veranstaltungsbericht, an answer-first or Minto summary, or wants a deck or memo reviewed; also on Folien, Praesentation, Vortrag, Entscheidungsvorlage, Sprechzettel, Deck pruefen. Trigger even without the word Minto. Not for transcription, translation or plain recaps. German, English."
 metadata:
-  version: "0.7"
+  version: "0.7.1"
   updated: "2026-11-09"
   language: "en, de"
 ---
@@ -173,9 +173,13 @@ Produce, in this order:
    slide or backup that carries the evidence.
 6. **Backup slides** for the evidence that answers anticipated questions but
    does not carry the main argument. Reference them from the Q&A document.
-7. **Handout variant** when the deck will also be read without the presenter:
-   same storyline, reading-first density, sources on the slide, no delivery
-   cues; conversion rules in `reading-decks.md` section 6.
+7. **Second density, by order.** Four cases, decided in Stage 0: talk only,
+   build the speaker deck; pre-read only, build the reading deck; both from
+   the start, build the reading deck first and derive the speaker deck by
+   cutting each slide to its exhibit and labels (`exhibits.md` section 6);
+   a handout for a speaker deck that already exists, extend that deck to
+   reading-first density per `reading-decks.md` section 6. Storyline,
+   register and exhibits are shared; only the text layer differs.
 8. **Management summary, final.** Rewrite slide 2 against the finished slides:
    every bold line is a claim a slide proves, every number matches its slide.
 9. **Consistency pass.** Dump the deck text and check every set from the
@@ -297,10 +301,11 @@ One definition for Build and Memo; `storyline-ghost-deck.md` and
 - Carry-over: an approved memo storyline carries into the ghost deck and an
   approved ghost deck into a handout; the gate opens again only for what
   changed in the carry-over.
-- Exceptions, each named in the reply when used: the user explicitly asked
-  for a one-shot run (say that the gate is skipped at their request); short
-  prose under roughly 300 words (no storyline at all, see Memo mode); a
-  revision that does not touch the key line (deck fixes, wording, layout).
+- Exceptions: the user explicitly asked for a one-shot run (say in the reply
+  that the gate is skipped at their request); a revision that does not touch
+  the key line (deck fixes, wording, layout; say so briefly). Short prose
+  under roughly 300 words has no gate and no storyline, and the reply does
+  not announce that either: the text is the whole reply (see Memo mode).
 - A revision that changes the key line re-opens the gate.
 
 ## Hosts with subagents

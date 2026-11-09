@@ -9,7 +9,7 @@ zip under Customize > Skills), Claude for PowerPoint, Cowork and Claude Code.
 
 | Skill | Purpose | Status |
 |---|---|---|
-| `minto-deck` | Build, write and audit after the Pyramid Principle and consulting practice: two-stage deck workflow (ghost deck with register for approval, then deck with speaker notes, timing plan, Q&A, backup, handout), a memo mode for answer-first prose (management summaries, Vermerke, event reports, thesis of a day) with a storyline gate, and an audit mode for existing decks and memos | v0.7, in test |
+| `minto-deck` | Build, write and audit after the Pyramid Principle and consulting practice: two-stage deck workflow (ghost deck with register for approval, then deck with speaker notes, timing plan, Q&A, backup, handout), a memo mode for answer-first prose (management summaries, Vermerke, event reports, thesis of a day) with a storyline gate, and an audit mode for existing decks and memos | v0.7.1, in test |
 
 ## Layout of a skill
 
@@ -41,6 +41,8 @@ zip under Customize > Skills), Claude for PowerPoint, Cowork and Claude Code.
 Apache 2.0, see `LICENSE`.
 
 ## Changelog
+
+- v0.7.1: stabilisation after the v0.7 review: word counts include tables, groups and the handout key box and exclude HTML styles; `--skip` for slide roles in deck-metrics.py; six-node cycle geometry fixed (nodes fit the chord); bigStat sizes its label from the text and rejects cards that are too small; four orders of work for talk, pre-read, both and late handout; table criterion by content, not row count; audit applicability table for deck, long memo and short prose, A5 and B1 aligned; text budgets as guardrails; memo example keeps mention and evidence apart.
 
 - v0.7: exhibits wave. Form mark per title at the gate (chart, table, concept visual, text with a reason); text budgets by density mode (speaker-led about 40 body words, reading-first 75 to 250) and the rule that "both" is two decks from one storyline; new `references/exhibits.md` with a catalogue of 17 concept visuals, exhibit brief, alignment and cleaning rules, host constraints; Stage 2 builds exhibits first; audit group H with words per slide and exhibit ratio; catch-all rule; renderer gains cycle, continuum, timeline, matrix and `wordsPerSlide`; `scripts/deck-metrics.py`; Memo stage details moved into memo-format.md; new sources (Zelazny Presentations, Duarte Diagrammer, Mayer, Tufte PowerPoint); eval `deck-speaker-density`.
 

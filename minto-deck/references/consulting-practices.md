@@ -11,7 +11,7 @@ firm and do not imitate a firm's template.
 - [ ] One message per slide; density mode fixed once and kept
 - [ ] Management summary states conclusions, drafted from the ghost deck, finalised last
 - [ ] Numbers carry unit, period, denominator, source; nothing invented, placeholders marked
-- [ ] Chart chosen by the comparison the title makes; tables in list style; two or three rows become cards or a list
+- [ ] Chart chosen by the comparison the title makes; tables in list style; a table only when several attributes or clear mappings are compared, otherwise cards or a list
 - [ ] Subsets name their universe and criterion; entities from the register, same name and order everywhere
 - [ ] Decision slide worded as a proposal; options shown before the recommended option's detail; next steps with owner and date
 - [ ] Dividers only in long decks; section lead slide for sections with three or more evidence slides
@@ -283,8 +283,11 @@ A consulting table is a list with alignment, not a spreadsheet.
 - Highlight one column (the recommendation) or one row with a light fill;
   never alternate row bands and a highlight at once.
 - Marks instead of words where a mark is enough: ●, ○, ✓, ✗, Harvey balls.
-- Two or three rows are not a table. Use cards (risks), a list with a rule
-  per row (next steps), or a timeline (dates).
+- The criterion for a table is content, not row count: a table when several
+  attributes or clear one-to-one mappings are compared across items (three
+  hurdles, each with today's state and the contractual fix, is a table of
+  three rows and three columns). Items with one attribute each become cards
+  (risks), a list with a rule per row (next steps), or a timeline (dates).
 - Tables longer than eight rows go to backup or get split by the key line.
 
 ## 17. Length guidance

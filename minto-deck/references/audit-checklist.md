@@ -46,13 +46,13 @@ Run in this order; each level depends on the one above.
 | A2 | It appears before the evidence | first substantive claim after the midpoint |
 | A3 | It answers the audience's question | audience asks "what should we do?", deck answers "what happened" |
 | A4 | It can be disagreed with | platitude ("digitalisation is important") |
-| A5 | The closing restates it in the same words | ending introduces a new claim or none |
+| A5 | The closing restates it in the same words (deck and long memo; short prose needs no restatement) | ending introduces a new claim or none |
 
 ### B. Key line and structure
 
 | # | Check | Red flag |
 |---|---|---|
-| B1 | Three to five key-line claims, each a full sentence | agenda of topics; seven sections |
+| B1 | Two to five key-line claims (three to five the norm), each a full sentence | agenda of topics; seven sections; a single claim with no support |
 | B2 | Same kind (plural-noun test) | reasons and steps mixed |
 | B3 | No overlap; scope named and covered; no catch-all peer | same evidence under two sections; "Sonstiges", "Weitere", "Other" as a peer without a stated reason |
 | B4 | One logical order per set, visible in wording | order cannot be named |
@@ -119,7 +119,7 @@ Run in this order; each level depends on the one above.
 | G6 | Charts editable, not pasted images |
 | G7 | Geometry: connectors attach to shapes, boxes span what points to them, peers have equal size, no orphan labels |
 | G8 | Whitespace distributed, not pooled; type and shapes scaled to the density mode |
-| G9 | Tables in list style (no vertical rules, no dark header band); two or three rows shown as cards or list, not table |
+| G9 | Tables in list style (no vertical rules, no dark header band); a table only where several attributes or clear mappings are compared, cards or list for single-attribute items |
 | G10 | Section dividers only in long decks; sections with three or more evidence slides open with a lead slide; one divider before backup at most |
 | G11 | Colour in roles: one accent for the message, at most one signal colour, grey only for containers; slide works in greyscale |
 | G12 | Layout pattern matches the claim (big number, chart with callout, comparison, pillars, flow, bridge, scorecard, timeline, executive summary) |
@@ -140,9 +140,27 @@ Run in this order; each level depends on the one above.
 | H8 | Text form marks carry a reason; exhibit ratio reported (content slides with chart, table or concept form over all content slides) | "text" without a reason; ratio far below two thirds in a deck that has numbers |
 | H9 | No invented data; placeholder data marked inside the exhibit | a chart with plausible but unsourced values |
 
-Severity: H1 and H9 are blockers; H2, H3 and H5 are warnings that become
-blockers in a decision paper; the rest are warnings. H8 is information unless
-a text mark has no reason.
+Severity: H1 is a blocker only for a speaker-led deck whose mean over the
+content slides exceeds the budget or whose single slide exceeds twice the
+budget; single slides above budget are warnings; under the lower bound in a
+reading deck is advisory (`exhibits.md` section 6). H9 is a blocker. H2, H3
+and H5 are warnings that become blockers in a decision paper; the rest are
+warnings. H8 is information unless a text mark has no reason.
+
+### Which checks apply to what
+
+| Check group | Deck | Long memo (storyline and text) | Short prose (under roughly 300 words) |
+|---|---|---|---|
+| A governing thought | all | all; A5 as "closing restates" | A1 to A4; no A5 |
+| B key line | all | all, headings read as titles | B1 with two to five claims; B2, B3; no B4 or B5 when there are no sections |
+| C titles | all | headings | not applicable (no headings) |
+| D slide level | all | paragraphs read as bodies: D1, D4, D5 | D4 and D5 (sources on numbers; facts, estimates, hypotheses apart) |
+| E completeness | by deck type | by memo type (`memo-format.md` section 1) | thesis of a day: governing thought, claims, one evidence each |
+| F didactics | all | not applicable | not applicable |
+| G form | all | G3 (terminology) and G9 on tables | not applicable |
+| H exhibits and budget | all | not applicable | not applicable |
+
+The report names the column it applied.
 
 ## 3. Severity
 
