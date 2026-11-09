@@ -10,7 +10,7 @@ not yet a claim has no layout problem worth solving.
 
 ## Quick checklist
 
-- [ ] Message first, then layout pattern from the catalogue, then design
+- [ ] Message first, then form mark from the ghost deck and layout pattern from the catalogue, then design (`exhibits.md` for concept visuals, alignment, cleaning and text budgets)
 - [ ] One grid, fixed zones, peers equal, whitespace distributed
 - [ ] Type system per density mode; nothing below 10 pt; titles at most two lines
 - [ ] Colour in three roles: base, one accent for the message, at most one signal; grey for containers only
@@ -44,6 +44,9 @@ Before finalising any body element:
 
 Almost every consulting slide is one of these patterns. Decide which one the
 title needs; the pattern then fixes what information belongs on the slide.
+The form itself (chart, table, concept visual, text) is decided earlier, in
+the ghost deck, with the form mark; the catalogue of concept visuals with
+reading directions, caps and rendering notes is `exhibits.md` section 3.
 
 | Pattern | Use when the title… | Build | Trap |
 |---|---|---|---|

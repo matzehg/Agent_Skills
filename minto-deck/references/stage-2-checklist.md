@@ -6,14 +6,17 @@ up; this page is what gets followed.
 
 ## Before the first slide
 - [ ] Approved ghost deck and register at hand; version named in the reply (storyline-ghost-deck)
-- [ ] Density mode fixed: speaker-led or reading-first (consulting-practices 5)
+- [ ] Density mode fixed: speaker-led or reading-first; text budget per content slide noted; "both" means reading deck first, speaker deck cut from it (exhibits 6; consulting-practices 5)
+- [ ] Form marks from the ghost deck at hand; exhibit briefs written; exhibits built in key-line order before any text slide (exhibits 1, 2)
 - [ ] Notation decided: IBCS when scenario data exists, unless the user declined (ibcs-notation 1, 9)
 - [ ] Template chosen from assets/templates or neutral theme stated (SKILL.md Stage 0)
 - [ ] Rendering path chosen: host PowerPoint capability, else scripts/pptx-helpers.js (SKILL.md Rendering)
 
 ## Every slide
 - [ ] Title is the approved action title, one claim, at most two lines (consulting-practices 2)
-- [ ] Layout pattern chosen from the catalogue to prove that claim (visual-design 2)
+- [ ] Layout pattern chosen from the catalogue to prove that claim (visual-design 2); concept visual per its type rules: reading direction, caps, one label per node (exhibits 3)
+- [ ] Title's subject is the highlighted element; order follows the message; register names and colours inside the exhibit; cleaning sequence, cover test and headline test done (exhibits 4, 5)
+- [ ] Body words within the mode's budget; detail in notes, not on the slide, in a speaker-led deck (exhibits 6)
 - [ ] One dominant element; body answers exactly the question the title raises (minto-pyramid 4)
 - [ ] Numbers with unit, period, denominator, source; placeholders marked `[PLATZHALTER: …]` (consulting-practices 7)
 - [ ] Chart: comparison type named, simplest form, decluttered, one element highlighted, axes at zero, descriptive chart title (visual-design 6, 6a; ibcs-notation 4, 7)
@@ -37,7 +40,8 @@ up; this page is what gets followed.
 - [ ] Text dump: titles, order, notes on every slide, no leftover placeholders beyond the marked ones
 - [ ] Consistency pass: every register set identical on every slide; slide references regenerated after renumbering
 - [ ] Gap list: every "missing" title now a marked placeholder and listed in the delivery note
-- [ ] Every slide rendered at full size and looked at: overlaps, floating connectors, boxes narrower than what points to them, wrapped key-value lines, pooled whitespace, three-line titles (visual-design 12)
+- [ ] Every slide rendered at full size and looked at: overlaps, floating connectors, boxes narrower than what points to them, wrapped key-value lines; where the host forbids rendering (Slides artifact type), text dump plus element count instead and the delivery note says so (exhibits 7)
+- [ ] Words per content slide and exhibit ratio measured (scripts/deck-metrics.py or write().wordsPerSlide) and reported in the delivery note (exhibits 6; audit-checklist H), pooled whitespace, three-line titles (visual-design 12)
 - [ ] Audit checklist A to G run as self-check; blockers fixed; warnings listed (audit-checklist)
 - [ ] Delivery note: files with paths, open placeholders by slide, unfixed warnings with reason, one thing to rehearse (timing-qa-handout 6)
 - [ ] Hosts with subagents: the self-check ran as a separate critic agent on the rendered slides, one round (SKILL.md)

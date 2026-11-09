@@ -2,8 +2,8 @@
 name: minto-deck
 description: "Build, write and audit after Barbara Minto's Pyramid Principle and consulting practice: governing thought, SCQA opening, MECE key line, full-sentence claims. Build mode makes slide decks in two stages: ghost deck for approval, then deck with speaker notes, timing, Q&A, backup, handout. Memo mode writes answer-first prose: management summaries, briefing notes, event or meeting reports, the thesis of a day, after a short storyline gate. Audit mode reviews a deck or memo and reports weak claims, broken logic and missing elements, with rewrites. Use whenever the user asks for slides, a deck, presentation, pitch, talk, storyline, ghost deck, speaker notes, management summary, Kernbotschaft, These, Vermerk, Veranstaltungsbericht, an answer-first or Minto summary, or wants a deck or memo reviewed; also on Folien, Praesentation, Vortrag, Entscheidungsvorlage, Sprechzettel, Deck pruefen. Trigger even without the word Minto. Not for transcription, translation or plain recaps. German, English."
 metadata:
-  version: "0.6.2"
-  updated: "2026-11-05"
+  version: "0.7"
+  updated: "2026-11-09"
   language: "en, de"
 ---
 
@@ -100,6 +100,14 @@ Build it in this order:
    sufficient, one logical order.
 4. Expand each key-line claim into its supporting slides. Every slide title is a
    full sentence that states one claim. Group peers with parallel grammar.
+   Give every title an evidence mark and a form mark (chart with its
+   comparison type, table, concept visual with its type from
+   `references/exhibits.md` section 3, or text with a reason): the form of
+   the exhibit is decided at the gate, not while building, and "text" is
+   reviewed like a claim. Declare the density mode (speaker-led or
+   reading-first) and the text budget per slide from `exhibits.md` section 6
+   in the header; "both" means the reading deck is built first and the
+   speaker deck is derived from it.
 5. Add the closing: governing thought restated, decision or next steps as a
    proposal the audience decides on, and the explicit ask if the deck type has
    one.
@@ -132,22 +140,26 @@ decks in two notations only on explicit request.
 
 Start only from an approved ghost deck. Read `references/stage-2-checklist.md`
 first; it is the page that gets ticked before delivery. Then read `references/consulting-practices.md`,
-`references/visual-design.md`, `references/speaker-notes.md` and
+`references/visual-design.md`, `references/exhibits.md`, `references/speaker-notes.md` and
 `references/timing-qa-handout.md`. When the material contains actuals, plans,
 forecasts, previous periods or variances, also read `references/ibcs-notation.md`.
 For a reading-first deck or the handout step, read `references/reading-decks.md`.
 
 Produce, in this order:
 
-1. **Slide bodies.** One message per slide; the body proves the title. Choose the
-   evidence form (chart, table, cards, diagram, text) by the comparison the
-   message makes, per the chart and table rules in `consulting-practices.md`.
-   Every external claim gets a source line; every number gets unit, period and
-   denominator. Density follows the mode fixed in Stage 0; at speaker-led
-   density, scale type and shapes to fill the slide rather than leaving holes.
-   In a decision paper, show the options before the detail of the recommended
-   one, and signpost them as options in the title. Every entity comes from the
-   register, in the register's name and order.
+1. **Exhibits first.** For every slide with a chart, table or concept form
+   mark, write the five-line exhibit brief (`exhibits.md` section 2) and build
+   the exhibit, in key-line order, before any text slide: the subject of the
+   title is the highlighted element, order and reading direction follow
+   `exhibits.md` section 4, register names and colours inside the exhibit,
+   cleaning sequence and the cover and headline tests from section 5. Native
+   shapes, never raster images. Then the text slides, within the text budget
+   of the declared density mode (section 6): in a speaker-led deck the detail
+   goes to the notes, not onto the slide. Every external claim gets a source
+   line; every number gets unit, period and denominator. In a decision paper,
+   show the options before the detail of the recommended one, and signpost
+   them as options in the title. Every entity comes from the register, in the
+   register's name and order.
 2. **Management summary** on slide 2: draft from the ghost deck (governing
    thought, key line, ask); the final version is written in step 8, after all
    other slides exist and the numbers are known. Format by density mode per
@@ -173,8 +185,12 @@ Produce, in this order:
    criterion. Check the evidence column of the ghost deck: every title marked
    "missing" is now a placeholder on the slide and in the delivery note.
 10. **Self-check** against `references/audit-checklist.md` before delivery,
-    including the visual check in `visual-design.md` section 12. Fix blockers;
-    list warnings in the delivery note.
+    including group H (exhibits and text budget) and the visual check in
+    `visual-design.md` section 12. Where the host does not allow rendering
+    the slides from the build environment (the Slides artifact type), run
+    the text-dump check and an element count instead and say so in the
+    delivery note, naming the densest slides. Fix blockers; list warnings in
+    the delivery note.
 
 ### Rendering
 
@@ -208,84 +224,35 @@ paragraph proves its heading. Two stages, one light gate; what goes into the
 key line is decided by relevance to the reader's question and the quality of
 the evidence, not by how many sources repeat a point (memo-format.md section 4).
 
-### Stage 0: briefing
+### Stages in brief
 
-Take the items below from the request, the material and the conversation; ask
-only for one that is missing and would change the storyline, at most three
-questions at once.
+Details for all three stages are in `memo-format.md` section 0; this is the
+short form.
 
-1. Audience and their question: who reads this and what they must understand,
-   decide or do afterwards. A mixed audience (internal and external readers)
-   lowers the density of internal references and raises the attribution bar.
-2. Memo type: management summary, briefing note (Vermerk), event or meeting
-   report, decision memo, status note. `memo-format.md` lists the mandatory
-   elements per type.
-3. Governing thought the user already has. If none, derive one from the
-   material and label it as derived; the gate exists so the user can replace it.
-4. Length budget (words or pages) and destination: chat reply, a doc, a file.
-5. Material and sources: what may be used, what must not be invented, how
-   statements are attributed. For a report on talks or meetings, settle whether
-   speakers are named, named by role, or not at all (`memo-format.md` section 5);
-   the "none" setting applies only when the user or the material names an
-   explicit agreement such as the Chatham House Rule.
-6. Whether a deck follows. If yes, build the storyline so that it carries over.
-
-### Stage 1: storyline
-
-Deliver, in the format in `memo-format.md` section 2: the governing thought in
-one sentence; the opening as all four SCQA lines, situation and complication
-as one sentence each, the question the complication raises, and the answer as
-the governing thought verbatim, so the reader can check at the gate that the
-answer answers the question; the key line of two to five claims (three to five is the norm) as full
-sentences, ordered by theme or argument, never by the order of the source
-material, each with an evidence mark (available, missing or placeholder, and
-the source); the order and its criterion; where dissent between sources sits
-and under which claim it will be argued; what the memo says follows for the
-reader, when the memo type has that element; the attribution setting;
-assumptions and open points; a short register when the memo names processes,
-bodies, roles, systems or options that must stay consistent, with a "Sets"
-line that names each set by one plural noun and lists its members in fixed
-order (the plural-noun test: an institute does not belong in a set of
-processes). Run the read-through test on the key line. End with one approval
-question and stop, as "The gate" defines it; short prose follows the rule
-below instead.
-
-### Stage 2: the memo
-
-Write from the approved storyline, in this order:
-
-1. **Lead.** The governing thought, with the SCQA opening before or after it as
-   the chosen variant says. Keep only what the reader does not already know.
-2. **Sections.** One per key-line claim. Heading = the claim as a full sentence
-   in the storyline's wording, up to roughly 20 words; a longer claim gets a
-   short-form heading and appears in full as the section's first sentence. The
-   first sentence of each section restates or sharpens the claim; the rest
-   proves it. One idea per paragraph, the first sentence of a paragraph is its
-   claim, at most three sentences per paragraph; three or more parallel items
-   or questions inside a paragraph become a list. Dissent is argued under the
-   claim it concerns, as the storyline placed it.
-3. **Implications.** When the memo type calls for it (event or meeting report,
-   status note, thesis of a day): what follows for the reader or the reader's
-   groups, the steps that were announced, and the questions that stayed open.
-   Claims and evidence from the sections only; nothing new.
-4. **Closing.** Governing thought restated with the confidence the evidence
-   earns, then the ask or next steps when the memo type has one.
-5. **Evidence.** Numbers with unit and period, named sources, attribution as
-   settled in Stage 0. Unknowns as `[PLACEHOLDER: what is needed]`, listed
-   under the closing. Source material in an annex (session table, list of
-   documents) when the type calls for it, never in the body.
-6. **Consistency pass** against the register and its sets; terms per
-   `glossary.md`.
-7. **Self-check** against the quick checklist in `memo-format.md` and checks
-   A to D of `audit-checklist.md`, reading "heading" for "title".
-
-No framework labels in the text: the lead is the situation, not "Situation:".
-Lists for three or more parallel items, tables for items compared on several
-attributes, prose for everything else. Keep the length budget. When the memo
-runs over, narrow claims and shorten their evidence together, so that no claim
-stands with less support than it had; a key-line claim may become narrower,
-never disappear; conditions, counter-positions, attributions and the
-limitations of the evidence survive every cut (memo-format.md section 3).
+- **Stage 0, briefing.** Audience and their question; memo type (section 1 of
+  `memo-format.md`); governing thought from the user or derived and labelled
+  as such; length budget and destination; material, sources and the
+  attribution setting ("none" only with an explicit agreement such as the
+  Chatham House Rule); whether a deck follows. Ask only for what would change
+  the storyline, at most three questions.
+- **Stage 1, storyline.** The format in `memo-format.md` section 2: governing
+  thought; SCQA with question and answer; key line of two to five claims
+  (three to five the norm), by theme, never in source order, each with an
+  evidence mark; order and criterion; dissent and where it is argued;
+  implications where the type has them; register with a Sets line;
+  assumptions and open points. Read-through on the key line. One approval
+  question, then stop, as "The gate" defines it.
+- **Stage 2, the memo.** Lead with the governing thought; one section per
+  claim with the claim as heading (up to roughly 20 words, otherwise a short
+  form with the full claim as first sentence); claim-first paragraphs of at
+  most three sentences, lists for three or more parallel items; implications
+  where the type calls for them; closing with the governing thought
+  restated and the ask; evidence with unit, period, source and the attribution
+  settled in Stage 0; placeholders marked; annex for source material;
+  consistency pass against the register; self-check against the quick
+  checklist in `memo-format.md` and checks A to D of `audit-checklist.md`.
+  No framework labels in the text. Over budget: narrow claims and evidence
+  together; conditions, counter-positions and attributions survive every cut.
 
 ### Short prose
 
@@ -376,10 +343,11 @@ Read `references/audit-checklist.md` and `references/minto-pyramid.md`.
    pasted outline work with what is there and say what could not be checked
    (visual layout, notes, charts). For a memo extract lead, headings, first
    sentences of paragraphs, closing and sources.
-2. Identify or ask for the deck type, audience and setting. The completeness
-   check needs a target. For a memo, the type comes from the table in
-   `memo-format.md` section 1; checks on timing, notes and visuals do not apply
-   and the report says so.
+2. Identify or ask for the deck type, audience, setting and density mode.
+   The completeness check needs a target, and the text budget (group H) needs
+   the mode. For a memo, the type comes from the table in `memo-format.md`
+   section 1; checks on timing, notes, visuals and exhibits do not apply and
+   the report says so.
 3. Run the checks in the order of the checklist: governing thought, key line,
    titles, read-through, slide-level logic, completeness per deck type,
    didactics (notes, transitions, timing, Q&A), form.
@@ -404,6 +372,11 @@ Read `references/audit-checklist.md` and `references/minto-pyramid.md`.
 - Mix logical orders inside a peer set, or mix speaker-led and reading-first
   density inside one deck.
 - Skip the Stage 1 gate silently, in Build or in Memo mode.
+- Fill a speaker-led slide with reading-deck text, or ship one deck for
+  "both". Density is declared once, text budgets per mode are in
+  `exhibits.md` section 6, and "both" is two decks from one storyline.
+- Draw to decorate. An exhibit proves a relation the title claims; an icon,
+  arrow or diagram that illustrates a word is removed.
 - Retell a source in its own order. A Memo-mode summary reorders the material
   under the answer; a chronological recap, a transcript or a translation is not
   this skill's job.
@@ -420,7 +393,8 @@ Read the file when its stage starts; do not load all of them up front.
 | `references/stage-2-checklist.md` | Stage 2 start and before delivery: the compact list that gets ticked |
 | `references/minto-pyramid.md` | Stage 1, and every Audit |
 | `references/storyline-ghost-deck.md` | Stage 1: process, output format, timing skeleton, gate |
-| `references/memo-format.md` | Memo mode, all stages, and Audit of a memo: memo types and mandatory elements, storyline format, writing rules, length budgets, deriving a thesis from source material, attribution |
+| `references/memo-format.md` | Memo mode, all stages (section 0 holds the stage details), and Audit of a memo: memo types and mandatory elements, storyline format, writing rules, length budgets, deriving a thesis from source material, attribution |
+| `references/exhibits.md` | Stage 1 form marks and Stage 2 exhibits: shape-to-form table, exhibit brief, catalogue of 17 concept visuals, alignment to the message, cleaning sequence, text budgets by density mode, host constraints |
 | `references/consulting-practices.md` | Stage 2: slide anatomy, action titles, density, tables, backup, decision wording |
 | `references/visual-design.md` | Stage 2: layout patterns, grid, type, colour, charts, decluttering, tables, executive summary format, visual check; Audit: form checks |
 | `references/ibcs-notation.md` | Stage 2 and Audit, whenever numbers with scenarios or variances appear: IBCS rules and notation |

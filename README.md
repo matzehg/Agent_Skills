@@ -9,7 +9,7 @@ zip under Customize > Skills), Claude for PowerPoint, Cowork and Claude Code.
 
 | Skill | Purpose | Status |
 |---|---|---|
-| `minto-deck` | Build, write and audit after the Pyramid Principle and consulting practice: two-stage deck workflow (ghost deck with register for approval, then deck with speaker notes, timing plan, Q&A, backup, handout), a memo mode for answer-first prose (management summaries, Vermerke, event reports, thesis of a day) with a storyline gate, and an audit mode for existing decks and memos | v0.6.2, in test |
+| `minto-deck` | Build, write and audit after the Pyramid Principle and consulting practice: two-stage deck workflow (ghost deck with register for approval, then deck with speaker notes, timing plan, Q&A, backup, handout), a memo mode for answer-first prose (management summaries, Vermerke, event reports, thesis of a day) with a storyline gate, and an audit mode for existing decks and memos | v0.7, in test |
 
 ## Layout of a skill
 
@@ -41,6 +41,8 @@ zip under Customize > Skills), Claude for PowerPoint, Cowork and Claude Code.
 Apache 2.0, see `LICENSE`.
 
 ## Changelog
+
+- v0.7: exhibits wave. Form mark per title at the gate (chart, table, concept visual, text with a reason); text budgets by density mode (speaker-led about 40 body words, reading-first 75 to 250) and the rule that "both" is two decks from one storyline; new `references/exhibits.md` with a catalogue of 17 concept visuals, exhibit brief, alignment and cleaning rules, host constraints; Stage 2 builds exhibits first; audit group H with words per slide and exhibit ratio; catch-all rule; renderer gains cycle, continuum, timeline, matrix and `wordsPerSlide`; `scripts/deck-metrics.py`; Memo stage details moved into memo-format.md; new sources (Zelazny Presentations, Duarte Diagrammer, Mayer, Tufte PowerPoint); eval `deck-speaker-density`.
 
 - v0.6.2: evidence fidelity (calibrated claims instead of a hedge ban, fictional worked examples with full sources, weigh-not-count rule for single sources, cuts keep conditions and dissent); short prose delivered directly; the gate defined once with approval-with-changes and carry-over; rule gaps proposed, persisted only in maintenance; Chatham House only by explicit agreement; renderer fixes (colours from T.colors, chevron sub lines, section timing, handout filter and 11 pt minimum, bigStat geometry) with a smoke test; graders aligned and four eval cases added; full-sentence titles only.
 

@@ -3,6 +3,38 @@
 Detail tables per version, newest first. The one-line summaries live in README.md.
 Changes below v0.6 are listed in README.md only.
 
+# minto-deck v0.7 (2026-11-09)
+
+Exhibits wave. Decks built with v0.6.x were text-heavy (the 05.11. event deck:
+106 body words per content slide in a deck declared speaker-led, exhibit ratio
+33 %). The cause was structural: the form of the exhibit was decided while
+building, after the text existed, and no text budget existed for speaker-led
+decks. v0.7 moves the form decision to the gate, adds the catalogue, the
+alignment and cleaning rules, and text budgets by density mode, and makes the
+numbers measurable. Catalogue checked against Zelazny (concept visuals) and
+Duarte (slide:ology taxonomy, Diagrammer families) on the web, 2026-11-09.
+
+| # | Change | Files |
+|---|---|---|
+| 1 | Text budgets by density mode: speaker-led up to about 40 body words per content slide, reading-first 75 to 250; "both" means reading deck first, speaker deck cut from it; never one deck for both | `exhibits.md` §6, `consulting-practices.md` §5, `SKILL.md` Stage 1, Stage 2, "does not do" |
+| 2 | Form mark per ghost-deck title (chart with comparison type, table, concept with type, text with a reason) decided at the gate; density mode and text budget in the ghost-deck header | `storyline-ghost-deck.md` (format, process step 8, checklist), `SKILL.md` Stage 1 |
+| 3 | New reference `references/exhibits.md`: shape-to-form table, when not to draw, exhibit ratio; the five-line exhibit brief; catalogue of 17 concept visuals in six families (process, structure, comparison, time, relation, plus variants) with "carries when", trap, reading direction, caps, text, rendering per path; alignment to the message (title subject = highlight, sort by message, fixed reading directions, two titles, scale honesty, direct labels, register inside exhibits, Gestalt); cleaning sequence for concept visuals, caps, squint test, cover and headline tests; host constraints; frequent failures | `references/exhibits.md` |
+| 4 | Stage 2 builds exhibits first, in key-line order, then text within budget; self-check includes group H and the host constraint (text dump plus element count where rendering is not possible) | `SKILL.md` Stage 2, `stage-2-checklist.md` |
+| 5 | Audit group H "Exhibits and text budget" (H1 to H9, severities); B3 gains the catch-all signal; words per content slide and exhibit ratio reported | `audit-checklist.md` |
+| 6 | Catch-all buckets ("Sonstiges", "Weitere", "Other") as a peer only with a visible reason | `minto-pyramid.md` §8, `audit-checklist.md` B3, `exhibits.md` §8 |
+| 7 | Renderer: `cycle()`, `continuum()`, `timeline()`, `matrix()`, `line()`; `write()` returns `wordsPerSlide`; smoke test extended (10 checks, passing with pptxgenjs 4.0.1; cycle and timeline rendered and inspected) | `scripts/pptx-helpers.js`, `scripts/test-helpers.js` |
+| 8 | `scripts/deck-metrics.py`: body words per slide, exhibit kind, mean, exhibit ratio and over-budget slides for a `.pptx` (python-pptx) or a Slides-artifact `slides/` folder; text cards do not count as exhibits | `scripts/deck-metrics.py`, `scripts/README.md` |
+| 9 | SKILL.md trimmed: Memo stage details moved to `memo-format.md` §0, short form stays in SKILL.md (413 lines, was 439 before the additions) | `SKILL.md`, `memo-format.md` |
+| 10 | Sources: Zelazny *Say It With Presentations* and the concept-visual chapter, Duarte slide:ology ch. 3 and Diagrammer, Mayer *Multimedia Learning*, Tufte *Cognitive Style of PowerPoint*, Gestalt principles; two web checks listed | `sources.md` |
+| 11 | Glossary: form mark, exhibit brief, concept visual, text budget, exhibit ratio, cover and headline test, squint test, reading direction, catch-all bucket, type names | `glossary.md` |
+| 12 | Evals: decision-paper case expects form marks and density header; new case `deck-speaker-density` (one-shot speaker deck with cycle, contrast or continuum, timeline, table; budget kept; metrics in the delivery note) | `evals/` |
+
+Not in this wave (agreed for later): template mode (reading a corporate master
+for colours, fonts and layouts; reusing toolbox graphics) and a private
+companion skill for corporate design.
+
+---
+
 # minto-deck v0.6.2 (2026-11-05)
 
 Second wave of fixes, from an external review of v0.6.1 (evidence fidelity,

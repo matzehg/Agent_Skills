@@ -1,7 +1,8 @@
 schema_version: "1.1"
 name: decision-paper-ai-governance
 expected_outcome: |
-  The first reply is a ghost deck only: numbered full-sentence titles in German,
+  The first reply is a ghost deck only, with a form mark and an evidence mark
+  on every title and the density mode and text budget in the header: numbered full-sentence titles in German,
   grouped by section, with a governing thought, an SCQA opening, a key line of
   three to five claims, an evidence mark per title, a register of named
   entities (processes, body, roles, options, criteria) with category and

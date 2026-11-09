@@ -93,7 +93,7 @@ Decide once per deck. Do not blend.
 
 | | Speaker-led | Reading-first |
 |---|---|---|
-| Words on slide | few; the presenter carries the detail | enough to stand alone |
+| Words on slide | few, up to about 40 body words; the presenter carries the detail | enough to stand alone, 75 to 250 body words (`exhibits.md` section 6) |
 | Type size | large (body 18 pt and up) | smaller (body 12 to 14 pt) |
 | Slide count | higher, one idea per slide | lower, denser slides |
 | Sources | source line | source line plus footnotes |
@@ -102,6 +102,9 @@ Decide once per deck. Do not blend.
 
 A handout variant converts a speaker-led deck to reading-first: the key points
 from the notes move onto the slide, delivery cues are removed, sources stay.
+When the briefing says "both", build the reading deck first and derive the
+speaker deck by cutting each slide to its exhibit and labels; one deck that
+tries to be both is the slideument `reading-decks.md` warns against.
 
 ## 6. Management summary
 

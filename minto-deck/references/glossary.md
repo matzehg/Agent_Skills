@@ -66,3 +66,13 @@ terms and names live in that project's register, not here.
 | implications for the reader | Folgerungen für den Leser, "Was daraus folgt" | memo section before the closing, where the type requires it |
 | dissent | Dissens, Gegenposition | contradiction between sources, argued under the claim it concerns |
 | evidence mark | Belegmarke | per key-line claim: available, missing, placeholder, plus source |
+| form mark | Formmarke | per ghost-deck title: chart, table, concept visual or text with a reason |
+| exhibit brief | Grafik-Brief | five lines before an exhibit is built: reader, message, form, highlight, source |
+| concept visual | Konzeptgrafik | non-quantitative diagram from the catalogue in exhibits.md |
+| text budget | Wortbudget | body words per content slide by density mode |
+| exhibit ratio | Exhibit-Quote | share of content slides with chart, table or concept visual |
+| cover test, headline test | Abdecktest Titel, Abdecktest Grafik | does the exhibit prove the title; does the title stand alone |
+| squint test | Squint-Test, Blinzeltest | one dominant element per slide |
+| reading direction | Leserichtung | fixed conventions per concept type |
+| catch-all bucket | Sammelposten ("Sonstiges", "Weitere") | peer that failed the scope test; allowed only with a visible reason |
+| layers, pillars, funnel, continuum | Schichten, Säulen, Trichter, Kontinuum | concept types in exhibits.md section 3 |

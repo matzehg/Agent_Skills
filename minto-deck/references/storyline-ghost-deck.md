@@ -10,6 +10,7 @@ changing it is cheap.
 - [ ] Briefing restated in four lines, assumptions marked
 - [ ] Governing thought in one sentence; SCQA variant named
 - [ ] Key line tested (plural noun, overlap, scope, order) before supporting slides
+- [ ] Every title carries an evidence mark and a form mark; density mode and text budget declared in the header
 - [ ] Every numbered line a full sentence; parallel grammar inside each set
 - [ ] Register: every named entity with name, category, definition, status; sets listed
 - [ ] Evidence mark per title; gap list for every missing piece
@@ -56,6 +57,13 @@ Detail follows; the checklist is what gets ticked before delivery.
    without evidence is either an analysis task (listed in the gap list with
    what has to be found and from whom) or a weaker claim. Storyline and
    analysis iterate: the gap list is what goes back to the analysis.
+   In the same pass give every title its form mark (`exhibits.md` section 1):
+   the shape of the body decides between chart with its comparison type,
+   table, concept visual with its type, or text with a reason. This is
+   Minto's storyboard, decided at the gate so that text does not fill the
+   space an exhibit should take. Declare the density mode and the text
+   budget per content slide in the header; with "both", the reading deck is
+   built first and the speaker deck is cut from it.
 9. **Timing skeleton.** See below.
 10. **Read-through.** Titles only, top to bottom. Fix gaps in the titles.
 11. **Alternative key line** (optional). If the material supports a second
@@ -70,8 +78,8 @@ Use this layout and nothing else. No slide bodies, no notes, no design.
 # Ghost deck: <working title>
 
 Audience: … | Their question: …
-Deck type: … | Setting: speaker-led / reading-first | Duration: … min incl. … min discussion
-Slide budget: … | Language: …
+Deck type: … | Setting: speaker-led / reading-first / both (reading deck first, speaker deck derived) | Duration: … min incl. … min discussion
+Slide budget: … | Text budget: … body words per content slide (exhibits.md section 6) | Language: …
 Material: … | Not available / placeholders: …
 
 Governing thought: <one sentence>
@@ -83,8 +91,8 @@ Question the opening raises: <one sentence; the audience's question after the co
 3. Management summary: <governing thought, verbatim; it is the Answer> (key line listed as bullets on this slide)
 
 ## Section A: <key-line claim 1 as a full sentence>
-4. <supporting claim>  [evidence: available | missing | placeholder]
-5. <supporting claim>  [evidence: …]
+4. <supporting claim>  [evidence: available | missing | placeholder; source | form: chart:<comparison> | table | concept:<type> | text, because …]
+5. <supporting claim>  [evidence: … | form: …]
 
 ## Section B: <key-line claim 2>
 6. …

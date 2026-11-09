@@ -133,6 +133,10 @@ Mutually exclusive, collectively exhaustive. Check the two separately.
 
 - **Exclusive**: no two peers describe the same thing. Overlap shows up as the
   same evidence used twice, or as two titles that could be merged without loss.
+- **Catch-all buckets**: "Sonstiges", "Weitere", "Other" as a peer is a scope
+  test that failed in public. Allowed only with a reason the reader can see
+  (what is in it and why no separate item makes sense); otherwise name the
+  items, merge them into an existing peer, or widen the parent's scope.
 - **Exhaustive**: together the peers cover the scope the parent defines. This is
   only testable when the parent names the scope. "Costs" is not a scope; "the
   three cost blocks of the service desk" is.

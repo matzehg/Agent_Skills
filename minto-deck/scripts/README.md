@@ -12,13 +12,25 @@ not reinvent the layout rules on every run.
   tracker, source line, notes in the notes pane, key-point strip in handout
   mode), `ltable()` (list-style table: no vertical rules, header over a rule,
   one highlighted column), `card()`, `bigStat()`, `chevrons()`, `pill()`,
-  `label()`, `MARK()` for ✓ ✗ ● marks, `PH()` for placeholders. `write(path)`
-  writes the file, applies the theme and returns slide count and total
-  minutes from the notes.
+  `label()`, `MARK()` for ✓ ✗ ● marks, `PH()` for placeholders, and the
+  concept visuals of `references/exhibits.md` section 3: `cycle()` (nodes on
+  a circle, clockwise, arrows node to node), `continuum()` (two poles, markers
+  at 0..1), `timeline()` (dated events left to right, not to scale),
+  `matrix()` (2 x 2 with axis labels), plus `line()` for direction-safe
+  straight lines. `write(path)` writes the file, applies the theme when the
+  writer is present and returns slide count, total minutes from the notes,
+  `themeApplied` and `wordsPerSlide` (body words per slide, for the text
+  budget in `exhibits.md` section 6).
 - `example-build.js`: three slides showing the pattern. Copy its structure
   into a per-deck build file; never reuse its content.
+- `deck-metrics.py`: `python3 scripts/deck-metrics.py deck.pptx --mode speaker`
+  or `… path/to/slides/ --mode reading` for a Slides-artifact folder. Reports
+  body words per slide, exhibit kind, mean words over content slides, exhibit
+  ratio and the slides over the mode's budget. Heuristics for the audit group
+  H and the delivery note; needs python-pptx for `.pptx`.
 - `test-helpers.js`: smoke test for the helpers (`node scripts/test-helpers.js`
-  with pptxgenjs installed). Checks that content passed in is rendered
+  with pptxgenjs installed), including the four concept visuals and
+  `wordsPerSlide`. Checks that content passed in is rendered
   (chevron sub lines), that minutes add up over title, section and content
   slides, that the handout filter applies to every slide type, that no scheme
   colours and no font under 11 pt reach a handout, and that `bigStat()` boxes

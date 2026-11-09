@@ -21,6 +21,12 @@ which reference file it changed.
 | Stephen Few, *Show Me the Numbers* (Analytics Press, 2nd ed. 2012) | prior knowledge | `visual-design.md` section 6b: tables for comparison |
 | Hichert, Faisst et al., *IBCS Standards* (book edition of the online text) | online text read in full for SAY, STRUCTURE, EXPRESS, SIMPLIFY, CONDENSE, CHECK, UNIFY | `ibcs-notation.md` |
 | Edward Tufte, *The Visual Display of Quantitative Information* | prior knowledge; not used directly | referenced via IBCS (data-ink ratio) and Knaflic; no separate rules |
+| Gene Zelazny, *Say It With Presentations* (McGraw-Hill) | prior knowledge | `exhibits.md`: text slides versus exhibit slides, message titles on exhibits, exhibit ratio |
+| Gene Zelazny, *Say It With Charts*, section "Say it with concepts and metaphors" | prior knowledge; table of contents checked on the web 2026-11-09 (linear, vertical and circular flows, interaction, forces at work, changing course, leverage/balance, barriers, filters, interrelationships, processes, segmentations) | `exhibits.md` section 3: the catalogue of concept visuals |
+| Nancy Duarte, *slide:ology*, chapter 3, and the Diagrammer taxonomy (flow, network, stack, segment, join) | prior knowledge; taxonomy names checked on duarte.com 2026-11-09 | `exhibits.md` section 3: layers, overlapping sets, radiate/hub as types; the glance test in section 5 |
+| Richard E. Mayer, *Multimedia Learning* (Cambridge UP) | prior knowledge | `exhibits.md` section 6: text budgets (redundancy, modality and coherence principles as the empirical basis for little text on speaker-led slides) |
+| Edward Tufte, *The Cognitive Style of PowerPoint* | prior knowledge | `exhibits.md` section 6 and `reading-decks.md`: the written report as the better carrier for dense content; the "both" rule |
+| Gestalt principles (proximity, similarity, enclosure, connection), as summarised by Knaflic | prior knowledge | `exhibits.md` section 4 |
 
 ## Standards and public rule sets
 
@@ -43,6 +49,8 @@ which reference file it changed.
 | thinkinsights.net, "Designing Effective Slides" (Duarte applied to consulting) | search excerpts | `visual-design.md` sections 3, 4 |
 | Duarte, "How to improve dense slides with Slidedocs" (guide page) | page read; downloadable guide not accessed | `reading-decks.md` |
 | Nancy Duarte, "A presentation isn't always the right way to communicate", HBR, March 2014 | prior knowledge | `reading-decks.md` section 1 |
+| Duarte, "Duarte's Diagrammer: thousands of free diagrams", duarte.com blog | page excerpt read 2026-11-09 | `exhibits.md` section 3: Diagrammer families (flow, network, stack, segment, join) as a completeness check for the catalogue |
+| O'Reilly table of contents, *Say It With Charts* and *Complete Toolkit*, section "Solutions in search of problems" | excerpt read 2026-11-09 | `exhibits.md` section 3: Zelazny's list of concept visuals as a completeness check |
 | Zen Faulkes, review of *Slidedocs*, Better Posters, 2014 | read | `reading-decks.md` (structure of the e-book) |
 | zebrabi.com and other IBCS software vendors' explainers | search excerpts, used only to confirm the notation summary | `ibcs-notation.md` section 8 |
 

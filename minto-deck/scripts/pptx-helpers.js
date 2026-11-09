@@ -3,8 +3,10 @@
 //
 // Encodes the layout rules of references/visual-design.md and
 // references/consulting-practices.md: fixed zones, one grid, list-style
-// tables, cards, big numbers, chevrons, notes in the notes pane, a key-point
-// strip for the handout variant. Content stays in the per-deck build file;
+// tables, cards, big numbers, chevrons, cycle, continuum, timeline, 2 x 2
+// matrix (references/exhibits.md section 3), notes in the notes pane, a
+// key-point strip for the handout variant, and body words per slide for the
+// text budget (exhibits.md section 6). Content stays in the per-deck build file;
 // this file never contains deck content.
 //
 // Usage (see scripts/README.md and scripts/example-build.js):
@@ -108,8 +110,15 @@ function createDeck(opts = {}) {
   // ---- primitives ----
   const box = (s, x, y, w, h, fill, name = "box") =>
     s.addShape(pres.ShapeType.rect, { x, y, w, h, fill: { color: fill }, line: { color: fill, width: 0 }, objectName: name });
-  const txt = (s, text, x, y, w, h, o = {}) =>
-    s.addText(text, Object.assign({ x, y, w, h, fontSize: F.body, color: C.text1, margin: 0, isTextBox: true, valign: "top", objectName: "text" }, o));
+  // Body words per slide (exhibits.md section 6). txt() counts what it writes
+  // into the body; title, tracker, source and slide number are not body text.
+  const wordLog = new Map();
+  const wordsOf = (text) => (Array.isArray(text) ? text.map(r => (typeof r === "string" ? r : (r.text || ""))).join(" ") : String(text || ""))
+    .replace(/\[PLATZHALTER:[^\]]*\]/g, "").split(/\s+/).filter(Boolean).length;
+  const txt = (s, text, x, y, w, h, o = {}) => {
+    wordLog.set(s, (wordLog.get(s) || 0) + wordsOf(text));
+    return s.addText(text, Object.assign({ x, y, w, h, fontSize: F.body, color: C.text1, margin: 0, isTextBox: true, valign: "top", objectName: "text" }, o));
+  };
   function bullets(s, items, x, y, w, h, o = {}) {
     const runs = items.map((t, i) => ({ text: t, options: { bullet: { indent: 14 }, breakLine: i < items.length - 1, paraSpaceAfter: o.gap || 8 } }));
     txt(s, runs, x, y, w, h, Object.assign({ fontSize: F.body, color: C.text2 }, o));
@@ -167,6 +176,79 @@ function createDeck(opts = {}) {
     txt(s, text, x, y, w, 0.42, { fontSize: F.small, color: C.background1, align: "center", valign: "middle" });
   }
 
+  // line(s, a, b, lineOpts, name): a straight line from point a to point b,
+  // with the flips pptxgenjs needs for right-to-left or upward segments.
+  function line(s, a, b, lo = {}, name = "line") {
+    const x = Math.min(a.x, b.x), y = Math.min(a.y, b.y), w = Math.abs(b.x - a.x), h = Math.abs(b.y - a.y);
+    return s.addShape(pres.ShapeType.line, { x, y, w, h, flipH: b.x < a.x, flipV: b.y < a.y, line: Object.assign({ color: T.colors.accent4, width: 1.5 }, lo), objectName: name });
+  }
+  // ---- concept visuals (exhibits.md section 3) ----
+  // cycle(s, items, cx, cy, r, {hl}): nodes on a circle, clockwise from twelve
+  // o'clock, arrows between them. items: [{head}] or strings; three to six.
+  function cycle(s, items, cx, cy, r, o = {}) {
+    const n = items.length, nodeW = o.nodeW || 2.0, nodeH = o.nodeH || 0.7;
+    const pos = items.map((_, i) => { const a = -Math.PI / 2 + (2 * Math.PI * i) / n; return { x: cx + r * Math.cos(a), y: cy + r * Math.sin(a) }; });
+    // arrows from node edge to node edge, drawn first so nodes sit on top
+    const edgeT = (dx, dy) => Math.min(dx ? (nodeW / 2) / Math.abs(dx) : 9, dy ? (nodeH / 2) / Math.abs(dy) : 9) * 1.15;
+    pos.forEach((p, i) => {
+      const q = pos[(i + 1) % n], dx = q.x - p.x, dy = q.y - p.y, tp = edgeT(dx, dy), tq = edgeT(dx, dy);
+      const a = { x: p.x + dx * tp, y: p.y + dy * tp }, b = { x: q.x - dx * tq, y: q.y - dy * tq };
+      line(s, a, b, { color: T.colors.accent4, width: 1.5, endArrowType: "triangle" }, "cycle-arrow");
+    });
+    pos.forEach((p, i) => {
+      const head = typeof items[i] === "string" ? items[i] : items[i].head;
+      const fill = i === o.hl ? T.colors.accent2 : T.colors.dk2;
+      s.addShape(pres.ShapeType.roundRect, { x: p.x - nodeW / 2, y: p.y - nodeH / 2, w: nodeW, h: nodeH, fill: { color: fill }, line: { color: fill, width: 0 }, rectRadius: 0.1, objectName: "cycle-node" });
+      txt(s, head, p.x - nodeW / 2 + 0.1, p.y - nodeH / 2, nodeW - 0.2, nodeH, { fontSize: F.body, bold: true, color: C.background1, align: "center", valign: "middle" });
+    });
+  }
+  // continuum(s, poles, items, y, {hl}): a bar between two poles, markers at
+  // items[i].pos in 0..1 with a label below. Judged placements: say so in the
+  // slide body (exhibits.md 3.12).
+  function continuum(s, poles, items, y, o = {}) {
+    const x0 = M + 1.8, x1 = W - M - 1.8, barH = 0.18;
+    box(s, x0, y, x1 - x0, barH, C.accent5, "continuum-bar");
+    txt(s, poles[0], M, y - 0.15, 1.7, 0.5, { fontSize: F.body, bold: true, color: C.text1, align: "right", valign: "middle" });
+    txt(s, poles[1], x1 + 0.1, y - 0.15, 1.7, 0.5, { fontSize: F.body, bold: true, color: C.text1, align: "left", valign: "middle" });
+    items.forEach((it, i) => {
+      const x = x0 + (x1 - x0) * Math.min(1, Math.max(0, it.pos));
+      const fill = i === o.hl ? T.colors.accent2 : T.colors.dk2;
+      s.addShape(pres.ShapeType.ellipse, { x: x - 0.15, y: y + barH / 2 - 0.15, w: 0.3, h: 0.3, fill: { color: fill }, line: { color: fill, width: 0 }, objectName: "continuum-marker" });
+      txt(s, it.label, x - 1.0, y + 0.4 + (i % 2) * 0.38, 2.0, 0.4, { fontSize: F.small, color: i === o.hl ? C.accent2 : C.text2, align: "center" });
+    });
+  }
+  // timeline(s, events, y, {hl, now}): events [{date, label}] left to right in
+  // the given order (not to scale; say so when it matters). now: index whose
+  // marker is drawn as "today".
+  function timeline(s, events, y, o = {}) {
+    const n = events.length, x0 = M + 1.0, x1 = W - M - 1.0, step = n > 1 ? (x1 - x0) / (n - 1) : 0;
+    s.addShape(pres.ShapeType.line, { x: x0, y, w: x1 - x0, h: 0, line: { color: T.colors.accent4, width: 2 }, objectName: "timeline-axis" });
+    events.forEach((e, i) => {
+      const x = x0 + i * step, fill = i === o.hl ? T.colors.accent2 : (i === o.now ? T.colors.accent1 : T.colors.dk2);
+      s.addShape(pres.ShapeType.ellipse, { x: x - 0.14, y: y - 0.14, w: 0.28, h: 0.28, fill: { color: fill }, line: { color: fill, width: 0 }, objectName: "timeline-marker" });
+      txt(s, e.date, x - 0.9, y - 0.6, 1.8, 0.4, { fontSize: F.small, bold: true, color: C.text1, align: "center", valign: "bottom" });
+      txt(s, e.label, x - 0.95, y + 0.25 + (i % 2) * 0.6, 1.9, 0.6, { fontSize: F.small, color: i === o.hl ? C.accent2 : C.text2, align: "center" });
+    });
+  }
+  // matrix(s, xAxis, yAxis, cells, x, y, w, h, {hl}): 2 x 2 with axis labels;
+  // cells in reading order top-left, top-right, bottom-left, bottom-right,
+  // each {head, items:[...]}; the good corner is top right by convention.
+  function matrix(s, xAxis, yAxis, cells, x, y, w, h, o = {}) {
+    const ax = 0.5, gx = (w - ax - G) / 2, gy = (h - ax - G) / 2;
+    const origin = { x: x + ax, y };
+    cells.forEach((cell, i) => {
+      const col = i % 2, row = Math.floor(i / 2);
+      const cx = origin.x + col * (gx + G), cy = origin.y + row * (gy + G);
+      const hl = i === o.hl;
+      box(s, cx, cy, gx, gy, hl ? TINT : C.background2, "matrix-cell");
+      txt(s, cell.head, cx + 0.2, cy + 0.15, gx - 0.4, 0.45, { fontSize: F.head, bold: true, color: hl ? C.accent2 : C.text1 });
+      if (cell.items && cell.items.length) bullets(s, cell.items, cx + 0.2, cy + 0.7, gx - 0.4, gy - 0.85, { fontSize: F.small });
+    });
+    txt(s, xAxis[0] + "  →  " + xAxis[1], origin.x, y + h - ax + 0.1, 2 * gx + G, 0.4, { fontSize: F.small, color: C.accent6, align: "center" });
+    txt(s, yAxis[1], x, y, ax - 0.05, gy, { fontSize: F.small, color: C.accent6, align: "center", valign: "middle" });
+    txt(s, yAxis[0], x, y + gy + G, ax - 0.05, gy, { fontSize: F.small, color: C.accent6, align: "center", valign: "middle" });
+  }
+
   // ---- slide types ----
   function titleSlide(title, lines, notes) {
     const s = pres.addSlide({ masterName: "TITLE" });
@@ -199,11 +281,12 @@ function createDeck(opts = {}) {
     await pres.writeFile({ fileName: path });
     let themeApplied = false;
     if (applyTheme) { await applyTheme(path, T); themeApplied = true; }
-    return { path, slides: pres.slides.length, minutes: notesLog.reduce((a, n) => a + (Number(n.time) || 0), 0), notesLog, themeApplied };
+    const wordsPerSlide = pres.slides.map((sl, i) => ({ slide: i + 1, words: wordLog.get(sl) || 0 }));
+    return { path, slides: pres.slides.length, minutes: notesLog.reduce((a, n) => a + (Number(n.time) || 0), 0), notesLog, themeApplied, wordsPerSlide };
   }
 
   const api = { pres, C, T, F, MODE, HANDOUT, W, M, CW, G, TITLE_Y, TITLE_H, BODY_Y, BODY_H, KEY_Y, KEY_H, SRC_Y, TINT, TINT_SIGNAL, RULE,
-    cols, PH, box, txt, bullets, card, bigStat, label, ltable, MARK, chevrons, pill, titleSlide, sectionSlide, content, write, speakerNotes };
+    cols, PH, box, txt, bullets, card, bigStat, label, ltable, MARK, chevrons, pill, line, cycle, continuum, timeline, matrix, titleSlide, sectionSlide, content, write, speakerNotes };
   return api;
 }
 

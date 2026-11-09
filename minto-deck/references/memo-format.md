@@ -24,6 +24,91 @@ first; it carries the rules this file applies.
 
 Detail follows; the checklist is what gets ticked before delivery.
 
+## 0. Stages in detail
+
+The short form of the three stages is in `SKILL.md`, Memo mode. The full
+procedure follows; the gate is defined in `SKILL.md`, section "The gate".
+
+### 0.1 Stage 0: briefing
+
+Take the items below from the request, the material and the conversation; ask
+only for one that is missing and would change the storyline, at most three
+questions at once.
+
+1. Audience and their question: who reads this and what they must understand,
+   decide or do afterwards. A mixed audience (internal and external readers)
+   lowers the density of internal references and raises the attribution bar.
+2. Memo type: management summary, briefing note (Vermerk), event or meeting
+   report, decision memo, status note. `memo-format.md` lists the mandatory
+   elements per type.
+3. Governing thought the user already has. If none, derive one from the
+   material and label it as derived; the gate exists so the user can replace it.
+4. Length budget (words or pages) and destination: chat reply, a doc, a file.
+5. Material and sources: what may be used, what must not be invented, how
+   statements are attributed. For a report on talks or meetings, settle whether
+   speakers are named, named by role, or not at all (`memo-format.md` section 5);
+   the "none" setting applies only when the user or the material names an
+   explicit agreement such as the Chatham House Rule.
+6. Whether a deck follows. If yes, build the storyline so that it carries over.
+
+### 0.2 Stage 1: storyline
+
+Deliver, in the format in `memo-format.md` section 2: the governing thought in
+one sentence; the opening as all four SCQA lines, situation and complication
+as one sentence each, the question the complication raises, and the answer as
+the governing thought verbatim, so the reader can check at the gate that the
+answer answers the question; the key line of two to five claims (three to five is the norm) as full
+sentences, ordered by theme or argument, never by the order of the source
+material, each with an evidence mark (available, missing or placeholder, and
+the source); the order and its criterion; where dissent between sources sits
+and under which claim it will be argued; what the memo says follows for the
+reader, when the memo type has that element; the attribution setting;
+assumptions and open points; a short register when the memo names processes,
+bodies, roles, systems or options that must stay consistent, with a "Sets"
+line that names each set by one plural noun and lists its members in fixed
+order (the plural-noun test: an institute does not belong in a set of
+processes). Run the read-through test on the key line. End with one approval
+question and stop, as "The gate" defines it; short prose follows the rule
+below instead.
+
+### 0.3 Stage 2: the memo
+
+Write from the approved storyline, in this order:
+
+1. **Lead.** The governing thought, with the SCQA opening before or after it as
+   the chosen variant says. Keep only what the reader does not already know.
+2. **Sections.** One per key-line claim. Heading = the claim as a full sentence
+   in the storyline's wording, up to roughly 20 words; a longer claim gets a
+   short-form heading and appears in full as the section's first sentence. The
+   first sentence of each section restates or sharpens the claim; the rest
+   proves it. One idea per paragraph, the first sentence of a paragraph is its
+   claim, at most three sentences per paragraph; three or more parallel items
+   or questions inside a paragraph become a list. Dissent is argued under the
+   claim it concerns, as the storyline placed it.
+3. **Implications.** When the memo type calls for it (event or meeting report,
+   status note, thesis of a day): what follows for the reader or the reader's
+   groups, the steps that were announced, and the questions that stayed open.
+   Claims and evidence from the sections only; nothing new.
+4. **Closing.** Governing thought restated with the confidence the evidence
+   earns, then the ask or next steps when the memo type has one.
+5. **Evidence.** Numbers with unit and period, named sources, attribution as
+   settled in Stage 0. Unknowns as `[PLACEHOLDER: what is needed]`, listed
+   under the closing. Source material in an annex (session table, list of
+   documents) when the type calls for it, never in the body.
+6. **Consistency pass** against the register and its sets; terms per
+   `glossary.md`.
+7. **Self-check** against the quick checklist in `memo-format.md` and checks
+   A to D of `audit-checklist.md`, reading "heading" for "title".
+
+No framework labels in the text: the lead is the situation, not "Situation:".
+Lists for three or more parallel items, tables for items compared on several
+attributes, prose for everything else. Keep the length budget. When the memo
+runs over, narrow claims and shorten their evidence together, so that no claim
+stands with less support than it had; a key-line claim may become narrower,
+never disappear; conditions, counter-positions, attributions and the
+limitations of the evidence survive every cut (memo-format.md section 3).
+
+
 ## 1. Memo types and mandatory elements
 
 Identify the type first; the completeness check needs a target.

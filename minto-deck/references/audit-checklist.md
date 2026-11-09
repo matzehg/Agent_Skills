@@ -6,8 +6,8 @@ fix blockers, list warnings; Audit: full report, no changes).
 
 ## Quick checklist
 
-- [ ] Deck type, audience and setting identified or asked
-- [ ] Checks run in order A to G; each finding carries its check ID and slide number
+- [ ] Deck type, audience, setting and density mode identified or asked
+- [ ] Checks run in order A to H; each finding carries its check ID and slide number; words per content slide and exhibit ratio reported
 - [ ] Severity assigned: blocker, warning, advisory
 - [ ] Report in the given format: verdict, title read-through with rewrites, findings, missing elements, three biggest changes
 - [ ] Titles quoted verbatim; rewrite proposed next to each flagged title
@@ -54,7 +54,7 @@ Run in this order; each level depends on the one above.
 |---|---|---|
 | B1 | Three to five key-line claims, each a full sentence | agenda of topics; seven sections |
 | B2 | Same kind (plural-noun test) | reasons and steps mixed |
-| B3 | No overlap; scope named and covered | same evidence under two sections |
+| B3 | No overlap; scope named and covered; no catch-all peer | same evidence under two sections; "Sonstiges", "Weitere", "Other" as a peer without a stated reason |
 | B4 | One logical order per set, visible in wording | order cannot be named |
 | B5 | Sections, tracker, agenda, management summary use the same wording | three versions of the key line |
 | B6 | Deductive chains have at most four steps | five "therefore" steps |
@@ -125,6 +125,24 @@ Run in this order; each level depends on the one above.
 | G12 | Layout pattern matches the claim (big number, chart with callout, comparison, pillars, flow, bridge, scorecard, timeline, executive summary) |
 | G13 | Charts with scenarios or variances follow IBCS notation: time horizontal, structure vertical, scenario fills (actual solid, plan outlined, forecast hatched, previous period light), variances green/red with signs, axes at zero, same scale per unit on a page, descriptive chart title under the action title |
 | G14 | Reading decks and handouts meet `reading-decks.md` section 7: standalone pages, no presenter cues, sources on the page, navigation present, one highlight per page |
+
+### H. Exhibits and text budget (`exhibits.md`)
+
+| # | Check | Signal |
+|---|---|---|
+| H1 | Density mode declared and kept: body words per content slide within the budget for the mode (speaker-led up to about 40, reading-first 75 to 250) | a "speaker-led" deck averaging 100 words of body text; a handout with label-only slides |
+| H2 | Every exhibit has the form its body shape calls for (`exhibits.md` section 1) | a sequence drawn as pillars; peers drawn as layers; a 2 x 2 with correlated axes |
+| H3 | The subject of the title is the highlighted element, one highlight per exhibit | all bars or nodes in one colour; the accent on an element the title does not name |
+| H4 | Order and reading direction follow the message and the fixed conventions | items in source order; time running right to left; the good corner bottom left |
+| H5 | Scale honesty: zero baseline, equal scales across compared charts, judged placements marked | truncated axes without a mark; two charts side by side on different scales |
+| H6 | Register inside exhibits: names, order and colours as registered | an entity renamed in a legend; a set reordered on one slide |
+| H7 | Cleaning done: no element without a job, direct labels, caps kept (five to seven nodes, one exhibit per slide) | decorative icons; legends for four series; nine-node diagrams |
+| H8 | Text form marks carry a reason; exhibit ratio reported (content slides with chart, table or concept form over all content slides) | "text" without a reason; ratio far below two thirds in a deck that has numbers |
+| H9 | No invented data; placeholder data marked inside the exhibit | a chart with plausible but unsourced values |
+
+Severity: H1 and H9 are blockers; H2, H3 and H5 are warnings that become
+blockers in a decision paper; the rest are warnings. H8 is information unless
+a text mark has no reason.
 
 ## 3. Severity
 
