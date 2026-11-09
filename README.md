@@ -9,7 +9,7 @@ zip under Customize > Skills), Claude for PowerPoint, Cowork and Claude Code.
 
 | Skill | Purpose | Status |
 |---|---|---|
-| `minto-deck` | Build, write and audit after the Pyramid Principle and consulting practice: two-stage deck workflow (ghost deck with register for approval, then deck with speaker notes, timing plan, Q&A, backup, handout), a memo mode for answer-first prose (management summaries, Vermerke, event reports, thesis of a day) with a storyline gate, and an audit mode for existing decks and memos | v0.6.1, in test |
+| `minto-deck` | Build, write and audit after the Pyramid Principle and consulting practice: two-stage deck workflow (ghost deck with register for approval, then deck with speaker notes, timing plan, Q&A, backup, handout), a memo mode for answer-first prose (management summaries, Vermerke, event reports, thesis of a day) with a storyline gate, and an audit mode for existing decks and memos | v0.6.2, in test |
 
 ## Layout of a skill
 
@@ -41,6 +41,8 @@ zip under Customize > Skills), Claude for PowerPoint, Cowork and Claude Code.
 Apache 2.0, see `LICENSE`.
 
 ## Changelog
+
+- v0.6.2: evidence fidelity (calibrated claims instead of a hedge ban, fictional worked examples with full sources, weigh-not-count rule for single sources, cuts keep conditions and dissent); short prose delivered directly; the gate defined once with approval-with-changes and carry-over; rule gaps proposed, persisted only in maintenance; Chatham House only by explicit agreement; renderer fixes (colours from T.colors, chevron sub lines, section timing, handout filter and 11 pt minimum, bigStat geometry) with a smoke test; graders aligned and four eval cases added; full-sentence titles only.
 
 - v0.6.1: Memo-mode fixes from the first real run: SCQA opening with Question and Answer in memo and ghost-deck storylines; Sets line in the memo register; evidence marks per key-line claim; dissent and implications lines in the storyline; Implications step in Stage 2; heading length rule; list rule for enumerated items.
 

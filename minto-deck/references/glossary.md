@@ -2,7 +2,8 @@
 
 Fixed term pairs. Use the English term with the German gloss on first use in a
 German deck's commentary and notes; on the slides themselves use only the deck
-language. Add pairs here when a new term appears in a project.
+language. Add pairs here only in a skill-maintenance task; a project's own
+terms and names live in that project's register, not here.
 
 | English | Deutsch | Note |
 |---|---|---|

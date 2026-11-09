@@ -2,7 +2,7 @@
 name: minto-deck
 description: "Build, write and audit after Barbara Minto's Pyramid Principle and consulting practice: governing thought, SCQA opening, MECE key line, full-sentence claims. Build mode makes slide decks in two stages: ghost deck for approval, then deck with speaker notes, timing, Q&A, backup, handout. Memo mode writes answer-first prose: management summaries, briefing notes, event or meeting reports, the thesis of a day, after a short storyline gate. Audit mode reviews a deck or memo and reports weak claims, broken logic and missing elements, with rewrites. Use whenever the user asks for slides, a deck, presentation, pitch, talk, storyline, ghost deck, speaker notes, management summary, Kernbotschaft, These, Vermerk, Veranstaltungsbericht, an answer-first or Minto summary, or wants a deck or memo reviewed; also on Folien, Praesentation, Vortrag, Entscheidungsvorlage, Sprechzettel, Deck pruefen. Trigger even without the word Minto. Not for transcription, translation or plain recaps. German, English."
 metadata:
-  version: "0.6.1"
+  version: "0.6.2"
   updated: "2026-11-05"
   language: "en, de"
 ---
@@ -18,7 +18,10 @@ the same in Claude.ai, Cowork, Claude Code or any Agent-Skills-compatible host.
 
 ## Three modes
 
-Choose exactly one mode per request and name it in the first line of the reply.
+Choose the starting mode for the request and name it in the first line of the
+reply; a combined request runs modes in sequence, each named when it starts.
+The one exception is short prose (see "Short prose" under Memo mode), which
+carries no mode label.
 
 - **Build**: the user wants a new deck, a storyline, a ghost deck, speaker notes
   for a deck that does not exist yet, or a rework of material into slides.
@@ -32,7 +35,8 @@ Choose exactly one mode per request and name it in the first line of the reply.
   Audit mode unless the user asks for a rewrite; then report first, rewrite second.
 
 A request like "fix my deck" is Audit followed by Build Stage 1 on the corrected
-storyline. Say so before starting. "Summarise these notes" with no further wish
+storyline. Say so before starting. The gate between stages is defined once,
+in "The gate" below; the references point there. "Summarise these notes" with no further wish
 is a plain summary and outside this skill; "summarise so the key message comes
 first", "what is the thesis of the day", "write the management summary" is Memo
 mode. When a memo and a deck are both wanted, run Memo first: the approved memo
@@ -112,11 +116,10 @@ Build it in this order:
 Output exactly the ghost-deck format in `references/storyline-ghost-deck.md`:
 numbered titles grouped by section, register, timing skeleton, assumptions,
 open points, and at most one alternative key line if the material supports a different
-structure. Then stop. End the reply with the approval question. Do not produce
-slides, notes or files in the same turn, even if the user asked for "the deck":
-the gate is the point of the method, and a storyline change costs minutes now and
-hours later. If the user explicitly asked for a one-shot run, say that the gate
-is being skipped at their request and continue.
+structure. Then stop and end the reply with the approval question, as "The
+gate" below defines it. Do not produce slides, notes or files in the same
+turn, even if the user asked for "the deck": the gate is the point of the
+method, and a storyline change costs minutes now and hours later.
 
 When the user edits titles, regenerate only the affected part of the storyline
 and re-run the read-through test. Do not re-open approved sections.
@@ -201,7 +204,9 @@ spreadsheet-style tables. Thumbnails do not show these.
 Read `references/memo-format.md` and `references/minto-pyramid.md` before
 starting. A memo applies the same pyramid as a deck, flattened into prose: the
 governing thought leads, the section headings are the key-line claims, every
-paragraph proves its heading. Two stages, one light gate.
+paragraph proves its heading. Two stages, one light gate; what goes into the
+key line is decided by relevance to the reader's question and the quality of
+the evidence, not by how many sources repeat a point (memo-format.md section 4).
 
 ### Stage 0: briefing
 
@@ -220,7 +225,9 @@ questions at once.
 4. Length budget (words or pages) and destination: chat reply, a doc, a file.
 5. Material and sources: what may be used, what must not be invented, how
    statements are attributed. For a report on talks or meetings, settle whether
-   speakers are named, named by role, or not at all (`memo-format.md` section 5).
+   speakers are named, named by role, or not at all (`memo-format.md` section 5);
+   the "none" setting applies only when the user or the material names an
+   explicit agreement such as the Chatham House Rule.
 6. Whether a deck follows. If yes, build the storyline so that it carries over.
 
 ### Stage 1: storyline
@@ -229,7 +236,7 @@ Deliver, in the format in `memo-format.md` section 2: the governing thought in
 one sentence; the opening as all four SCQA lines, situation and complication
 as one sentence each, the question the complication raises, and the answer as
 the governing thought verbatim, so the reader can check at the gate that the
-answer answers the question; the key line of three to five claims as full
+answer answers the question; the key line of two to five claims (three to five is the norm) as full
 sentences, ordered by theme or argument, never by the order of the source
 material, each with an evidence mark (available, missing or placeholder, and
 the source); the order and its criterion; where dissent between sources sits
@@ -240,9 +247,8 @@ bodies, roles, systems or options that must stay consistent, with a "Sets"
 line that names each set by one plural noun and lists its members in fixed
 order (the plural-noun test: an institute does not belong in a set of
 processes). Run the read-through test on the key line. End with one approval
-question and stop. Exceptions: the user asked for a one-shot run, or
-the memo is under roughly 300 words; then state governing thought and key line
-in two lines and continue in the same turn.
+question and stop, as "The gate" defines it; short prose follows the rule
+below instead.
 
 ### Stage 2: the memo
 
@@ -275,8 +281,21 @@ Write from the approved storyline, in this order:
 
 No framework labels in the text: the lead is the situation, not "Situation:".
 Lists for three or more parallel items, tables for items compared on several
-attributes, prose for everything else. Keep the length budget; a memo that runs
-over is cut at the evidence, never at the key line.
+attributes, prose for everything else. Keep the length budget. When the memo
+runs over, narrow claims and shorten their evidence together, so that no claim
+stands with less support than it had; a key-line claim may become narrower,
+never disappear; conditions, counter-positions, attributions and the
+limitations of the evidence survive every cut (memo-format.md section 3).
+
+### Short prose
+
+For a text of roughly 300 words or less (a thesis of a day, a short summary,
+a paragraph for an email), run the Stage 0 and Stage 1 checks internally and
+deliver the finished text directly, in the format the user asked for. No mode
+label, no separate storyline, no headings, no repeated conclusion, unless the
+user asked for them or the format needs them. The text still leads with the
+governing thought and still keeps attribution, uncertainty and dissent. If
+the user later wants changes, treat the delivered text as the storyline.
 
 ### Rendering
 
@@ -293,6 +312,29 @@ deck's register. Start Build Stage 1 from the memo, add the evidence marks and
 the timing skeleton, and gate again only on what changed. In the other
 direction, the management summary and the handout of a finished deck are memos
 and follow this mode's writing rules.
+
+## The gate
+
+One definition for Build and Memo; `storyline-ghost-deck.md` and
+`memo-format.md` point here.
+
+- Default: Stage 1 ends with exactly one question, whether the storyline (and
+  the register) is approved as is or which lines to change, and the reply
+  stops there. Stage 2 never starts in the same turn.
+- Approval with changes: a reply that names changes and says to continue
+  ("change claim 2 to …, then go on", "approved except the title of slide 7")
+  is an approval. Apply the changes, show the changed lines in one block, and
+  continue into Stage 2 in the same turn, without a second question. A reply
+  with changes and no instruction to continue gets the changed lines and the
+  question again.
+- Carry-over: an approved memo storyline carries into the ghost deck and an
+  approved ghost deck into a handout; the gate opens again only for what
+  changed in the carry-over.
+- Exceptions, each named in the reply when used: the user explicitly asked
+  for a one-shot run (say that the gate is skipped at their request); short
+  prose under roughly 300 words (no storyline at all, see Memo mode); a
+  revision that does not touch the key line (deck fixes, wording, layout).
+- A revision that changes the key line re-opens the gate.
 
 ## Hosts with subagents
 
@@ -316,10 +358,14 @@ Feedback on a delivered deck comes in three ways; handle each the same way.
 
 Sort every item into two classes before changing anything: a deck fix (wrong
 on this deck only) or a rule gap (the skill would make the same mistake again).
-Deck fixes go into the deck. Rule gaps go into `SKILL.md` or the reference
-they belong to, and then into the deck. Report the sorting to the user, apply
-title changes through the ghost deck and the register, and rebuild from the
-approved storyline. A revision that changes the key line re-opens the gate.
+Deck fixes go into the deck. Rule gaps are reported to the user as proposed
+skill changes, in a list separate from the deck changes; they are written into
+`SKILL.md`, a reference or the glossary only in a skill-maintenance task the
+user has asked for, never as a side effect of a deck revision. A project's
+own names and terms live in that project's register, not in the glossary.
+Report the sorting to the user, apply title changes through the ghost deck and
+the register, and rebuild from the approved storyline. A revision that changes
+the key line re-opens the gate.
 
 ## Audit mode
 
@@ -349,8 +395,12 @@ Read `references/audit-checklist.md` and `references/minto-pyramid.md`.
 
 - Invent numbers, quotes, company examples or sources. Mark placeholders as
   `[PLACEHOLDER: what is needed]` and list them in the delivery note.
-- Write topic titles ("Market overview", "Risks") or hedged titles ("Results
-  may indicate…"). A title states a claim.
+- Write topic titles ("Market overview", "Risks") or filler hedges ("Results
+  may indicate various effects"). A title states the strongest claim the
+  evidence supports, and keeps the uncertainty, attribution, condition or
+  scope that accuracy requires: "Pilot data from six volunteers point to
+  shorter search times" is a precise claim, "The assistant cuts search time"
+  overclaims it. Calibration is not hedging.
 - Mix logical orders inside a peer set, or mix speaker-led and reading-first
   density inside one deck.
 - Skip the Stage 1 gate silently, in Build or in Memo mode.

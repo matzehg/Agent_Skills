@@ -1,0 +1,9 @@
+schema_version: "1.1"
+name: memo-unsupported-number
+expected_outcome: |
+  The summary leads with the shared conclusion (an inventory of AI systems is
+  the first step because nobody knows how many procedures are affected) and
+  keeps both figures as attributed estimates: "etwa ein Drittel" as the
+  speaker's estimate without a survey, "fünf von zwölf" as the IT lead's
+  unverified guess. The deadline stays a placeholder. Neither figure appears
+  as a fact. Under 250 words, no mode label, no headings, no storyline block.

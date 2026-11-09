@@ -14,7 +14,7 @@ changing it is cheap.
 - [ ] Register: every named entity with name, category, definition, status; sets listed
 - [ ] Evidence mark per title; gap list for every missing piece
 - [ ] Timing skeleton fits the slot; discussion reserved; cut priorities set
-- [ ] Output format exactly as specified; ends with one approval question; no Stage 2 in the same turn
+- [ ] Output format exactly as specified; ends with one approval question; no Stage 2 in the same turn unless an exception in SKILL.md "The gate" applies
 
 Detail follows; the checklist is what gets ticked before delivery.
 
@@ -136,15 +136,18 @@ same sentence that will later appear in the management summary.
 ## Title rules at this stage
 
 - One claim per title. Two claims means two slides or one sharper claim.
-- Specific over hedged: a number, a count, a named cause. No "may", "could
-  indicate", "various".
+- State the strongest claim the evidence supports: a number, a count, a named
+  cause. Remove filler ("various", "significant", "may" without a reason), but
+  keep the uncertainty, attribution, condition or scope that accuracy needs.
+  "Pilot data from six volunteers point to shorter search times" is calibrated;
+  "The assistant cuts search time" overclaims the same data.
 - Active verb, named actor where possible.
 - Length: readable in one breath. Around eight to sixteen words in English,
   ten to eighteen in German. Treat the count as a signal, not a rule; a
   precise long title beats a vague short one.
-- Parallel grammar inside each peer set: all full sentences, or all
-  noun-phrase assertions ("Three steps that cut approval time in half"), never
-  mixed.
+- Every title is a full sentence with a subject and a verb; parallel grammar
+  inside each peer set. Noun-phrase assertions ("Three steps that cut approval
+  time in half") are not titles in this skill.
 - No framework labels in titles. "SCQA: Situation" is commentary; the title is
   the situation itself.
 
@@ -194,12 +197,16 @@ Cut priorities:
 
 ## The gate
 
+Defined once in `SKILL.md`, section "The gate"; this is the Stage 1 view of it.
 End the Stage 1 reply with exactly one question: whether the ghost deck and
-the register are approved as is, or which titles or register lines to change. Do not continue to Stage 2 in the
-same turn. When the user replies with changes, apply them to the affected
-titles, re-run the read-through, show the changed lines and ask again. When the
-user replies "approved" or equivalent, start Stage 2 and say which version of
-the ghost deck it builds on.
+the register are approved as is, or which titles or register lines to change.
+Do not continue to Stage 2 in the same turn unless one of the exceptions in
+`SKILL.md` applies (one-shot run asked for, carry-over of an approved memo
+storyline). A reply with changes and an instruction to continue is an
+approval: apply the changes, re-run the read-through on the affected set, show
+the changed lines and go on. A reply with changes and no such instruction gets
+the changed lines and the question again. When the user replies "approved" or
+equivalent, start Stage 2 and say which version of the ghost deck it builds on.
 
 ## Worked pattern (structure only, not content to reuse)
 

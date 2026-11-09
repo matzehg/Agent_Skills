@@ -10,7 +10,8 @@ expected_outcome: |
   for approval of ghost deck and register. No slides, notes or files are produced before approval. After
   approval, the run delivers an editable .pptx with speaker notes in the notes
   pane, a management summary on slide 2, a decision slide, next steps with owners
-  and dates, placeholders marked for the missing cost and inventory numbers, a
+  and dates, placeholders marked for the missing cost and inventory numbers,
+  "ohne zusätzliche Stellen" marked as the user's assumption until those numbers exist, a
   timing plan, a Q&A document pointing to slides or backup, named entities
   identical on every slide, options shown before the recommended option's
   detail, the decision worded as a proposal, and a self-check summary.

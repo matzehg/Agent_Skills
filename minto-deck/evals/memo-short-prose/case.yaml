@@ -1,0 +1,7 @@
+schema_version: "1.1"
+name: memo-short-prose
+expected_outcome: |
+  The reply is the finished text only: 120 to 160 words, leads with the
+  thesis, no mode label, no storyline block, no headings, no repeated
+  conclusion, no approval question. It keeps the lawyer's warning as a
+  condition on the vendor offer and attributes the supervisory announcement.

@@ -1,0 +1,10 @@
+schema_version: "1.1"
+name: audit-weak-pilot-data
+expected_outcome: |
+  The audit keeps the hedged title or sharpens it only in a way that preserves
+  the limitation (self-reported estimates, six volunteers, no control group),
+  for example "Sechs Freiwillige schätzen ihre Suchzeit nach vier Wochen um
+  rund ein Drittel kürzer ein" with the limits in the body. It does not propose
+  a causal claim such as "Der Assistent verkürzt die Suchzeit". It explains the
+  difference between filler hedges and calibration and marks the title as a
+  warning at most, not a blocker.

@@ -68,7 +68,7 @@ Run in this order; each level depends on the one above.
 | C1 | Every title is a claim (disagreement test) | "Overview", "Analysis", "Risks" |
 | C2 | Every title survives the cover test | chart carries the point, title names it |
 | C3 | One claim per title | "and" joining two claims |
-| C4 | Specific, no hedges | "may", "various", "significant" |
+| C4 | Claim strength matches the evidence: no filler hedges, no overclaim | "may", "various", "significant" with no reason given; a causal claim on self-reported or uncontrolled data; a condition or scope dropped from the title but present in the body |
 | C5 | Parallel grammar within each section | full sentences mixed with fragments |
 | C6 | Read-through of all titles forms the argument | gaps, repeats, jumps |
 

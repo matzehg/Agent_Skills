@@ -17,8 +17,12 @@
 // its apply_theme.js is used to write a proper theme into the file.
 
 const pptxgen = require("pptxgenjs");
+// Optional: Anthropic's pptx skill can write the palette into the file's theme
+// so that Office's colour menus show it. Rendering never depends on it: every
+// element below takes its colour from T.colors as a hex value. write() reports
+// whether the theme writer ran.
 let applyTheme = null;
-try { ({ applyTheme } = require("/mnt/skills/public/pptx/scripts/apply_theme.js")); } catch (e) { /* optional */ }
+try { ({ applyTheme } = require("/mnt/skills/public/pptx/scripts/apply_theme.js")); } catch (e) { applyTheme = null; }
 
 const DEFAULT_THEME = {
   name: "Minto Neutral",
@@ -45,7 +49,14 @@ function createDeck(opts = {}) {
   pres.theme = { headFontFace: T.headFontFace, bodyFontFace: T.bodyFontFace };
   pres.author = opts.author || "";
   pres.title = opts.title || "";
-  const C = pres.SchemeColor;
+  // Colour roles as hex from T.colors. Scheme colours (pres.SchemeColor) would
+  // resolve against the file's theme, which is Office's default palette unless
+  // a theme writer runs; that mixed two palettes in one deck.
+  const C = {
+    text1: T.colors.dk1, text2: T.colors.dk2, background1: T.colors.lt1, background2: T.colors.lt2,
+    accent1: T.colors.accent1, accent2: T.colors.accent2, accent3: T.colors.accent3,
+    accent4: T.colors.accent4, accent5: T.colors.accent5, accent6: T.colors.accent6,
+  };
 
   // ---- grid and zones (inches) ----
   const W = 13.33, M = 0.5, CW = W - 2 * M, G = 0.25;
@@ -68,7 +79,7 @@ function createDeck(opts = {}) {
   ] });
   pres.defineSlideMaster({ title: "CONTENT", background: { color: T.colors.lt1 }, objects: [
     { placeholder: { options: { name: "title", type: "title", x: M, y: TITLE_Y, w: CW - 2.2, h: TITLE_H, fontSize: F.title, bold: true, color: T.colors.dk1, align: "left", valign: "top", margin: 0 } } },
-  ], slideNumber: { x: W - M - 0.6, y: SRC_Y, w: 0.6, h: 0.3, fontSize: 10, color: T.colors.accent6, align: "right" } });
+  ], slideNumber: { x: W - M - 0.6, y: SRC_Y, w: 0.6, h: 0.3, fontSize: F.small, color: T.colors.accent6, align: "right" } });
 
   // ---- notes (speaker-notes.md) ----
   const timeStr = (t) => String(t).replace(".", ",");
@@ -84,6 +95,15 @@ function createDeck(opts = {}) {
   }
   const handoutNotes = (n) => `Kernpunkt: ${n.key}`;
   const notesLog = [];
+  // One registration for every slide type: the handout filter and the timing
+  // log apply alike to title, section and content slides.
+  function registerNotes(s, title, notes) {
+    if (!notes) return null;
+    const n = typeof notes === "string" ? { key: notes } : notes;
+    s.addNotes(HANDOUT ? handoutNotes(n) : speakerNotes(n));
+    notesLog.push({ title, time: n.time });
+    return n;
+  }
 
   // ---- primitives ----
   const box = (s, x, y, w, h, fill, name = "box") =>
@@ -100,10 +120,16 @@ function createDeck(opts = {}) {
     bullets(s, items, x + 0.25, y + 0.85, w - 0.5, h - 1.05, { fontSize: o.size || F.body, gap: o.gap });
   }
   function bigStat(s, x, y, w, h, stat, label, sub) {
+    // Reserve the sub line first, then give the label the space that is left;
+    // the three boxes never overlap (card height of 1.6 in or more).
     box(s, x, y, w, h, C.background2, "stat-box");
-    txt(s, stat, x + 0.3, y + 0.2, w - 0.6, h * 0.42, { fontSize: F.big, bold: true, color: C.accent1, valign: "middle" });
-    txt(s, label, x + 0.3, y + h * 0.5 + 0.1, w - 0.6, h * 0.3, { fontSize: F.head, color: C.text1 });
-    if (sub) txt(s, sub, x + 0.3, y + h - 0.6, w - 0.6, 0.45, { fontSize: F.small, color: C.accent6 });
+    const pad = 0.2, subH = sub ? 0.45 : 0;
+    const statH = Math.max(0.6, Math.min(h * 0.42, h - subH - 0.9));
+    const labelY = y + pad + statH + 0.05;
+    const labelH = Math.max(0.3, (y + h - subH - 0.15) - labelY);
+    txt(s, stat, x + 0.3, y + pad, w - 0.6, statH, { fontSize: F.big, bold: true, color: C.accent1, valign: "middle" });
+    txt(s, label, x + 0.3, labelY, w - 0.6, labelH, { fontSize: F.head, color: C.text1 });
+    if (sub) txt(s, sub, x + 0.3, y + h - subH - 0.15, w - 0.6, subH, { fontSize: F.small, color: C.accent6 });
   }
   function label(s, text, x, y, w, o = {}) {
     txt(s, text, x, y, w, 0.35, Object.assign({ fontSize: F.small, color: C.accent6, charSpacing: 1 }, o));
@@ -123,10 +149,17 @@ function createDeck(opts = {}) {
   }
   const MARK = (color, ch = "●", size) => ({ text: ch, options: { color, bold: true, fontSize: size || F.tbl + 2 } });
   function chevrons(s, items, y, h, o = {}) {
-    // items: [{head, sub}] ; highlight index via o.hl
+    // items: [{head, sub}] ; highlight index via o.hl. A sub line (owner, date,
+    // deliverable) renders under the head; nothing passed in is dropped.
+    const hasSub = items.some(it => it && it.sub);
     cols(items.length).forEach((c, i) => {
       s.addShape(pres.ShapeType.chevron, { x: c.x, y, w: c.w, h, fill: { color: i === o.hl ? T.colors.accent2 : T.colors.dk2 }, line: { color: T.colors.lt1, width: 0 }, objectName: "chevron" });
-      txt(s, items[i].head, c.x + 0.55, y, c.w - 0.95, h, { fontSize: F.body, bold: true, color: C.background1, valign: "middle" });
+      if (hasSub) {
+        txt(s, items[i].head, c.x + 0.55, y + 0.08, c.w - 0.95, h * 0.5, { fontSize: F.body, bold: true, color: C.background1, valign: "bottom" });
+        if (items[i].sub) txt(s, items[i].sub, c.x + 0.55, y + h * 0.56, c.w - 0.95, h * 0.4, { fontSize: F.small, color: C.accent5, valign: "top" });
+      } else {
+        txt(s, items[i].head, c.x + 0.55, y, c.w - 0.95, h, { fontSize: F.body, bold: true, color: C.background1, valign: "middle" });
+      }
     });
   }
   function pill(s, text, x, y, w, o = {}) {
@@ -139,33 +172,34 @@ function createDeck(opts = {}) {
     const s = pres.addSlide({ masterName: "TITLE" });
     s.addText(title, { placeholder: "title" });
     s.addText(lines.map((l, i) => ({ text: l.text, options: Object.assign({ breakLine: i < lines.length - 1 }, l.options || {}) })), { placeholder: "body" });
-    if (notes) { s.addNotes(speakerNotes(notes)); notesLog.push({ title, time: notes.time }); }
+    registerNotes(s, title, notes);
     return s;
   }
   function sectionSlide(title, notes) {
     const s = pres.addSlide({ masterName: "SECTION" });
     s.addText(title, { placeholder: "title" });
-    if (notes) s.addNotes(typeof notes === "string" ? notes : speakerNotes(notes));
+    registerNotes(s, title, notes);
     return s;
   }
   // content(tracker, title, source, notes, build(slide, h)) — h exposes geometry and primitives
   function content(tracker, title, source, notes, build) {
     const s = pres.addSlide({ masterName: "CONTENT" });
     s.addText(title, { placeholder: "title" });
-    if (tracker) s.addText(String(tracker).toUpperCase(), { x: W - M - 2.1, y: TITLE_Y, w: 2.1, h: 0.3, fontSize: 9, color: C.accent6, align: "right", charSpacing: 1, margin: 0, isTextBox: true, objectName: "tracker" });
+    if (tracker) s.addText(String(tracker).toUpperCase(), { x: W - M - 2.1, y: TITLE_Y, w: 2.1, h: 0.3, fontSize: F.small, color: C.accent6, align: "right", charSpacing: 1, margin: 0, isTextBox: true, objectName: "tracker" });
     build(s, api);
     if (HANDOUT && notes) {
       box(s, M, KEY_Y, CW, KEY_H, C.background2, "key-box");
       s.addText([{ text: "Kernpunkt: ", options: { bold: true } }, { text: notes.key }], { x: M + 0.2, y: KEY_Y, w: CW - 0.4, h: KEY_H, fontSize: 12, color: C.text1, valign: "middle", margin: 0, isTextBox: true, objectName: "key-text" });
     }
-    if (source) s.addText(source, { x: M, y: SRC_Y, w: CW - 0.8, h: 0.3, fontSize: 10, color: C.accent6, margin: 0, isTextBox: true, objectName: "source" });
-    if (notes) { s.addNotes(HANDOUT ? handoutNotes(notes) : speakerNotes(notes)); notesLog.push({ title, time: notes.time }); }
+    if (source) s.addText(source, { x: M, y: SRC_Y, w: CW - 0.8, h: 0.3, fontSize: F.small, color: C.accent6, margin: 0, isTextBox: true, objectName: "source" });
+    registerNotes(s, title, notes);
     return s;
   }
   async function write(path) {
     await pres.writeFile({ fileName: path });
-    if (applyTheme) await applyTheme(path, T);
-    return { path, slides: pres.slides.length, minutes: notesLog.reduce((a, n) => a + (Number(n.time) || 0), 0), notesLog };
+    let themeApplied = false;
+    if (applyTheme) { await applyTheme(path, T); themeApplied = true; }
+    return { path, slides: pres.slides.length, minutes: notesLog.reduce((a, n) => a + (Number(n.time) || 0), 0), notesLog, themeApplied };
   }
 
   const api = { pres, C, T, F, MODE, HANDOUT, W, M, CW, G, TITLE_Y, TITLE_H, BODY_Y, BODY_H, KEY_Y, KEY_H, SRC_Y, TINT, TINT_SIGNAL, RULE,

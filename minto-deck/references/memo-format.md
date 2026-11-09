@@ -12,15 +12,15 @@ first; it carries the rules this file applies.
 - [ ] Memo type, audience and their question named; attribution setting settled
 - [ ] Governing thought in the first sentence or title, as a claim someone could disagree with; marked "derived" when the user did not supply it
 - [ ] SCQA opening with all four lines in the storyline (situation, complication, question, answer = governing thought verbatim); only what the reader does not know; variant named
-- [ ] Key line of three to five full-sentence claims, grouped by theme or argument, never by source order; one order, criterion named; evidence mark per claim
+- [ ] Key line of two to five full-sentence claims (three to five the norm), weighted by relevance and evidence quality, grouped by theme or argument, never by source order; one order, criterion named; evidence mark per claim
 - [ ] Register with a "Sets" line: each set one plural noun, members in fixed order
 - [ ] Dissent placed under the claim it concerns; implications for the reader planned where the type requires them
 - [ ] Every heading a full sentence of up to roughly 20 words; first sentence of every section and paragraph a claim; at most three sentences per paragraph; three or more parallel items or questions as a list
 - [ ] Closing restates the governing thought; ask or next steps where the type requires
-- [ ] Evidence with unit, period and source; attribution as settled; placeholders marked and listed
+- [ ] Evidence with unit, period and source; attribution as settled; placeholders marked and listed; estimates, user assumptions and unsupported figures stay marked as such, never promoted to fact
 - [ ] Source material (sessions, documents, speakers) in an annex, not in the body
 - [ ] Length within budget; no framework labels in the text
-- [ ] Storyline approved before the memo is written, unless one-shot or under 300 words
+- [ ] Storyline approved before the memo is written, as SKILL.md "The gate" defines it; short prose under roughly 300 words is delivered directly
 
 Detail follows; the checklist is what gets ticked before delivery.
 
@@ -35,7 +35,7 @@ Identify the type first; the completeness check needs a target.
 | **Event or meeting report** (Veranstaltungsbericht, Sitzungsbericht, Tagungsbericht) | thesis of the event in the lead; what it means for the reader's organisation or decision; key line by theme, not by session; dissent and open questions named; attribution as settled; session or agenda table with speakers, format, duration and one-sentence message in an annex | 600 to 1,500 words plus annex |
 | **Decision memo** (Entscheidungsvermerk) | problem as R1 (today) and R2 (wanted); options with explicit criteria, shown before the detail of the recommended one; recommendation marked; cost, benefit, risk with period and owner; the decision worded as a proposal; consequence of no decision; next steps | one to three pages |
 | **Status note** (Statusnotiz) | overall status in one sentence; planned versus achieved; deviations with cause; decisions or support needed; next period; risks that changed | half a page to one page |
-| **Thesis of a day** (These des Tages; the shortest form of the event report) | one governing thought; key line of three to five claims; one sentence of evidence per claim; nothing else | 100 to 250 words |
+| **Thesis of a day** (These des Tages; the shortest form of the event report) | one governing thought; key line of two to five claims; one sentence of evidence per claim; attribution and dissent kept; nothing else; delivered as short prose without storyline or mode label | 100 to 250 words |
 
 Elements every type needs: a governing thought before the evidence, full-sentence
 headings, a visible key line in the same wording in lead, headings and closing,
@@ -150,22 +150,35 @@ references. A mixed audience is written for the external reader.
 **Framework labels.** None in the text. SCQA, key line, governing thought,
 MECE belong in the storyline and in the author's commentary.
 
-**Length budget.** Agreed in Stage 0, enforced in Stage 2. Cut evidence before
-claims, examples before mechanisms, never the key line.
+**Length budget.** Agreed in Stage 0, enforced in Stage 2. When the text runs
+over, cut examples before mechanisms, and narrow a claim together with its
+evidence rather than leaving a strong claim on thin support. What never falls
+to a cut: counter-positions, conditions, attributions, and the limitations of
+the evidence; the key line stays, a claim in it may become narrower.
 
-### Before and after
+### Before and after (fictional source)
+
+Source notes, invented for this example, in full: "Referent X (Ministerium)
+nennt Daten eine strategische Ressource. Begründung: Wer den Zugang zu
+Rechenleistung und Modellen verliert, verliert Handlungsfähigkeit. Er nennt
+sechs Dimensionen digitaler Wehrfähigkeit und erwähnt, dass ein KI-Lagebild
+seit 2025 in einem Versuch erprobt wird. Zur EU-KI-Verordnung sagt er, sie
+passe nicht auf den Einsatz; eine Bereichsausnahme werde geprüft."
 
 ```
 Before (recap)                                  After (answer-first)
-## Session 1: Keynote                           ## Ohne eigene Daten und KI-Fähigkeit bleibt eine Armee nicht handlungsfähig
-Der Referent sprach über digitale                Daten sind eine strategische Ressource. Wer Zugang zu Rechenleistung und
-Kriegstüchtigkeit und stellte sechs              Modellen verliert, verliert Handlungsfähigkeit. Die Bundeswehr nutzt Daten
-Dimensionen vor. Danach ging es um               nach zentraler Data Governance und erprobt KI-gestützte Lagebilder seit 2025.
-Daten und um die EU-KI-Verordnung.
+## Vortrag X                                    ## Ohne Daten keine Handlungsfähigkeit: Daten sind laut Referent X eine strategische Ressource
+Referent X sprach über digitale                 Referent X nennt Daten eine strategische Ressource, weil der Verlust des
+Wehrfähigkeit und stellte sechs                 Zugangs zu Rechenleistung und Modellen Handlungsfähigkeit kostet. Als Beleg
+Dimensionen vor. Danach ging es um              nennt er ein KI-Lagebild, das seit 2025 im Versuch läuft. Die EU-KI-Verordnung
+Daten und um die EU-KI-Verordnung.              passt nach seiner Einschätzung nicht auf den Einsatz; eine Bereichsausnahme wird geprüft.
 ```
 
-The left column follows the source; the right column states what the source
-proved and uses the evidence for that claim only.
+Every sentence on the right maps to a sentence in the source notes; nothing
+is added. The claim is attributed ("laut Referent X", "nach seiner
+Einschätzung") because the source is one speaker's position, not an
+established fact. A derived interpretation (what the talk means for the
+reader) would be marked as derived and kept apart from what he said.
 
 ## 4. Deriving a thesis from source material
 
@@ -177,30 +190,46 @@ user can replace it.
    two to four claims it actually made, as full sentences, with the evidence it
    gave. Skip descriptions of what was discussed; keep what was asserted.
 2. **Cluster by theme.** Group the claims across sources by what they are about,
-   not by where they came from. A cluster that holds claims from one source only
-   is a candidate for the annex, not for the key line.
-3. **Name each cluster with its insight.** The sentence the claims in the
+   not by where they came from.
+3. **Weigh, do not count.** A cluster's weight comes from its relevance to the
+   reader's question and the quality of its evidence, not from how many
+   sources repeat it. A deadline, a new finding or a substantial objection
+   stated once can carry a key-line claim; a point five speakers repeated can
+   be background. Mark single-source claims with their source in the evidence
+   mark so the reader sees the base.
+4. **Name each cluster with its insight.** The sentence the claims in the
    cluster share or add up to (`minto-pyramid.md` section 7). "Three talks
    addressed testing" is a count; "Testing replaces explainability as the basis
    for trust" is an insight. These sentences are the key-line candidates.
-4. **Find the apex.** What do the cluster sentences prove together? Write it as
+5. **Find the apex.** What do the cluster sentences prove together? Write it as
    one sentence the reader's organisation could act on or disagree with. It
    answers the reader's question (what does this mean for us), not the
    speakers' questions.
-5. **Test.** Disagreement test: could a reasonable reader object? Scope test:
+6. **Test.** Disagreement test: could a reasonable reader object? Scope test:
    do the clusters cover the material that matters to the reader? Order test:
    can the order of the clusters be named? Read-through: lead, key line,
    closing, in sequence.
-6. **Record dissent.** Where sources contradict each other, the contradiction
+7. **Record dissent.** Where sources contradict each other, the contradiction
    is a finding, not noise. It goes under the claim it concerns or in an
    "open questions" section, with both positions attributed as settled.
+8. **Separate derived from stated.** The apex and the cluster sentences are
+   the author's inference from what was said; label them "derived" in the
+   storyline. Exclusions ("not X", "no longer Y") are allowed only when the
+   material actually dealt with X or Y; otherwise the apex names what the
+   material supports and stays silent on what it did not cover.
 
-Example, derived from a one-day expert event on AI governance with four talks:
-clusters "regulation moves from bans to controls", "trust comes from tests, not
-explanations", "the state must put its requirements into contracts". Apex:
-"Für Behörden entscheidet sich KI-Governance in Beschaffung und Prüfverfahren,
-nicht in neuen Gesetzen." A reader can disagree; three clusters prove it; the
-order is degree (from the international frame to the local lever).
+Fictional example, a one-day expert event on AI governance with four talks.
+Stated in the material: talk 1 describes new regulatory duties for operators;
+talk 2 argues that testing and audits, not explainability, give grounds for
+trust; talk 3 lists procurement hurdles and contractual fixes; talk 4 says
+industry invests where tenders demand compliance. Clusters: "regulation now
+addresses operators directly", "trust is argued from tests and audits",
+"procurement and contracts are where requirements become binding". Apex,
+derived: "Aus den Vorträgen ergibt sich für Behörden unmittelbarer
+Handlungsbedarf bei Beschaffung und Prüfverfahren." A reader can disagree,
+three clusters prove it, the order is degree (from the frame to the lever).
+Not allowed from this material: "…nicht in neuen Gesetzen", because no talk
+addressed whether new laws are needed.
 
 ## 5. Attribution and confidentiality
 
@@ -210,27 +239,32 @@ Settle this in Stage 0 and write it into the storyline; it changes the text.
 |---|---|---|
 | **Named** | public event, speakers listed on the programme, the user confirms | name and organisation on first mention per section; quotes only when the material has them verbatim and the user allows quotes |
 | **Role only** | internal meeting, workshop, panel under house rules | "a ministry representative", "the industry side"; no names, no organisations that identify a person |
-| **None** (Chatham House) | the user says so, or the material is a transcript of a closed meeting | claims without source; the annex lists the event and its format, not the speakers |
+| **None** (Chatham House Rule or an equivalent agreement) | only when the user or the material names such an agreement; a closed meeting or a transcript by itself does not establish one | claims without source; the annex lists the event and its format, not the speakers |
 
 Default when the user has not said: role only, and an open point in the
-storyline asking whether names may be used. Transcript uncertainties (a name
+storyline asking whether names may be used. Whatever the setting in the text,
+the author's working version keeps the traceability: which statement comes
+from which recording or document, and where sources contradict each other.
+That record stays with the user and is not part of the delivered memo. Transcript uncertainties (a name
 the recorder misheard, a first name without surname) are flagged in the open
 points, not guessed. The user's own contribution, when the user spoke at the
 event, is attributed like everyone else's and not weighted higher.
 
 ## 6. The gate
 
+Defined once in `SKILL.md`, section "The gate"; this is the memo view of it.
 End the Stage 1 reply with exactly one question: whether governing thought and
-key line are approved, or which lines to change. Do not write the memo in the
-same turn. When the user replies with changes, apply them, re-run the
-read-through on the key line, show the changed lines and ask again. When the
-user replies "approved" or equivalent, write the memo and say which storyline
-version it follows.
+key line are approved, or which lines to change, and stop. A reply with
+changes and an instruction to continue is an approval: apply, show the changed
+lines, write the memo. A reply with changes only gets the changed lines and
+the question again. "Approved" or equivalent: write the memo and say which
+storyline version it follows.
 
-Exceptions, both named in the reply: the user asked for a one-shot run; or the
-memo is a thesis of a day or under roughly 300 words, where the storyline and
-the memo are nearly the same text. Then state governing thought and key line in
-two lines, write the memo, and invite changes afterwards.
+Short prose (roughly 300 words or less, including the thesis of a day) has no
+gate and no storyline in the reply: the checks run internally and the finished
+text is delivered in the requested format, without mode label, headings or a
+repeated conclusion unless asked for. Changes afterwards are applied to the
+text directly.
 
 ## 7. Bridge to Build
 
