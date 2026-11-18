@@ -1,0 +1,18 @@
+schema_version: "1.1"
+name: template-build-forms
+expected_outcome: |
+  The run probes the template with scripts/template-probe.py, states the
+  template brief it assumes (cover, section, content base, body zone, colour
+  roles, chrome from the layout), builds the deck with
+  scripts/pptx_template_helpers.py on the template's content layout, and
+  declares the approved form per content slide. The delivered .pptx keeps the
+  template's master, theme fonts and chrome, carries no filled body
+  placeholder, and shows a drawn contrast (slide 3), a drawn six-node cycle
+  with arrows (slide 4), a chevron flow with a gate bar (slide 5), a scorecard
+  table (slide 6) and decision cards (slide 7); speaker notes sit in the notes
+  pane on every slide. The delivery note pastes the deck-metrics summary lines
+  (every approved form matched, no text-block slide), lists the slides
+  rendered and reviewed with the fixes made, lists open placeholders by slide,
+  and names the assumptions taken from the probe. No slide is built by filling
+  a template layout's text placeholders, and no company template is written
+  into the skill.

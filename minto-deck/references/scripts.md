@@ -41,8 +41,11 @@ not reinvent the layout rules on every run.
   out of the mean; detected by title when not given). Marks and placeholders
   are not counted; shapes and connectors without text, and pictures smaller
   than the slide, count toward the exhibit; titles over 20 words are flagged.
-  Heuristics for the audit group H and the delivery note; needs python-pptx
-  for `.pptx`.
+  `--forms <deck>.forms.json` compares the approved form mark per slide with
+  what the file contains (gate T2, mismatch reported as BLOCKER) and the
+  text-block check (gate T3) flags content slides whose free text covers more
+  than 60 % of the body zone without an exhibit. Heuristics for the audit
+  groups H and T and the delivery note; needs python-pptx for `.pptx`.
 - `test-helpers.js`: smoke test for the helpers (`node scripts/test-helpers.js`
   with pptxgenjs installed): 19 checks, among them chevron text behind the
   notch, numbered cards, the narrow-column warning, word counting without
@@ -68,3 +71,37 @@ dump the text with `markitdown` and run the consistency pass. Deliver the
 The default theme is neutral (dark slate, petrol accent, brick signal). A
 user template replaces it: pass `theme` colours that match the template, or,
 better, build on the template file with the pptx skill's template workflow.
+
+## Template path (v0.8)
+
+- `template-probe.py`: `python3 scripts/template-probe.py template.pptx --json probe.json --md brief.md`
+  inventories a corporate template (layouts with placeholders and chrome,
+  theme palette and fonts, slide size), proposes the three layouts and the
+  free body zone, drafts the colour roles. Output is the Stage 0 template
+  brief (`template-mode.md` section 3); the user confirms it once.
+- `pptx_template_helpers.py`: `TemplateDeck(template, probe=probe.json, mode, lang, layouts={...}, roles={...})`
+  opens the template, drops its sample slides, and builds on its layouts with
+  python-pptx: `title_slide()`, `section_slide()`, `content(tracker, title, source, notes, build, form=...)`.
+  Body placeholders are deleted on every content slide, never filled (gate
+  T1); the slide-number, footer and date placeholders are copied from the
+  layout so the chrome renders; fonts are never set and come from the theme.
+  Primitives mirror `pptx-helpers.js` with the same shape names: `box`,
+  `txt`, `label`, `line` (arrow), `bullets`/`card` (`numbered=True`),
+  `ltable` (list style, narrow-column warning), `chevrons` (text behind the
+  notch), `cycle` (chord arrows cut at the node edge, short-arrow warning),
+  `contrast`, `timeline`, `big_stat`, `cols`, `PH()`. `Z` is the body zone
+  from the probe; the last 0.35 in carry source (left) and tracker (right).
+  `write(path)` returns slides, minutes, words per slide, warnings and the
+  forms sidecar path.
+- `example-template-build.py`: seven slides on the synthetic template
+  (management summary, contrast, cycle, flow with a gate bar, scorecard,
+  numbered decision cards), each with its form mark.
+- `make-synthetic-template.js`: regenerates `assets/synthetic-corp.pptx`
+  (own palette and fonts, logo, footer, slide number, four layouts, one of
+  them with two body placeholders on purpose). Needs pptxgenjs.
+- `test_template_helpers.py`: 14 checks for the template path, including the
+  negative case (a cycle built as text boxes fails T2 and T3).
+
+Both helper paths write `<deck>.forms.json`, the approved form mark per
+content slide, from `content(..., form=...)`; `deck-metrics.py --forms` reads
+it (gate T2) and reports text-block slides (gate T3).

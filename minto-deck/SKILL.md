@@ -2,8 +2,8 @@
 name: minto-deck
 description: "Build, write and audit after Barbara Minto's Pyramid Principle and consulting practice: governing thought, SCQA opening, MECE key line, full-sentence claims. Build mode makes slide decks in two stages: ghost deck for approval, then deck with speaker notes, timing, Q&A, backup, handout. Memo mode writes answer-first prose: management summaries, briefing notes, event or meeting reports, the thesis of a day, after a short storyline gate. Audit mode reviews a deck or memo and reports weak claims, broken logic and missing elements, with rewrites. Use whenever the user asks for slides, a deck, presentation, pitch, talk, storyline, ghost deck, speaker notes, management summary, Kernbotschaft, These, Vermerk, Veranstaltungsbericht, an answer-first or Minto summary, or wants a deck or memo reviewed; also on Folien, Praesentation, Vortrag, Entscheidungsvorlage, Sprechzettel, Deck pruefen. Trigger even without the word Minto. Not for transcription, translation or plain recaps. German, English."
 metadata:
-  version: "0.7.2"
-  updated: "2026-11-09"
+  version: "0.8.0"
+  updated: "2026-11-11"
   language: "en, de"
 ---
 
@@ -74,10 +74,14 @@ in the Stage 1 output and carry on. Do not ask more than three questions at once
    invented. Numbers, quotes and examples come from the user's material or are
    clearly marked as placeholders.
 7. Constraints: template, corporate design, confidentiality, slide limits,
-   mandatory slides. Templates live in `assets/templates/`, one folder per
-   template with the file and a short note on its layouts; pick the one the
-   briefing names, or ask when several fit. Templates are the user's or their
-   employer's property: keep them out of public repositories.
+   mandatory slides. When a corporate template is in play, the briefing
+   contract includes the template brief of `references/template-mode.md`
+   section 3: three layouts, body zone, colour roles, chrome; drafted by
+   `scripts/template-probe.py`, confirmed by the user, kept in a private
+   companion skill. The template supplies the shell and nothing else: it never
+   decides the form of an exhibit. Templates are the user's or their
+   employer's property: keep them out of public repositories; `assets/`
+   holds only the synthetic one for tests.
 8. Notation: when the material contains actuals, plans, forecasts, previous
    periods or variances, the deck uses IBCS notation by default. Say so in the
    register and list "without IBCS notation" as an open point at the gate, so
@@ -150,6 +154,8 @@ first; it is the page that gets ticked before delivery. Then read `references/co
 `references/timing-qa-handout.md`. When the material contains actuals, plans,
 forecasts, previous periods or variances, also read `references/ibcs-notation.md`.
 For a reading-first deck or the handout step, read `references/reading-decks.md`.
+When the deck is built on a corporate template, read `references/template-mode.md`
+and follow its gates T1 to T4.
 
 Produce, in this order:
 
@@ -159,7 +165,10 @@ Produce, in this order:
    title is the highlighted element, order and reading direction follow
    `exhibits.md` section 4, register names and colours inside the exhibit,
    cleaning sequence and the cover and headline tests from section 5. Native
-   shapes, never raster images. Then the text slides, within the text budget
+   shapes, never raster images, and never a filled body placeholder of a
+   template layout (`template-mode.md` T1). The build declares the approved
+   form mark per content slide (`content(..., form=...)`), so the finished
+   file can be checked against the ghost deck. Then the text slides, within the text budget
    of the declared density mode (section 6): in a speaker-led deck the detail
    goes to the notes, not onto the slide. Every external claim gets a source
    line; every number gets unit, period and denominator. In a decision paper,
@@ -195,31 +204,42 @@ Produce, in this order:
    criterion. Check the evidence column of the ghost deck: every title marked
    "missing" is now a placeholder on the slide and in the delivery note.
 10. **Self-check** against `references/audit-checklist.md` before delivery,
-    including group H (exhibits and text budget) and the visual check in
-    `visual-design.md` section 12. Where the host does not allow rendering
-    the slides from the build environment (the Slides artifact type), run
-    the text-dump check and an element count instead and say so in the
-    delivery note, naming the densest slides. Fix blockers; list warnings in
-    the delivery note.
+    including group H (exhibits and text budget), group T (form gates) and
+    the visual check in `visual-design.md` section 12. Run
+    `scripts/deck-metrics.py <deck> --mode <mode> --forms <deck>.forms.json`
+    and paste its summary lines (budget, form check, text-block slides) into
+    the delivery note; a form mismatch or a text-block slide is a blocker
+    and the deck is not delivered until it is fixed. Render every slide at
+    full size and look at it; the delivery note lists the slides reviewed
+    and the fixes made (T4). Where the host does not allow rendering the
+    slides from the build environment (the Slides artifact type), run the
+    text-dump check and an element count instead and say so in the delivery
+    note, naming the densest slides. Fix blockers; list warnings in the
+    delivery note.
 
 ### Rendering
 
-The methodology is tool-independent; the file is produced by whatever the host
-offers, in this order of preference:
+The methodology is host-independent, and so is the file: the skill's own
+scripts build it, the host supplies only the runtime (Python or Node) and the
+preview. A host tool that opens PowerPoint or fills template placeholders is
+never the path for content slides; it may open, preview or deliver what the
+scripts wrote. Paths, by what the host has:
 
-1. The host's native PowerPoint capability (Anthropic's `pptx` skill, a
-   PowerPoint connector, or an equivalent slides tool), because it keeps text,
-   tables and charts editable and puts notes in the notes pane.
-2. `pptxgenjs` with `scripts/pptx-helpers.js` in a sandbox when no such
-   capability exists; the helpers encode zones, grid, type scale, list-style
+1. Python with python-pptx and a corporate template:
+   `scripts/pptx_template_helpers.py` draws every exhibit as native shapes on
+   the template's content layout and keeps its master, theme, fonts and chrome
+   (`references/template-mode.md`). This is the only path that opens a
+   foreign master.
+2. Node with `pptxgenjs` and no template: `scripts/pptx-helpers.js` in the
+   neutral design; the helpers encode zones, grid, type scale, list-style
    tables, cards, chevrons and the notes pane, so a build file holds only the
-   deck's content (see `scripts/README.md` and `scripts/example-build.js`).
+   deck's content (see `references/scripts.md` and `scripts/example-build.js`).
+   Where Anthropic's `pptx` skill is present, it supplies theme writer,
+   validation and the render check for this path.
 3. A Markdown outline with notes when no file can be produced at all; say so.
 
-Where the host's PowerPoint capability is itself `pptxgenjs` (claude.ai with
-Anthropic's `pptx` skill), paths 1 and 2 are one path: the helpers carry the
-layout rules, the `pptx` skill carries theme writer, validation and the
-render check.
+Both helper paths write `<deck>.forms.json` beside the deck, the approved form
+mark per content slide, for `scripts/deck-metrics.py --forms` (gate T2).
 
 Deliver an editable `.pptx`. Keynote and Google Slides import it; do not produce
 a Keynote-native file. Keep charts native. Put speaker notes in the notes pane,
@@ -360,7 +380,9 @@ Read `references/audit-checklist.md` and `references/minto-pyramid.md`.
    (visual layout, notes, charts). When the deck uses a font the render
    environment does not have, overflow and wrapping in the preview are not
    findings: list them under "Not checked" with the font name and the
-   advice to check in PowerPoint. For a memo extract lead, headings, first
+   advice to check in PowerPoint. For a deck on a corporate template, note
+   which slides carry filled body placeholders instead of drawn exhibits
+   (`template-mode.md` T1). For a memo extract lead, headings, first
    sentences of paragraphs, closing and sources.
 2. Identify or ask for the deck type, audience, setting and density mode.
    The completeness check needs a target, and the text budget (group H) needs
@@ -420,6 +442,8 @@ Read the file when its stage starts; do not load all of them up front.
 | `references/visual-design.md` | Stage 2: layout patterns, grid, type, colour, charts, decluttering, tables, executive summary format, visual check; Audit: form checks |
 | `references/ibcs-notation.md` | Stage 2 and Audit, whenever numbers with scenarios or variances appear: IBCS rules and notation |
 | `references/reading-decks.md` | Stage 2 handout step and any reading-first deck; Audit of pre-reads |
+| `references/template-mode.md` | Stage 0 template brief and Stage 2 on a corporate template: three layers, gates T1 to T4, companion skill; Audit of template-built decks |
+| `references/scripts.md` | Before writing a build file: helper APIs, probe, metrics, tests |
 | `references/sources.md` | Maintenance: every source, its status and what it changed |
 | `references/speaker-notes.md` | Stage 2, step 3 |
 | `references/timing-qa-handout.md` | Stage 2, steps 4 to 7 |
@@ -429,6 +453,10 @@ Read the file when its stage starts; do not load all of them up front.
 Every reference opens with a quick checklist of its rules; the rest of the file
 is detail to look up.
 
-`assets/` holds the approved reference deck once one exists and user templates;
-use them as patterns for format and density, never as a source of content.
-`scripts/` holds the pptxgenjs helpers for the sandbox rendering path.
+`assets/` holds the approved reference deck once one exists and
+`assets/synthetic-corp.pptx`, a stand-in corporate template for tests
+and evals (generated by `scripts/make-synthetic-template.js`); user templates
+stay outside the repository. `scripts/` holds the helpers for both rendering
+paths, the template probe, the metrics and the smoke tests; nothing but
+executable scripts lives there. The runtime copy of this skill is everything
+except `evals/`.

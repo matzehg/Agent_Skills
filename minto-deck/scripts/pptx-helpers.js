@@ -75,6 +75,9 @@ function createDeck(opts = {}) {
   const PH_RE = /\[(PLATZHALTER|PLACEHOLDER):[^\]]*\]/g;
   // warnings collected while building, returned by write() (exhibits.md 7)
   const warnings = [];
+  // approved form mark per content slide (content(..., { form })), written beside
+  // the deck as <deck>.forms.json for deck-metrics.py --forms (gate T2)
+  const forms = [];
 
   // ---- masters ----
   pres.defineSlideMaster({ title: "TITLE", background: { color: T.colors.dk1 }, objects: [
@@ -328,9 +331,12 @@ function createDeck(opts = {}) {
     return s;
   }
   // content(tracker, title, source, notes, build(slide, h)) — h exposes geometry and primitives
-  function content(tracker, title, source, notes, build) {
+  // content(tracker, title, source, notes, build, { form }): form is the approved
+  // form mark from the ghost deck ("concept:cycle", "table", "chart:bar", "text")
+  function content(tracker, title, source, notes, build, o = {}) {
     const s = pres.addSlide({ masterName: "CONTENT" });
     s.addText(title, { placeholder: "title" });
+    forms.push({ slide: pres.slides.length, form: o.form || "", title });
     if (tracker) s.addText(String(tracker).toUpperCase(), { x: W - M - 2.1, y: TITLE_Y, w: 2.1, h: 0.3, fontSize: F.small, color: C.accent6, align: "right", charSpacing: 1, margin: 0, isTextBox: true, objectName: "tracker" });
     build(s, api);
     if (HANDOUT && notes) {
@@ -347,11 +353,16 @@ function createDeck(opts = {}) {
     let themeApplied = false;
     if (applyTheme) { await applyTheme(path, T); themeApplied = true; }
     const wordsPerSlide = pres.slides.map((sl, i) => ({ slide: i + 1, words: wordLog.get(sl) || 0 }));
-    return { path, slides: pres.slides.length, minutes: notesLog.reduce((a, n) => a + (Number(n.time) || 0), 0), notesLog, themeApplied, wordsPerSlide, warnings };
+    let formsPath = null;
+    if (forms.some(f => f.form)) {
+      formsPath = path.replace(/\.pptx$/i, "") + ".forms.json";
+      require("fs").writeFileSync(formsPath, JSON.stringify(forms, null, 1));
+    }
+    return { path, slides: pres.slides.length, minutes: notesLog.reduce((a, n) => a + (Number(n.time) || 0), 0), notesLog, themeApplied, wordsPerSlide, warnings, forms, formsPath };
   }
 
   const api = { pres, C, T, F, MODE, HANDOUT, LANG, W, M, CW, G, TITLE_Y, TITLE_H, BODY_Y, BODY_H, KEY_Y, KEY_H, SRC_Y, TINT, TINT_SIGNAL, RULE,
-    cols, PH, wordsOf, longestWordWidth, warnings, box, txt, bullets, card, bigStat, bigStatLayout, label, ltable, MARK, chevrons, pill, line, cycle, cycleGeometry, continuum, timeline, matrix, titleSlide, sectionSlide, content, write, speakerNotes };
+    cols, PH, wordsOf, longestWordWidth, warnings, forms, box, txt, bullets, card, bigStat, bigStatLayout, label, ltable, MARK, chevrons, pill, line, cycle, cycleGeometry, continuum, timeline, matrix, titleSlide, sectionSlide, content, write, speakerNotes };
   return api;
 }
 

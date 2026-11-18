@@ -17,6 +17,7 @@ up; this page is what gets followed.
 - [ ] Layout pattern chosen from the catalogue to prove that claim (visual-design 2); concept visual per its type rules: reading direction, caps, one label per node (exhibits 3)
 - [ ] Title's subject is the highlighted element; order follows the message; register names and colours inside the exhibit; cleaning sequence, cover test and headline test done (exhibits 4, 5)
 - [ ] Body words within the mode's budget; management summary and decision slide within their own budget; detail in notes, not on the slide, in a speaker-led deck (exhibits 6)
+- [ ] Form gates: approved form mark built on every content slide, checked by `deck-metrics.py --forms` with no mismatch (T2); no text-block slide (T3); on a template no filled body placeholder (T1); the delivery note lists the slides rendered and reviewed and the fixes made (T4) (template-mode 4)
 - [ ] One dominant element; body answers exactly the question the title raises (minto-pyramid 4)
 - [ ] Numbers with unit, period, denominator, source; placeholders marked `[PLATZHALTER: …]` or `[PLACEHOLDER: …]`, one form per deck (consulting-practices 7)
 - [ ] Chart: comparison type named, simplest form, decluttered, one element highlighted, axes at zero, descriptive chart title (visual-design 6, 6a; ibcs-notation 4, 7)

@@ -140,10 +140,21 @@ Run in this order; each level depends on the one above.
 | H8 | Text form marks carry a reason; exhibit ratio reported (content slides with chart, table or concept form over all content slides) | "text" without a reason; ratio far below two thirds in a deck that has numbers |
 | H9 | No invented data; placeholder data marked inside the exhibit | a chart with plausible but unsourced values |
 
+### T. Form gates (`template-mode.md` section 4)
+
+| # | Check | Signal |
+|---|---|---|
+| T1 | On a template, no content slide carries a filled body placeholder in place of a drawn exhibit | a contrast, cycle or flow delivered as two or four text columns of a template layout |
+| T2 | Approved form equals built form on every content slide (`deck-metrics.py --forms`); without a forms file, judge from the ghost deck or the form the title implies | "form mismatch" in the metrics; a title that announces a loop over a slide that shows a list |
+| T3 | No text-block slide: free text containers over 60 % of the body zone with no exhibit, outside management summary and decision slide | "text-block" in the metrics; a slide that is a form filled in |
+| T4 | Delivery note lists the slides rendered and reviewed and the fixes made | a delivery note without the list; a listed fix the render does not show |
+
 Severity: H1 is a blocker only for a speaker-led deck whose mean over the
 content slides exceeds the budget or whose single slide exceeds twice the
 budget; the management summary and the decision slide are excluded from the
-mean and measured against their own budget; single slides above budget are warnings; under the lower bound in a
+mean and measured against their own budget; single slides above budget are warnings;
+T1 and T2 are blockers; T3 is a blocker in a speaker-led deck and a warning in
+a reading-first deck; T4 is a warning, a blocker when a reported fix is visibly absent; under the lower bound in a
 reading deck is advisory (`exhibits.md` section 6). H9 is a blocker. H2, H3
 and H5 are warnings that become blockers in a decision paper; the rest are
 warnings. H8 is information unless a text mark has no reason.

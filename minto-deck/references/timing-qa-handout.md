@@ -129,6 +129,10 @@ there.
 End Stage 2 with a short delivery note in the chat:
 
 - files delivered (deck, handout, timing plan, Q&A document) with their paths;
+- the summary lines of `scripts/deck-metrics.py` (budget, form check, text-block
+  slides) pasted verbatim; a form mismatch or a text-block slide means the
+  deck was not delivered yet;
+- the slides rendered and reviewed at full size, and the fixes made (gate T4);
 - placeholders still open, by slide;
 - warnings from the self-check that were not fixed and why;
 - the one thing the presenter should rehearse (usually the management summary
